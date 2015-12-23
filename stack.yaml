@@ -1,0 +1,6 @@
+flags: {}
+packages:
+- '.'
+- '../haskell-libs/myprelude'
+extra-deps: [IntervalMap-0.4.0.1 , ssv-0.3 , nicify-lib-1.0.1 , hxt-cache-9.1.0.1]
+resolver: nightly-2015-10-25
