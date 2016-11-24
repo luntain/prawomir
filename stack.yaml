@@ -2,5 +2,5 @@ flags: {}
 packages:
 - '.'
 - '../haskell-libs/myprelude'
-extra-deps: [IntervalMap-0.4.0.1 , ssv-0.3 , nicify-lib-1.0.1 , hxt-cache-9.1.0.1]
-resolver: nightly-2015-10-25
+extra-deps: [ssv-0.3, hxt-tagsoup-9.1.4, hxt-cache-9.1.0.2]
+resolver: lts-7.2

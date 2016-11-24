@@ -3,43 +3,60 @@ module Model where
 import MyPrelude
 import Data.Time
 import qualified Data.Text as T
-import Control.Lens
+import qualified Data.Map as M
 
 data PozId =
   PozId {_pidYear, _pidNr, _pidSeq :: Int}
-  deriving (Show, Read)
+  deriving (Show, Read, Eq)
 
-data DUPozycja =
-  DUPozycja {
-      _dupId :: PozId
-    --, _dupTitle :: T.Text in ustawa
-    --, _dupZDnia :: Day already in Ustawa
-    --, _dupWSprawie :: T.Text
-    , _dupAkt :: Akt} deriving (Show, Read)
+-- data DUPozycja =
+--   DUPozycja {
+--       _dupId :: PozId
+--     --, _dupTitle :: T.Text in ustawa
+--     --, _dupZDnia :: Day already in Ustawa
+--     --, _dupWSprawie :: T.Text
+--     , _dupAkt :: Akt} deriving (Show, Read)
 
 data Akt =
-  Ustawa {_uzDnia :: Day, _uTytul :: T.Text, _utresc :: Div } deriving (Show, Read)
+  Ustawa { _upId :: PozId
+         , _uzDnia :: Day
+         , _uTytul :: String
+         , _uspisTresci :: TableOfContents
+         , _uarticles :: M.Map String Article
+         } deriving (Show, Read, Eq)
 
-data Div = -- [Dzial, [rozdzial]]
-  Div String String [Div]
-  | Articles [Art]
-  deriving (Show, Read)
+-- data DivType =
+--   Dzial | Rozdzial | Artykul | Ustep | Punkt
+--   deriving (Show, Read)
+-- hdrPriority divTyp =
+--   case divtyp of
+--     Dzial -> 1
+--     Rozdzial -> 2
+--     Artykul -> 3
+--     Ustep -> 4
+--     Punkt -> 5
 
-data DivType =
-  Dzial | Rozdzial | Artykul | Ustep | Punkt
-  deriving (Show, Read)
 
-data Node = Div {_dtype:: DivType, _dtitle:: T.Text, _dsubtitle:: Maybe T.Text }
- deriving (Show, Read)
+data TableOfContents = -- [Dzial, [rozdzial]]
+  Partitions String [(String, String)] (M.Map String TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
+  | Articles [String]
+  deriving (Show, Read, Eq)
 
-data Art = Art String [Content] [Ustep] deriving (Show, Read)
-data Ustep = Ustep String [Content] [Punkt] deriving (Show, Read)
-data Punkt = Punk String [Content] deriving (Show, Read)
+type TextWithReferences = [TextOrReference]
+data TextOrReference = Text T.Text -- just test for now
+  deriving (Show, Read, Eq)
 
-data Content =
-  Text T.Text
-  -- | Table
-  deriving (Show, Read)
+data Article =
+  Article { _aprefix :: ZWyliczeniem
+          , _aindex :: [String]
+          , _apoints :: M.Map String ZWyliczeniem -- ustepy
+          }
+  deriving (Show, Read, Eq)
 
-makeLenses ''DUPozycja
-makeLenses ''Akt
+data ZWyliczeniem =
+  ZWyliczeniem { _zwprefix :: TextWithReferences
+               , _zwindex :: [String]
+               , _zwpoints :: M.Map String ZWyliczeniem
+               , _zsuffix :: TextWithReferences
+               }
+  deriving (Show, Read, Eq)

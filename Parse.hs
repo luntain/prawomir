@@ -5,6 +5,7 @@ import Data.Monoid
 import MyPrelude hiding (many, (<|>))
 import Control.Lens
 import Data.Time
+import qualified Data.Map as M
 import qualified Data.Text as T
 import Model
 import ParseXml
@@ -13,8 +14,23 @@ import Text.Parsec.Pos
 
 -- Tok not to clash with ParseXml.Token
 data Tok = Tok {_ttok :: Token, _tline:: TEXT, _tpage::Page} deriving (Show, Read)
-
 makeLenses ''Tok
+
+-- data Stream = Stream { _scurrentLine :: [Token], _scurrentPage :: [Text], _sotherPages :: [Page], _siLineBeginning :: Bool }
+--               deriving (Show, Read)
+-- makeLenses ''Stream
+
+-- instance Monad m => Stream Stream m Stream where
+--   uncons stream =
+--     case _scurrentLine stream of
+--       _:(rest@(_:_)) -> Just $ stream {_scurrentLine = rest, _siLineBeginning = False}
+--       _ -> case _scurrentPage of
+--         x:rest -> Just $ stream {_scurrentLine=_ltokens x, _siLineBeginning=True, _scurrentPage=rest}
+--         [] -> case _sotherPages stream of
+--           [] -> Nothing
+--           p:pages ->
+
+--   feedLine =
 
 type Parser a = Parsec [Tok] () a
 
@@ -50,27 +66,32 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
     parseLine :: (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
     parseLine fp parser =
       ftoken
-      (\line -> newPos ("Page " ++ show seq) 0 0) -- TODO put in a line and col number maybe?
+      (\_line -> newPos ("Page " ++ show seq) 0 0) -- TODO put in a line and col number maybe?
       fp
       parser
 
-parseDoc :: [Page] -> Partitioned
-parseDoc = mconcat . map partitionPage . zip [1..]
+parseUstawa :: FilePath -> IO Akt
+parseUstawa path = do
+  pages <- parsePages path
+  let partitioned = partitionPages pages
+  forceResult path $ toResult $ runParser tekstJednolity () path (_mainContent partitioned)
 
 
-duPozycja :: Parser DUPozycja
-duPozycja = do
+partitionPages :: [Page] -> Partitioned
+partitionPages = mconcat . map partitionPage . zip [1..]
+
+tekstJednolity :: Parser Akt
+tekstJednolity = do
   pid <- duPozId
   consumeWords "U S T A W A"
   zDnia <- consumeWords "z dnia" *> dlugaData
-  tytul <- T.unwords <$> many1 bold
-  div <- parseDivs
-  return (DUPozycja {
-            _dupId=pid
-          , _dupAkt=Ustawa {
-              _uzDnia=zDnia
-              , _uTytul=tytul
-              , _utresc=Articles []} })
+  tytul <- (T.unpack . T.unwords) <$> many1 (ftok boldF (Just . view (ttok.ttext)))
+  return (Ustawa {
+            _upId=pid
+            , _uzDnia=zDnia
+            , _uTytul=tytul
+            , _uspisTresci=Articles []
+            , _uarticles = M.empty })
 
 duPozId :: Parser PozId
 duPozId = do
@@ -87,27 +108,10 @@ duPozId = do
   --consumeWords "Rozdział"
   --rozdzialId <- anyWord
   --tytul <- manyTill (ftok boldF anyT) (ftok boldF (constT "Art."))
-  --articles <- 
-
-data DivType =
-  Dzial | Rozdzial | Artykul | Ustep | Punkt
-  deriving (Show, Read)
-
-hdrPriority divTyp =
-  case divtyp of
-    Dzial -> 1
-    Rozdzial -> 2
-    Artykul -> 3
-    Ustep -> 4
-    Punkt -> 5
-
-data Div = Div { _dtext :: T.Text, _dtype :: DivType}
+  --articles <-
 
 consumeWords :: T.Text -> Parser ()
 consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string w))
-
-tekstJednolity :: Parser Div
-tekstJednolity = undefined
 
 dlugaData :: Parser Day
 dlugaData = do
@@ -132,20 +136,21 @@ manyTill' m end = do
     Right part -> first (part:) <$> manyTill' m end
 
 -- specialise ftoken for Tok
-ftok :: (t -> All) -> (t -> Maybe a) -> Parsec [t] () a
+ftok :: (Tok -> All) -> (Tok -> Maybe a) -> Parsec [Tok] () a
 ftok = ftoken tokPos
 -- formatted token
 ftoken :: Show t => (t->SourcePos) -> (t -> All) -> (t -> Maybe a) -> Parsec [t] () a
 ftoken srcPos fp match = token show srcPos (\t -> if getAll (fp t) then match t else Nothing)
 
-parsecTok :: (Tok->All) -> (Parsec T.Text () a) -> Parser a
+parsecTok :: (Tok->All) -> Parsec T.Text () a -> Parser a
 parsecTok fp parser =
   ftoken tokPos fp
     (\t -> case runParser parser () (show (tokPos t)) (t^.ttok.ttext) of
-            Left err -> Nothing
+            Left _err -> Nothing
             Right res -> Just res)
 tokPos t = newPos ("Page " ++ (show $ t^.tpage.pnumber)) (round $ t^.tline.ly) (round $ t^.ttok.tx)
 
+-- try a parsec text parser on a text like thing, yielding a Maybe if it is successful
 parsec :: ToText t => Parsec T.Text () a -> (t->Maybe a)
 parsec parser = either (const Nothing) Just . runParser parser () "TODO" . toText
 

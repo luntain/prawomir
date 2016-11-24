@@ -6,7 +6,6 @@ import MyPrelude
 import qualified Data.Text as T
 import Control.Lens hiding (deep)
 import Text.XML.HXT.Core
-import Text.XML.HXT.Arrow.Pickle
 
 data Page =
   Page { _pnumber :: Int, _pwidth, _pheight :: Float, _ptexts:: [TEXT]} deriving (Show, Read)
@@ -22,8 +21,8 @@ makeLenses ''TEXT
 makeLenses ''Token
 
 
-parse :: FilePath -> IO [Page]
-parse path =
+parsePages :: FilePath -> IO [Page]
+parsePages path =
   runX (parseDoc path)
 
 parseDoc :: FilePath -> IOSArrow a Page
@@ -38,7 +37,7 @@ xpPage :: PU Page
 xpPage =
   xpFilterCont (removeAttr "id" >>> processChildren (hasName "TEXT")) $
   xpElem "PAGE" $
-    xpWrap (uncurry4 Page, undefined) $
+    xpWrap (uncurry4 Page, undefined) $ -- xpWrap is like fmap in two directions
     xp4Tuple (xpAttr "number" xpPrim)
              (xpAttr "width" xpPrim)
              (xpAttr "height" xpPrim)
@@ -46,7 +45,7 @@ xpPage =
 
 xpTEXT :: PU TEXT
 xpTEXT =
-  xpFilterCont (removeAttr "id") $
+  xpFilterCont (removeAttr "id" >>> processChildren (hasName "TOKEN")) $ -- remove text elements from formatting
   xpElem "TEXT" $
     xpWrap (uncurry5 TEXT, undefined) $
     xp5Tuple (xpAttr "x" xpPrim)

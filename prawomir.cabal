@@ -4,14 +4,57 @@ build-type:          Simple
 -- extra-source-files:
 cabal-version:       >=1.10
 
+library
+  hs-source-dirs:      .
+  exposed-modules:     ParseXml Model Parse
+  ghc-options:         -Wall -fno-warn-deprecated-flags -fno-warn-name-shadowing -fno-warn-missing-signatures -fno-warn-orphans -Werror
+  default-extensions:
+      NoImplicitPrelude, TemplateHaskell,
+      NamedFieldPuns, TupleSections, LambdaCase, MultiWayIf, GADTs, TypeFamilies,
+      TypeSynonymInstances, FlexibleInstances, OverlappingInstances, UndecidableInstances,
+      MultiParamTypeClasses,
+      RankNTypes, DeriveDataTypeable, GeneralizedNewtypeDeriving, DeriveGeneric,
+      FunctionalDependencies, FlexibleContexts, ScopedTypeVariables
+  build-depends:       base >= 4.7 && < 5
+                     , myprelude, directory, containers, old-locale, old-time, time, mtl,
+                     lens, text, HStringTemplate, bytestring,
+                     hxt, hxt-http, hxt-tagsoup, hxt-unicode, hxt-cache, zlib, attoparsec, parsec
+  default-language:    Haskell2010
+
 executable play
+  hs-source-dirs: play-app
   main-is: Main.hs
-  other-modules: Scrape, ParseXml, Parse
   default-language: Haskell2010
-  build-depends:  base, myprelude==0.7.8.0,
+  build-depends:  base, prawomir, myprelude==0.7.8.0,
           directory, containers, old-locale, old-time, time, mtl,
           lens, text, HStringTemplate, bytestring,
           hxt, hxt-http, hxt-tagsoup, hxt-unicode, hxt-cache, zlib, attoparsec, parsec
+  default-extensions: NamedFieldPuns, TypeSynonymInstances, FlexibleInstances,
+              TupleSections, LambdaCase, RankNTypes, DeriveDataTypeable,
+              MultiParamTypeClasses, FunctionalDependencies, FlexibleContexts, ScopedTypeVariables,
+              NoImplicitPrelude, GeneralizedNewtypeDeriving, MultiWayIf, UndecidableInstances,
+              TemplateHaskell, GADTs
+
+test-suite test
+  default-language: Haskell2010
+  default-extensions:
+    NoImplicitPrelude, TemplateHaskell,
+    NamedFieldPuns, RecordWildCards, TupleSections, LambdaCase, MultiWayIf, GADTs,
+    TypeSynonymInstances, FlexibleInstances, OverlappingInstances, UndecidableInstances,
+    MultiParamTypeClasses,
+    RankNTypes, DeriveDataTypeable, GeneralizedNewtypeDeriving, DeriveGeneric,
+    FunctionalDependencies, FlexibleContexts, ScopedTypeVariables
+  type: exitcode-stdio-1.0
+  hs-source-dirs: tests
+  main-is: XmlToModel.hs
+  build-depends: prawomir, base, myprelude, tasty, tasty-hunit, text, time, containers
+
+executable CleanupXML
+  hs-source-dirs: tool/cleanup-xml
+  main-is: Main.hs
+  default-language: Haskell2010
+  build-depends:  base, myprelude==0.7.8.0,
+          directory, containers, time, text, hxt, hxt-http, hxt-unicode
   default-extensions: NamedFieldPuns, TypeSynonymInstances, FlexibleInstances,
               TupleSections, LambdaCase, RankNTypes, DeriveDataTypeable,
               MultiParamTypeClasses, FunctionalDependencies, FlexibleContexts, ScopedTypeVariables,
