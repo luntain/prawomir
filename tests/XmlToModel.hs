@@ -7,6 +7,9 @@ import Data.Time
 import qualified Data.Text as T
 import Model
 import Parse
+import Text.Nicify
+import Data.Algorithm.DiffOutput (ppDiff)
+import Data.Algorithm.Diff (getGroupedDiff)
 
 
 main = defaultMain tests
@@ -15,7 +18,7 @@ tests =
   testGroup "HUnit tests"
     [ testCase "parse pit1.xml" $ do
       ustawa <- parseUstawa "tests/pit1.xml"
-      assertEqual "msg" expectedUstawa ustawa
+      diffAssertEqual expectedUstawa ustawa
     ]
 
 expectedUstawa :: Akt
@@ -23,7 +26,7 @@ expectedUstawa =
   Ustawa {
     _upId = PozId { _pidYear = 1991, _pidNr = 80, _pidSeq = 350 }
     , _uzDnia = fromGregorian 1991 7 26
-    , _uTytul = "o podatku dochodowym od osob fizycznych"
+    , _uTytul = "o podatku dochodowym od osób fizycznych"
     , _uspisTresci =
       Partitions "Rozdział" [("1", "Podmiot i przedmiot opodatkowania")] (M.fromList [("1", Articles ["1", "2"])])
     , _uarticles =
@@ -50,4 +53,9 @@ instance Point Article where
 
 instance Point ZWyliczeniem where
   mkLeaf text = ZWyliczeniem [Text $ T.pack text] [] M.empty []
-  mkPoint text children = ZWyliczeniem [Text $ T.pack text] (map fst children) (M.fromList children) ="p1_w1" font-name="Times-Roman" symbolic="yes" b
+  mkPoint text children = ZWyliczeniem [Text $ T.pack text] (map fst children) (M.fromList children) []
+
+
+diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
+diffAssertEqual expected actual =
+  assertEqual (ppDiff (getGroupedDiff (lines . nicify . show $ expected) (lines . nicify . show $ actual))) expected actual

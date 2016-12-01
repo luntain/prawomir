@@ -12,37 +12,33 @@ import ParseXml
 import Text.Parsec
 import Text.Parsec.Pos
 
+data NonTerminal =
+    RozdziałToken
+  | ArticleToken
+  deriving (Show, Read, Eq)
+
 -- Tok not to clash with ParseXml.Token
-data Tok = Tok {_ttok :: Token, _tline:: TEXT, _tpage::Page} deriving (Show, Read)
+data Tok =
+  RawToken {_ttok :: Token, _tline:: TEXT, _tpage::Page}
+  -- following greatly simplify parsing
+  | NonTerminal NonTerminal SourcePos
+  deriving (Show)
 makeLenses ''Tok
-
--- data Stream = Stream { _scurrentLine :: [Token], _scurrentPage :: [Text], _sotherPages :: [Page], _siLineBeginning :: Bool }
---               deriving (Show, Read)
--- makeLenses ''Stream
-
--- instance Monad m => Stream Stream m Stream where
---   uncons stream =
---     case _scurrentLine stream of
---       _:(rest@(_:_)) -> Just $ stream {_scurrentLine = rest, _siLineBeginning = False}
---       _ -> case _scurrentPage of
---         x:rest -> Just $ stream {_scurrentLine=_ltokens x, _siLineBeginning=True, _scurrentPage=rest}
---         [] -> case _sotherPages stream of
---           [] -> Nothing
---           p:pages ->
-
---   feedLine =
 
 type Parser a = Parsec [Tok] () a
 
 data Partitioned =
   Partitioned {_mainContent :: [Tok], _sidenotes :: [Tok], _footnotes::[Tok]}
-  deriving (Show, Read)
+  deriving (Show)
 
 instance Monoid Partitioned where
   mempty = Partitioned [] [] []
   mappend (Partitioned m s f) (Partitioned m2 s2 f2) = Partitioned (m <>m2) (s<>s2) (f<>f2)
 
 makeLenses ''Partitioned
+
+partitionPages :: [Page] -> Partitioned
+partitionPages = mconcat . map partitionPage . zip [1..]
 
 partitionPage :: (Int, Page) -> Partitioned
 partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
@@ -62,7 +58,7 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
       where
         firstTok :: Token
         firstTok = head $ line^.ltokens
-    toToks lines = [Tok tk ln page | ln <- lines, tk <- _ltokens ln]
+    toToks lines = [RawToken tk ln page | ln <- lines, tk <- _ltokens ln]
     parseLine :: (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
     parseLine fp parser =
       ftoken
@@ -70,15 +66,28 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
       fp
       parser
 
+detectNonTerminals :: [Tok] -> [Tok]
+detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
+  where
+    lineId :: Tok -> Float
+    lineId (RawToken {_tline=tline}) = _ly tline
+    lineId (NonTerminal _ _) = error "There should't be any NonTerminal's at this point"
+    detect :: [Tok] -> [Tok]
+    detect [] = error "There should not be an empty line"
+    detect (first:rest) = detect' first : rest
+    detect' token@(RawToken {_ttok=tok})
+      | _ttext tok == "Art." && _tbold tok = NonTerminal ArticleToken (tokPos token)
+      -- I saw one Rozdział with x 236, arts seem to have it at 82.2
+      | _ttext tok == "Rozdział" && _tx tok > 150.0 = NonTerminal RozdziałToken (tokPos token)
+      | otherwise = token
+    detect' tok = tok
+
 parseUstawa :: FilePath -> IO Akt
 parseUstawa path = do
   pages <- parsePages path
   let partitioned = partitionPages pages
-  forceResult path $ toResult $ runParser tekstJednolity () path (_mainContent partitioned)
-
-
-partitionPages :: [Page] -> Partitioned
-partitionPages = mconcat . map partitionPage . zip [1..]
+  forceResult path
+    $ toResult $ runParser tekstJednolity () path (detectNonTerminals $ _mainContent partitioned)
 
 tekstJednolity :: Parser Akt
 tekstJednolity = do
@@ -92,6 +101,8 @@ tekstJednolity = do
             , _uTytul=tytul
             , _uspisTresci=Articles []
             , _uarticles = M.empty })
+
+rozdział :: Parser (String, String, M.Map String TableOfContents)
 
 duPozId :: Parser PozId
 duPozId = do
@@ -115,12 +126,16 @@ consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string 
 
 dlugaData :: Parser Day
 dlugaData = do
-  components <- sequence . take 4 . repeat $ ftoken tokPos mempty (Just . view (ttok.ttext))
-  case parseTimeM True polishTimeLocaleLc "%d %B %Y r." (unwords . map T.unpack $ components) of
+  components <- sequence . take 4 . repeat $ ftok mempty (Just . view (ttok.ttext))
+  let date_text = unwords . map T.unpack $ components
+  case parseTimeM True polishTimeLocaleLc "%d %B %Y r." date_text of
     Just r -> return r
-    Nothing -> mzero
+    Nothing -> fail ("Nie mozna sparsowac daty: " ++ date_text)
 
-boldF = All . view (ttok.tbold)
+boldF :: Tok -> All
+boldF (NonTerminal _ _) = All False
+boldF (RawToken {_ttok=ttok}) = All . _tbold $ ttok
+
 anyT = Just . view (ttok . ttext)
 constT expected tok = if tok^.ttok.ttext == expected then Just () else Nothing
 
@@ -144,11 +159,14 @@ ftoken srcPos fp match = token show srcPos (\t -> if getAll (fp t) then match t 
 
 parsecTok :: (Tok->All) -> Parsec T.Text () a -> Parser a
 parsecTok fp parser =
-  ftoken tokPos fp
+  ftok fp
     (\t -> case runParser parser () (show (tokPos t)) (t^.ttok.ttext) of
             Left _err -> Nothing
             Right res -> Just res)
-tokPos t = newPos ("Page " ++ (show $ t^.tpage.pnumber)) (round $ t^.tline.ly) (round $ t^.ttok.tx)
+
+tokPos (RawToken {_ttok=ttok, _tline=tline, _tpage=tpage}) =
+  newPos ("Page " ++ (show $ tpage^.pnumber)) (round $ tline^.ly) (round $ ttok^.tx)
+tokPos (NonTerminal _ sp) = sp
 
 -- try a parsec text parser on a text like thing, yielding a Maybe if it is successful
 parsec :: ToText t => Parsec T.Text () a -> (t->Maybe a)
@@ -162,3 +180,19 @@ instance ToText TEXT where
   toText t = T.unwords $ t^..ltokens.traverse.ttext
 instance ToText Tok where
   toText t = t^.ttok.ttext
+
+-- data Stream = Stream { _scurrentLine :: [Token], _scurrentPage :: [Text], _sotherPages :: [Page], _siLineBeginning :: Bool }
+--               deriving (Show, Read)
+-- makeLenses ''Stream
+
+-- instance Monad m => Stream Stream m Stream where
+--   uncons stream =
+--     case _scurrentLine stream of
+--       _:(rest@(_:_)) -> Just $ stream {_scurrentLine = rest, _siLineBeginning = False}
+--       _ -> case _scurrentPage of
+--         x:rest -> Just $ stream {_scurrentLine=_ltokens x, _siLineBeginning=True, _scurrentPage=rest}
+--         [] -> case _sotherPages stream of
+--           [] -> Nothing
+--           p:pages ->
+
+--   feedLine =
