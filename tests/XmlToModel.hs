@@ -30,10 +30,10 @@ expectedUstawa =
     , _uspisTresci =
       Partitions "Rozdział" [("1", "Podmiot i przedmiot opodatkowania")] (M.fromList [("1", Articles ["1", "2"])])
     , _uarticles =
-      M.fromList [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodow osob fizycznych.")
+      M.fromList [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
                  ,("2", mkPoint "" [
-                    ("1", mkPoint "Przepisow ustawy nie stosuje się do:" [
-                      ("1", mkLeaf "Przychodów z działalności rolniczej, z wyjątkiem przychodow z działów specjalnej produkcji rolnej;")
+                    ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
+                      ("1", mkLeaf "przychodów z działalności rolniczej, z wyjątkiem przychodów z działów specjalnych produkcji rolnej;")
                      ,("2", mkLeaf "przychodów z gospodarki leśnej w rozumieniu ustawy o lasach.")])
                    ,("2", mkLeaf "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym.")])]
 
@@ -58,4 +58,12 @@ instance Point ZWyliczeniem where
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
 diffAssertEqual expected actual =
-  assertEqual (ppDiff (getGroupedDiff (lines . nicify . show $ expected) (lines . nicify . show $ actual))) expected actual
+  if expected == actual
+    then return ()
+    else do
+      let expected' = nice expected
+          actual'   = nice actual
+          diff = ppDiff (getGroupedDiff (lines expected') (lines actual'))
+      assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\n" expected' actual' diff)
+  where
+    nice = nicify . show

@@ -11,11 +11,15 @@ import Model
 import ParseXml
 import Text.Parsec
 import Text.Parsec.Pos
+import Data.Char (isDigit)
 
 data NonTerminal =
     RozdziałToken
   | ArticleToken
+  | UstępToken String
+  | PunktToken String
   deriving (Show, Read, Eq)
+makePrisms ''NonTerminal
 
 -- Tok not to clash with ParseXml.Token
 data Tok =
@@ -24,6 +28,7 @@ data Tok =
   | NonTerminal NonTerminal SourcePos
   deriving (Show)
 makeLenses ''Tok
+makePrisms ''Tok
 
 type Parser a = Parsec [Tok] () a
 
@@ -74,13 +79,38 @@ detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
     lineId (NonTerminal _ _) = error "There should't be any NonTerminal's at this point"
     detect :: [Tok] -> [Tok]
     detect [] = error "There should not be an empty line"
-    detect (first:rest) = detect' first : rest
-    detect' token@(RawToken {_ttok=tok})
-      | _ttext tok == "Art." && _tbold tok = NonTerminal ArticleToken (tokPos token)
-      -- I saw one Rozdział with x 236, arts seem to have it at 82.2
-      | _ttext tok == "Rozdział" && _tx tok > 150.0 = NonTerminal RozdziałToken (tokPos token)
-      | otherwise = token
-    detect' tok = tok
+    detect orig@(first:rest) =
+      let replacement = case first of
+            RawToken {_ttok=tok}
+              | _ttext tok == "Art.", _tbold tok -> Just ArticleToken
+              -- I saw one Rozdział with x 236, arts seem to have it at 82.2
+              | _ttext tok == "Rozdział", _tx tok > 150.0 -> Just RozdziałToken
+              -- magic number for the x of Art., I hope it is consistently used for other documents
+              | _tx tok == 82.2, text <- _ttext tok, likeUstepNumber text -> Just $ mkUstepToken text
+              | _tx tok == 56.64, text <- _ttext tok
+                 , likePunktNumber text
+                 , nextTok : _ <- rest
+                 , Just 82.2 <- nextTok^?ttok.tx -> Just . PunktToken . T.unpack . T.init $ text
+            _ -> Nothing
+      in
+      case replacement of
+        Nothing -> orig
+        Just x@ArticleToken -- we should detect a possible ustep token following
+          | artNum : maybeUstep : newRest <- rest
+               , Just text <- maybeUstep^?ttok.ttext
+               , likeUstepNumber text ->
+                  NonTerminal x (tokPos first)
+                    : artNum -- leave that as is, gets parsed later
+                    : NonTerminal (mkUstepToken text) (tokPos maybeUstep)
+                    : newRest
+        Just otherNonTerminal ->
+          NonTerminal otherNonTerminal (tokPos first) : rest
+    likeUstepNumber :: T.Text -> Bool
+    likeUstepNumber text = isDigit (T.head text) && T.last text == '.'
+    likePunktNumber text = isDigit (T.head text) && T.last text == ')'
+    mkUstepToken :: T.Text -> NonTerminal
+    mkUstepToken = UstępToken . T.unpack . T.init -- chop off the '.' at the end
+
 
 parseUstawa :: FilePath -> IO Akt
 parseUstawa path = do
@@ -94,15 +124,58 @@ tekstJednolity = do
   pid <- duPozId
   consumeWords "U S T A W A"
   zDnia <- consumeWords "z dnia" *> dlugaData
-  tytul <- (T.unpack . T.unwords) <$> many1 (ftok boldF (Just . view (ttok.ttext)))
+  tytul <- (T.unpack . T.unwords) <$> many1 (ftok boldF (preview (ttok.ttext)))
+  rozdzialy <- many rozdział -- TODO what about the case of no rozdzialy?
+  let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
+  let spisTresci = M.fromList . map (view _1 &&& view _3) $ rozdzialy
   return (Ustawa {
             _upId=pid
             , _uzDnia=zDnia
             , _uTytul=tytul
-            , _uspisTresci=Articles []
-            , _uarticles = M.empty })
+            , _uspisTresci = Partitions "Rozdział" rozdzialIndex spisTresci
+            , _uarticles = M.fromList . concat . map (view _4) $ rozdzialy })
 
-rozdział :: Parser (String, String, M.Map String TableOfContents)
+rozdział :: Parser (String, String, TableOfContents, [(String, Article)])
+rozdział = do
+  _ <- ftok mempty (preview $ _NonTerminal . _1 . _RozdziałToken)
+  number <- T.unpack <$> ftok mempty (preview $ ttok.ttext)
+  podtytul <- (T.unpack . T.unwords) <$> many1 (ftok boldF (preview (ttok.ttext)))
+  articles <- many1 article
+  return (number, podtytul, Articles (map fst articles), articles)
+
+article :: Parser (String, Article)
+article = do
+  ftok mempty (preview (_NonTerminal . _1 . _ArticleToken))
+  number <- (T.unpack . T.init) <$> ftok boldF anyT
+  prefix <- option emptyZWyliczeniem ustępBody
+  ustępy <- many ustęp
+  return $ (number, Article {_aprefix = prefix, _aindex = map fst ustępy, _apoints = M.fromList ustępy})
+
+
+ustęp :: Parser (String, ZWyliczeniem)
+ustęp = do
+  ustępNum <- ftok mempty (preview $ _NonTerminal . _1 . _UstępToken)
+  ustęp <- ustępBody
+  return (ustępNum, ustęp)
+
+
+ustępBody :: Parser ZWyliczeniem
+ustępBody = do
+  text <- T.unwords <$> many (ftok mempty anyT)
+  punkty <- many punkt
+  return (ZWyliczeniem [Text text] (map fst punkty) (M.fromList punkty) []) -- TODO suffix
+
+punkt :: Parser (String, ZWyliczeniem)
+punkt = do
+  num <- ftok mempty (preview $ _NonTerminal . _1 . _PunktToken)
+  body <- punktBody -- TODO that is non appropriate, need to detect subpoints, not points
+  return (num, body)
+
+punktBody :: Parser ZWyliczeniem -- TODO
+punktBody = do
+  texts <- many $ ftok mempty anyT
+  return (ZWyliczeniem [Text . T.unwords $ texts] [] M.empty [])
+
 
 duPozId :: Parser PozId
 duPozId = do
@@ -126,7 +199,7 @@ consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string 
 
 dlugaData :: Parser Day
 dlugaData = do
-  components <- sequence . take 4 . repeat $ ftok mempty (Just . view (ttok.ttext))
+  components <- sequence . take 4 . repeat $ ftok mempty (preview (ttok.ttext))
   let date_text = unwords . map T.unpack $ components
   case parseTimeM True polishTimeLocaleLc "%d %B %Y r." date_text of
     Just r -> return r
@@ -136,7 +209,7 @@ boldF :: Tok -> All
 boldF (NonTerminal _ _) = All False
 boldF (RawToken {_ttok=ttok}) = All . _tbold $ ttok
 
-anyT = Just . view (ttok . ttext)
+anyT = preview (ttok . ttext)
 constT expected tok = if tok^.ttok.ttext == expected then Just () else Nothing
 
 int :: Parser Int

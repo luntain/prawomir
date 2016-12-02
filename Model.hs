@@ -60,3 +60,5 @@ data ZWyliczeniem =
                , _zsuffix :: TextWithReferences
                }
   deriving (Show, Read, Eq)
+
+emptyZWyliczeniem = ZWyliczeniem [] [] M.empty []
