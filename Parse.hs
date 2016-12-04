@@ -168,7 +168,8 @@ ustępBody :: Parser ZWyliczeniem
 ustępBody = do
   text <- T.unwords <$> many (ftok mempty anyT)
   punkty <- many punkt
-  return (ZWyliczeniem [Text text] (map fst punkty) (M.fromList punkty) []) -- TODO suffix
+  suffix <- many $ ftok mempty anyT
+  return (ZWyliczeniem [Text text] (map fst punkty) (M.fromList punkty) (processText suffix))
 
 punkt :: Parser (String, ZWyliczeniem)
 punkt = do
@@ -176,11 +177,11 @@ punkt = do
   body <- punktBody
   return (num, body)
 
-punktBody :: Parser ZWyliczeniem -- TODO
+punktBody :: Parser ZWyliczeniem
 punktBody = do
   texts <- many $ ftok mempty anyT
   podpunkty <- many podpunkt
-  suffix <- many $ ftok mempty anyT
+  suffix <- many $ ftok (view $ ttok.tx.to (All.(>56.64))) anyT
   return (ZWyliczeniem (processText texts) (map fst podpunkty) (M.fromList podpunkty) (processText suffix))
 
 processText :: [T.Text] -> TextWithReferences

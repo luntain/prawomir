@@ -38,8 +38,8 @@ expectedUstawa =
                      ,("3", mkPoint "odpłatne zbycie, z zastrzeżeniem ust. 2:" [
                           ("a", mkLeaf "nieruchomości lub ich części oraz udziału w nieruchomości,")
                           , ("b", mkLeaf "spółdzielczego własnościowego prawa do lokalu mieszkalnego lub,")
-                          ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej."])
-                     ] [])
+                          ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej"])
+                     ] [Text "– w ramach stosunku pracy lub spółdzielczego stosunku pracy, podatnik ten traci w"])
                    ,("2", mkLeaf "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym.")] [])]
          }
 
