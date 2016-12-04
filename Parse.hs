@@ -11,13 +11,14 @@ import Model
 import ParseXml
 import Text.Parsec
 import Text.Parsec.Pos
-import Data.Char (isDigit)
+import Data.Char (isDigit, isLower)
 
 data NonTerminal =
     RozdziałToken
   | ArticleToken
   | UstępToken String
   | PunktToken String
+  | PodpunktToken String
   deriving (Show, Read, Eq)
 makePrisms ''NonTerminal
 
@@ -71,6 +72,7 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
       fp
       parser
 
+-- mostly looks at the first token in a line and judges if it is any of the NonTerminals
 detectNonTerminals :: [Tok] -> [Tok]
 detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
   where
@@ -91,6 +93,8 @@ detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
                  , likePunktNumber text
                  , nextTok : _ <- rest
                  , Just 82.2 <- nextTok^?ttok.tx -> Just . PunktToken . T.unpack . T.init $ text
+              | _tx tok == 82.2, text <- _ttext tok, likePodpunktNumber text ->
+                 Just . PodpunktToken . T.unpack . T.init $ text
             _ -> Nothing
       in
       case replacement of
@@ -106,8 +110,9 @@ detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
         Just otherNonTerminal ->
           NonTerminal otherNonTerminal (tokPos first) : rest
     likeUstepNumber :: T.Text -> Bool
-    likeUstepNumber text = isDigit (T.head text) && T.last text == '.'
-    likePunktNumber text = isDigit (T.head text) && T.last text == ')'
+    likeUstepNumber text    = isDigit (T.head text) && T.last text == '.'
+    likePunktNumber text    = isDigit (T.head text) && T.last text == ')'
+    likePodpunktNumber text = isLower (T.head text) && T.last text == ')'
     mkUstepToken :: T.Text -> NonTerminal
     mkUstepToken = UstępToken . T.unpack . T.init -- chop off the '.' at the end
 
@@ -168,13 +173,27 @@ ustępBody = do
 punkt :: Parser (String, ZWyliczeniem)
 punkt = do
   num <- ftok mempty (preview $ _NonTerminal . _1 . _PunktToken)
-  body <- punktBody -- TODO that is non appropriate, need to detect subpoints, not points
+  body <- punktBody
   return (num, body)
 
 punktBody :: Parser ZWyliczeniem -- TODO
 punktBody = do
   texts <- many $ ftok mempty anyT
-  return (ZWyliczeniem [Text . T.unwords $ texts] [] M.empty [])
+  podpunkty <- many podpunkt
+  suffix <- many $ ftok mempty anyT
+  return (ZWyliczeniem (processText texts) (map fst podpunkty) (M.fromList podpunkty) (processText suffix))
+
+processText :: [T.Text] -> TextWithReferences
+processText [] = []
+processText texts = [Text . T.unwords $ texts]
+
+podpunkt :: Parser (String, ZWyliczeniem)
+podpunkt = do
+  num <- ftok mempty (preview $ _NonTerminal . _1 . _PodpunktToken)
+  -- 82.2 is the x of the subpoint letter, the text is indented so it will have greater x
+  text <- many $ ftok (view $ ttok.tx.to (All.(>82.2))) anyT
+  return (num, ZWyliczeniem [Text . T.unwords $ text] [] M.empty [])
+
 
 
 duPozId :: Parser PozId
@@ -186,13 +205,6 @@ duPozId = do
   consumeWords "poz."
   seq <- int
   return $ PozId {_pidYear=rok, _pidNr=nr, _pidSeq=seq}
-
---parseDivs = many1 parseRozdzial
---parseRozdzial = do
-  --consumeWords "Rozdział"
-  --rozdzialId <- anyWord
-  --tytul <- manyTill (ftok boldF anyT) (ftok boldF (constT "Art."))
-  --articles <-
 
 consumeWords :: T.Text -> Parser ()
 consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string w))

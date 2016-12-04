@@ -34,26 +34,26 @@ expectedUstawa =
                  ,("2", mkPoint "" [
                     ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
                       ("1", mkLeaf "przychodów z działalności rolniczej, z wyjątkiem przychodów z działów specjalnych produkcji rolnej;")
-                     ,("2", mkLeaf "przychodów z gospodarki leśnej w rozumieniu ustawy o lasach.")])
-                   ,("2", mkLeaf "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym.")])]
-
+                     ,("2", mkLeaf "przychodów z gospodarki leśnej w rozumieniu ustawy o lasach.")
+                     ,("3", mkPoint "odpłatne zbycie, z zastrzeżeniem ust. 2:" [
+                          ("a", mkLeaf "nieruchomości lub ich części oraz udziału w nieruchomości,")
+                          , ("b", mkLeaf "spółdzielczego własnościowego prawa do lokalu mieszkalnego lub,")
+                          ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej."])
+                     ] [])
+                   ,("2", mkLeaf "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym.")] [])]
          }
-
-
-
--- sa jeszcze wyliczenia w wyliczeniach, stroana 18 w pit, art 10 ust 1 pkt 8 lit. b???
 
 class Point a where
   mkLeaf :: String -> a
-  mkPoint :: String -> [(String, ZWyliczeniem)] -> a
+  mkPoint :: String -> [(String, ZWyliczeniem)] -> TextWithReferences -> a
 
 instance Point Article where
   mkLeaf text = Article (mkLeaf text) [] M.empty
-  mkPoint text children = Article (mkLeaf text) (map fst children) (M.fromList children)
+  mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (M.fromList children)
 
 instance Point ZWyliczeniem where
   mkLeaf text = ZWyliczeniem [Text $ T.pack text] [] M.empty []
-  mkPoint text children = ZWyliczeniem [Text $ T.pack text] (map fst children) (M.fromList children) []
+  mkPoint text children suffix = ZWyliczeniem [Text $ T.pack text] (map fst children) (M.fromList children) suffix
 
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
@@ -67,3 +67,11 @@ diffAssertEqual expected actual =
       assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\n" expected' actual' diff)
   where
     nice = nicify . show
+
+-- TODO:
+-- changes (additions deletions)
+-- zalacznik
+-- tabelki
+-- bez podzialu na rozdzialy
+-- rozdzialy i inne dzialy
+-- recognize links (relative and absoulte)

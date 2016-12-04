@@ -53,6 +53,7 @@ data Article =
           }
   deriving (Show, Read, Eq)
 
+-- reprezents ustep, punkt, i nawet podpunkt (ten trzeci bez dzieci)
 data ZWyliczeniem =
   ZWyliczeniem { _zwprefix :: TextWithReferences
                , _zwindex :: [String]
