@@ -72,43 +72,64 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
       fp
       parser
 
+processAdditionsAndRemovals :: [Tok] -> [Tok]
+processAdditionsAndRemovals [] = []
+processAdditionsAndRemovals (x@(NonTerminal _ _) : rest) =
+  x : processAdditionsAndRemovals rest
+processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
+  | T.head (_ttext ttok') == '<' && _tbold ttok' =
+    over (ttok.ttext) T.tail x : consumeAddition rest
+  | otherwise = x : processAdditionsAndRemovals rest
+  where
+    consumeAddition (x@(RawToken {_ttok=ttok'}):rest)
+      | T.isSuffixOf ">" (ttok' ^.ttext) && ttok' ^.tbold =
+        over (ttok.ttext) T.init x : processAdditionsAndRemovals rest
+    consumeAddition (x : rest) = x : consumeAddition rest
+    consumeAddition [] = []
+
+-- default Art x pos seems to be 82.2, shifted one for added rozdzial is 107.64
+
+-- lexer? :)
 -- mostly looks at the first token in a line and judges if it is any of the NonTerminals
 detectNonTerminals :: [Tok] -> [Tok]
-detectNonTerminals = concat . map detect . groupBy ((==) `on` lineId)
+detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` lineId)
   where
     lineId :: Tok -> Float
     lineId (RawToken {_tline=tline}) = _ly tline
     lineId (NonTerminal _ _) = error "There should't be any NonTerminal's at this point"
-    detect :: [Tok] -> [Tok]
-    detect [] = error "There should not be an empty line"
-    detect orig@(first:rest) =
+    detect :: Float -> [Tok] -> (Float, [Tok])
+    detect _ [] = error "There should not be an empty line"
+    detect artXPos orig@(first:rest) =
       let replacement = case first of
             RawToken {_ttok=tok}
               | _ttext tok == "Art.", _tbold tok -> Just ArticleToken
               -- I saw one Rozdział with x 236, arts seem to have it at 82.2
               | _ttext tok == "Rozdział", _tx tok > 150.0 -> Just RozdziałToken
-              -- magic number for the x of Art., I hope it is consistently used for other documents
-              | _tx tok == 82.2, text <- _ttext tok, likeUstepNumber text -> Just $ mkUstepToken text
-              | _tx tok == 56.64, text <- _ttext tok
+              | _tx tok == artXPos, text <- _ttext tok, likeUstepNumber text -> Just $ mkUstepToken text
+               -- default punkt posx seems to be 56.64, 82.2 in shifted
+              | _tx tok < artXPos - 24, text <- _ttext tok
                  , likePunktNumber text
                  , nextTok : _ <- rest
-                 , Just 82.2 <- nextTok^?ttok.tx -> Just . PunktToken . T.unpack . T.init $ text
-              | _tx tok == 82.2, text <- _ttext tok, likePodpunktNumber text ->
+                 -- TODO I should assert that the is greater thatn 82.2 because s 65 i pit
+                 , Just nextTokPos <- nextTok^?ttok.tx, nextTokPos >= artXPos ->
+                     Just . PunktToken . T.unpack . T.init $ text
+              | _tx tok == artXPos, text <- _ttext tok, likePodpunktNumber text ->
                  Just . PodpunktToken . T.unpack . T.init $ text
             _ -> Nothing
       in
       case replacement of
-        Nothing -> orig
+        Nothing -> (artXPos, orig)
         Just x@ArticleToken -- we should detect a possible ustep token following
           | artNum : maybeUstep : newRest <- rest
                , Just text <- maybeUstep^?ttok.ttext
                , likeUstepNumber text ->
-                  NonTerminal x (tokPos first)
+                 let newArtXPos = fromJust $ first^?ttok.tx in
+                 (newArtXPos, NonTerminal x (tokPos first)
                     : artNum -- leave that as is, gets parsed later
                     : NonTerminal (mkUstepToken text) (tokPos maybeUstep)
-                    : newRest
+                    : newRest)
         Just otherNonTerminal ->
-          NonTerminal otherNonTerminal (tokPos first) : rest
+          (artXPos, NonTerminal otherNonTerminal (tokPos first) : rest)
     likeUstepNumber :: T.Text -> Bool
     likeUstepNumber text    = isDigit (T.head text) && T.last text == '.'
     likePunktNumber text    = isDigit (T.head text) && T.last text == ')'
@@ -122,7 +143,7 @@ parseUstawa path = do
   pages <- parsePages path
   let partitioned = partitionPages pages
   forceResult path
-    $ toResult $ runParser tekstJednolity () path (detectNonTerminals $ _mainContent partitioned)
+    $ toResult $ runParser tekstJednolity () path (detectNonTerminals . processAdditionsAndRemovals $ _mainContent partitioned)
 
 tekstJednolity :: Parser Akt
 tekstJednolity = do
@@ -179,9 +200,10 @@ punkt = do
 
 punktBody :: Parser ZWyliczeniem
 punktBody = do
-  texts <- many $ ftok mempty anyT
+  startX <- peekNextTokXPos
+  texts <- many $ ftok (indentedByAtLeast startX) anyT
   podpunkty <- many podpunkt
-  suffix <- many $ ftok (view $ ttok.tx.to (All.(>56.64))) anyT
+  suffix <- many $ ftok (indentedByAtLeast startX) anyT
   return (ZWyliczeniem (processText texts) (map fst podpunkty) (M.fromList podpunkty) (processText suffix))
 
 processText :: [T.Text] -> TextWithReferences
@@ -191,11 +213,15 @@ processText texts = [Text . T.unwords $ texts]
 podpunkt :: Parser (String, ZWyliczeniem)
 podpunkt = do
   num <- ftok mempty (preview $ _NonTerminal . _1 . _PodpunktToken)
-  -- 82.2 is the x of the subpoint letter, the text is indented so it will have greater x
-  text <- many $ ftok (view $ ttok.tx.to (All.(>82.2))) anyT
+  startX <- peekNextTokXPos
+  text <- many $ ftok (indentedByAtLeast startX) anyT
   return (num, ZWyliczeniem [Text . T.unwords $ text] [] M.empty [])
 
-
+peekNextTokXPos :: Parser Float
+peekNextTokXPos = do
+  input <- getInput
+  let maybeNextPos = input^?ix 0 .ttok.tx
+  maybe (fail "Expected a token with an x position") return maybeNextPos
 
 duPozId :: Parser PozId
 duPozId = do
@@ -224,6 +250,9 @@ boldF (RawToken {_ttok=ttok}) = All . _tbold $ ttok
 
 anyT = preview (ttok . ttext)
 constT expected tok = if tok^.ttok.ttext == expected then Just () else Nothing
+
+indentedByAtLeast :: Float -> Tok -> All
+indentedByAtLeast ind = view $ ttok.tx.to (All.(>=ind))
 
 int :: Parser Int
 int = read <$> parsecTok mempty (many1 digit)
