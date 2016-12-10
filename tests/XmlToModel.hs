@@ -85,12 +85,10 @@ diffAssertEqual expected actual =
     nice = nicify . show
 
 -- TODO:
--- changes (additions deletions)
 -- zalacznik
 -- tabelki
 -- bez podzialu na rozdzialy
 -- rozdzialy i inne dzialy
--- dodany rozdzial s146
 -- przypisy s 159 art 26d
 -- tabelk w tekscie, art 27 s 159
 -- recognize links (relative and absoulte)

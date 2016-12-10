@@ -79,6 +79,8 @@ processAdditionsAndRemovals (x@(NonTerminal _ _) : rest) =
 processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
   | T.head (_ttext ttok') == '<' && _tbold ttok' =
     over (ttok.ttext) T.tail x : consumeAddition rest
+  | T.head (_ttext ttok') == '[' && _titalic ttok' =
+    consumeDeletion rest
   | otherwise = x : processAdditionsAndRemovals rest
   where
     consumeAddition (x@(RawToken {_ttok=ttok'}):rest)
@@ -86,6 +88,12 @@ processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
         over (ttok.ttext) T.init x : processAdditionsAndRemovals rest
     consumeAddition (x : rest) = x : consumeAddition rest
     consumeAddition [] = []
+    consumeDeletion (RawToken {_ttok=ttok'}:rest)
+      | T.isSuffixOf "]" (ttok' ^.ttext) && ttok' ^.titalic =
+        processAdditionsAndRemovals rest
+    consumeDeletion (_ : rest) = consumeDeletion rest
+    consumeDeletion [] = []
+
 
 -- default Art x pos seems to be 82.2, shifted one for added rozdzial is 107.64
 
