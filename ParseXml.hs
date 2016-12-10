@@ -1,4 +1,3 @@
-{-# LANGUAGE Arrows #-}
 module ParseXml where
 -- Parse the xml obtaind from pdftoxml
 
