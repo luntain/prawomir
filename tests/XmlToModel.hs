@@ -17,7 +17,7 @@ main = defaultMain tests
 tests =
   testGroup "HUnit tests"
     [ testCase "parse pit1.xml" $ do
-      ustawa <- parseUstawa "tests/pit1.xml"
+      ustawa <- parseUstawa "tests/pit1.xml" ["tests/pit1-157.vec", "tests/pit1-158.vec", "tests/pit1-159.vec"]
       diffAssertEqual expectedUstawa ustawa
     ]
 
@@ -56,8 +56,36 @@ expectedUstawa =
                              \ przychodami (dochodami) nieopodatkowanymi, uzyskanymi przed poniesieniem tego wydatku."])
                     ,("2", mkLeaf "Za wydatek uznaje się wartość zgromadzonego w roku podatkowym mienia lub wysokość \
                                   \wydatkowanych w roku podatkowym środków, w przypadku gdy nie jest możliwe ustalenie \
-                                  \roku podatkowego, w którym zgromadzono te środki.")] [])]
+                                  \roku podatkowego, w którym zgromadzono te środki.")] [])
+                 ,("27", mkPoint "" [
+                      ("1", ZWyliczeniem [Text "Podatek dochodowy, z sastrzeżeniem art. 29-30f, pobiera się od\
+                                               \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
+                              [] M.empty [] )
+                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłacznie przychody z tytułu emerytur.")
+                                    ] [])]
          }
+
+
+podstawaTable =
+  map (map fullyBordered)
+  [[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=2, _tctext=[Text "Podstawa obliczenia podatku w złotych"]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=2, _tccolSpan=1, _tctext=[Text "Podatek wynosi"]}]
+
+  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "ponad"]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "do"]}]
+
+  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text ""]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "85 528"]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "18% minus kwota zmiejszająca podatek 556 zł 02 gr"]}
+   ]
+
+  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "85 528"]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text ""]}
+   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "14 839 zł 02 gr + 32% nadwyżki ponad 85 528 zł"]}
+   ]
+  ]
+  where fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
+
 
 class Point a where
   mkLeaf :: String -> a

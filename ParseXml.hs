@@ -2,18 +2,19 @@ module ParseXml where
 -- Parse the xml obtaind from pdftoxml
 
 import MyPrelude
+import Data.Char (isDigit)
 import qualified Data.Text as T
 import Control.Lens hiding (deep)
 import Text.XML.HXT.Core
 
 data Page =
-  Page { _pnumber :: Int, _pwidth, _pheight :: Float, _ptexts:: [TEXT]} deriving (Show, Read)
+  Page { _pnumber :: Int, _pwidth, _pheight :: Float, _ptexts:: [TEXT]} deriving (Show, Read, Eq)
 
 data TEXT =
-  TEXT { _lx, _ly, _lwidht, _lheight:: Float, _ltokens :: [Token]} deriving (Show, Read)
+  TEXT { _lx, _ly, _lwidht, _lheight:: Float, _ltokens :: [Token]} deriving (Show, Read, Eq)
 
 data Token =
-  Token { _tx :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read)
+  Token { _tx :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read, Eq)
 
 makeLenses ''Page
 makeLenses ''TEXT
@@ -77,3 +78,64 @@ xpYesNo = xpWrap (\case
                     False -> "no") xpText
 
 uncurry5 f (a1, a2, a3, a4, a5) = f a1 a2 a3 a4 a5
+uncurry6 f (a1, a2, a3, a4, a5, a6) = f a1 a2 a3 a4 a5 a6
+
+-- this, when outside of clip, seems to represent lines
+data VGroup = VGroup { _vgstyle :: Maybe String
+                     , _vgclosed :: String
+                     , _vgpoints :: [(Float, Float)] }
+  deriving (Show, Read, Eq)
+
+data Rectangle = Rectangle { _rx, _ry, _rw, rh :: Float }
+  deriving (Show, Read)
+
+xpVGroup :: PU VGroup
+xpVGroup =
+  xpFilterCont (removeAttr "sid" >>> removeAttr "clipZone") $
+  xpElem "GROUP" $
+  xpWrap (uncurry3 VGroup, undefined) $
+    xpTriple (xpAttrImplied "style" xpText)
+             (xpAttr "closed" xpText)
+             (xpList xpVGroupPoint)
+
+xpVGroupPoint :: PU (Float, Float)
+xpVGroupPoint = xpElem "L" $ xpPair (xpAttr "x" xpPrim) (xpAttr "y" xpPrim)
+
+data VClip = VClip { _vcx, _vcy, _vcwidth, _vcheight :: Float, _vcpage :: Int, _vcgroup :: VGroup}
+  deriving (Show, Read, Eq)
+
+makeLenses ''VClip
+
+xpVClip :: PU VClip
+xpVClip =
+  xpFilterCont (removeAttr "idClipZone") $
+  xpElem "CLIP" $
+  xpWrap (uncurry6 VClip, undefined) $
+    xp6Tuple (xpAttr "x" xpPrim)
+             (xpAttr "y" xpPrim)
+             (xpAttr "width" xpPrim)
+             (xpAttr "height" xpPrim)
+             (xpWrap (readPageNumberFromSid, undefined) (xpAttr "sid" xpText))
+             xpVGroup
+
+readPageNumberFromSid :: String -> Int
+readPageNumberFromSid ('p' : rest) =
+  read . takeWhile isDigit $ rest
+readPageNumberFromSid rest = error $ "unexpected sid format, expected it to start with p: " ++ rest
+
+parseVectorialImages :: FilePath -> IOSArrow a (Either VGroup VClip)
+parseVectorialImages file =
+  readDocument [withInputEncoding "UTF-8", withValidate no] file
+  >>>
+  deep (hasName "VECTORIALIMAGES")
+  >>>
+  getChildren
+  >>>
+  isElem
+  >>>
+  processTopDown ((hasName "M" >>> setElemName (mkName "L")) `orElse` arr id) -- normalize
+  >>>
+  ((hasName "GROUP" >>> xunpickleVal xpVGroup >>> arr Left) `orElse` (xunpickleVal xpVClip >>> arr Right))
+
+parseVectorialImagesFile :: FilePath -> IO [Either VGroup VClip]
+parseVectorialImagesFile file = runX (parseVectorialImages file)

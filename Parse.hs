@@ -7,11 +7,16 @@ import Control.Lens
 import Data.Time
 import qualified Data.Map as M
 import qualified Data.Text as T
+import qualified Data.IntervalMap as IM
+import qualified Data.IntervalSet as IS
+import qualified Data.Set as S
 import Model
 import ParseXml
 import Text.Parsec
 import Text.Parsec.Pos
 import Data.Char (isDigit, isLower)
+import Test.Tasty
+import Test.Tasty.HUnit
 
 data NonTerminal =
     RozdziałToken
@@ -27,7 +32,7 @@ data Tok =
   RawToken {_ttok :: Token, _tline:: TEXT, _tpage::Page}
   -- following greatly simplify parsing
   | NonTerminal NonTerminal SourcePos
-  deriving (Show)
+  deriving (Show, Eq)
 makeLenses ''Tok
 makePrisms ''Tok
 
@@ -44,21 +49,21 @@ instance Monoid Partitioned where
 makeLenses ''Partitioned
 
 partitionPages :: [Page] -> Partitioned
-partitionPages = mconcat . map partitionPage . zip [1..]
+partitionPages = mconcat . map partitionPage
 
-partitionPage :: (Int, Page) -> Partitioned
-partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
+partitionPage :: Page -> Partitioned
+partitionPage page = Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
   where
     (sidenotsLines, otherLines) = partition isSidenote (_ptexts page)
-    (mainCont, footnots) = forceRight . runParser parseOtherLines () (show seq) $ otherLines
+    (mainCont, footnots) = forceRight . runParser parseOtherLines () (show (_pnumber page)) $ otherLines
     parseOtherLines =
       parseLine mempty (parsec $ string "©Kancelaria Sejmu")
         *> parseLine mempty (parsec $ string "s." *> space *> many1 digit *> string "/" *> many1 digit)
         *> parseLine mempty (parsec $ count 4 digit *> string "-" *> count 2 digit *> string "-" *> count 2 digit)
-        *> manyTill' (parseLine mempty Just) parseFootnotes
+        *> manyTill' (parseLine mempty Just) (fmap concat parseFootnotes)
     parseFootnotes =
       many (parseLine ((All.(==6.48) . view (ltokens.to head.tfontsize)) <> (All.(==1).length.view ltokens)) (parsec $ many1 digit <* string ")")
-            *> parseLine (All .(==9.96). view (ltokens.to head.tfontsize)) Just) <* eof
+            *> many1 (parseLine (All .(==9.96). view (ltokens.to head.tfontsize)) Just)) <* eof
     isSidenote :: TEXT -> Bool
     isSidenote line = line^.lx > 470 && firstTok^.tfontsize == 9.96 && firstTok^.tbold
       where
@@ -68,7 +73,7 @@ partitionPage (seq, page) = Partitioned {_mainContent=toToks mainCont, _sidenote
     parseLine :: (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
     parseLine fp parser =
       ftoken
-      (\_line -> newPos ("Page " ++ show seq) 0 0) -- TODO put in a line and col number maybe?
+      (\_line -> newPos ("Page " ++ show (_pnumber page)) 0 0) -- TODO put in a line and col number maybe?
       fp
       parser
 
@@ -111,7 +116,7 @@ detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` l
       let replacement = case first of
             RawToken {_ttok=tok}
               | _ttext tok == "Art.", _tbold tok -> Just ArticleToken
-              -- I saw one Rozdział with x 236, arts seem to have it at 82.2
+              -- I saw one Rozdział with x 236
               | _ttext tok == "Rozdział", _tx tok > 150.0 -> Just RozdziałToken
               | _tx tok == artXPos, text <- _ttext tok, likeUstepNumber text -> Just $ mkUstepToken text
                -- default punkt posx seems to be 56.64, 82.2 in shifted
@@ -146,9 +151,10 @@ detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` l
     mkUstepToken = UstępToken . T.unpack . T.init -- chop off the '.' at the end
 
 
-parseUstawa :: FilePath -> IO Akt
-parseUstawa path = do
+parseUstawa :: FilePath -> [FilePath] -> IO Akt
+parseUstawa path vecFiles = do
   pages <- parsePages path
+  --_cellsPerPage <- mapM processVecFilesPage vecFiles
   let partitioned = partitionPages pages
   forceResult path
     $ toResult $ runParser tekstJednolity () path (detectNonTerminals . processAdditionsAndRemovals $ _mainContent partitioned)
@@ -319,3 +325,67 @@ instance ToText Tok where
 --           p:pages ->
 
 --   feedLine =
+
+data TableBuilder =
+  TableBuilder {
+    _tbxEdges :: (Float, Float)
+    , _tbcolEnds :: S.Set Float
+    , _tbrowEnds :: S.Set Float
+    , _tbrows :: [[(VClip, TableCell)]] -- rows have cells in reverse order
+               }
+  deriving (Show, Eq)
+
+
+buildTables :: [VGroup] -> [VClip] -> [Table]
+buildTables = undefined
+
+processVecFilesPage :: FilePath -> IO (Int, [(VClip, TableCell)])
+processVecFilesPage file = do
+  (groups, clips') <- ((nub *** nub) . partitionEithers) <$> parseVectorialImagesFile file
+  let (horizontal, vertical) =
+       (doubleIntervalMap***doubleIntervalMap) . partitionEithers . map horizontalOrVertical $ groups
+      pageNo = fromMaybe 0 $ preview (ix 1.vcpage) clips'
+      clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
+      hasBorderAt intervalMap a b =
+        any (not . null . IS.elems . (flip IS.containing b)) (IM.elems $ IM.containing intervalMap a)
+      process clip =
+        TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tccolSpan = 0, _tcrowSpan = 0, _tctext=[]
+                  , _tcborderTop    = hasBorderAt horizontal (_vcy clip)                   (_vcx clip + _vcwidth clip / 2)
+                  , _tcborderBottom = hasBorderAt horizontal (_vcy clip + _vcheight clip)  (_vcx clip + _vcwidth clip / 2)
+                  , _tcborderLeft   = hasBorderAt vertical   (_vcx clip)                   (_vcy clip + _vcheight clip / 2)
+                  , _tcborderRight  = hasBorderAt vertical   (_vcx clip + _vcwidth clip)   (_vcy clip + _vcheight clip / 2)
+                  }
+  return (pageNo, (map (id&&&process) clips))
+
+
+doubleIntervalMap :: [(IM.Interval Float, IM.Interval Float)]
+                        -> IM.IntervalMap Float (IS.IntervalSet (IM.Interval Float))
+doubleIntervalMap = foldr (\(k,v) -> IM.insertWith' IS.union k (IS.singleton v)) IM.empty
+
+
+-- VGroups are really rectangles filled with black reprezenting lines (that could be borders)
+-- this decides if it is a vertical or a hirozontala line (Right - vertical, Left - horizontal)
+-- the first interval is the span of the short end of the rectangle
+horizontalOrVertical :: VGroup -> Either (IM.Interval Float, IM.Interval Float) (IM.Interval Float, IM.Interval Float)
+horizontalOrVertical (VGroup {_vgpoints=points}) =
+  if h > w
+     then Right $ vertical
+     else Left $ swap vertical
+  where
+    vertical = (IM.ClosedInterval (minimum xs) (maximum xs), IM.ClosedInterval (minimum ys) (maximum ys))
+    w = maximum xs - minimum xs
+    h = maximum ys - minimum ys
+    xs = map fst points
+    ys = map snd points
+
+
+tests =
+  testGroup "table building tests"
+    [ testCase "tables" $ do
+        assertEqual "empty" [] (buildTables [] [])
+        assertEqual "whole page clip" [] (buildTables [] [
+          VClip {_vcx=0,_vcy=0,_vcwidth=595.32,_vcheight=841.92,_vcpage=12,_vcgroup=undefined}])
+        assertEqual "whole page + side note" [] (buildTables [] [
+          VClip {_vcx=0,_vcy=0,_vcwidth=595.32,_vcheight=841.92,_vcpage=12,_vcgroup=undefined},
+          VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
+    ]

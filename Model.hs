@@ -43,7 +43,7 @@ data TableOfContents = -- [Dzial, [rozdzial]]
   deriving (Show, Read, Eq)
 
 type TextWithReferences = [TextOrReference]
-data TextOrReference = Text T.Text -- just test for now
+data TextOrReference = Text T.Text | Table Table -- just test for now
   deriving (Show, Read, Eq)
 
 data Article =
@@ -63,3 +63,10 @@ data ZWyliczeniem =
   deriving (Show, Read, Eq)
 
 emptyZWyliczeniem = ZWyliczeniem [] [] M.empty []
+
+type Table = [[TableCell]]
+data TableCell =
+  TableCell {
+    _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
+   , _tcborderTop, _tcborderLeft, _tcborderRight, _tcborderBottom :: Bool
+  } deriving (Show, Read, Eq)

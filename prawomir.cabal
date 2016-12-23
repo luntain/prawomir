@@ -6,7 +6,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      .
-  exposed-modules:     ParseXml Model Parse
+  exposed-modules:     ParseXml, Model, Parse, Scratch
   ghc-options:         -Wall -fno-warn-deprecated-flags -fno-warn-name-shadowing -fno-warn-missing-signatures -fno-warn-orphans -Werror
   default-extensions:
       NoImplicitPrelude, TemplateHaskell,
@@ -18,7 +18,9 @@ library
   build-depends:       base >= 4.7 && < 5
                      , myprelude, directory, containers, old-locale, old-time, time, mtl,
                      lens, text, HStringTemplate, bytestring,
-                     hxt, hxt-http, hxt-tagsoup, hxt-unicode, hxt-cache, zlib, attoparsec, parsec, nicify-lib
+                     hxt, hxt-http, hxt-tagsoup, hxt-unicode, hxt-cache, zlib, attoparsec, parsec, nicify-lib,
+                     HStringTemplate, aeson, IntervalMap, tasty, tasty-hunit
+
   default-language:    Haskell2010
 
 executable play

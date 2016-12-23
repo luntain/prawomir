@@ -454,4 +454,96 @@
 
   </PAGE>
 
+  <PAGE width="595.32" height="841.92" number="159" id="p159"><MEDIABOX x1="0" y1="0" x2="595.32" y2="841.92"/><CROPBOX x1="0" y1="0" x2="595.32" y2="841.92"/><BLEEDBOX x1="0" y1="0" x2="595.32" y2="841.92"/><ARTBOX x1="0" y1="0" x2="595.32" y2="841.92"/><TRIMBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
+
+    <TEXT width="385.44" height="11.88" id="p159_t9" x="82.2" y="171.156">
+      <TOKEN sid="p159_s54542" id="p159_w48" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="175.044" base="183.24" width="20.88" height="10.8">Art.</TOKEN>
+      <TOKEN sid="p159_s54543" id="p159_w49" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="108.12" y="175.044" base="183.24" width="15" height="10.8">27.</TOKEN>
+      <TOKEN sid="p159_s54544" id="p159_w50" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="128.16" y="175.044" base="183.24" width="9" height="10.8">1.</TOKEN>
+      <TOKEN sid="p159_s54545" id="p159_w51" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="142.2" y="175.044" base="183.24" width="38.76" height="10.8">Podatek</TOKEN>
+      <TOKEN sid="p159_s54546" id="p159_w52" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="186" y="175.044" base="183.24" width="59.04" height="10.8">dochodowy,</TOKEN>
+      <TOKEN sid="p159_s54547" id="p159_w53" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="250.08" y="175.044" base="183.24" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN sid="p159_s54548" id="p159_w54" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="260.4" y="171.156" base="183.24" width="68.016" height="15.768">zastrzeżeniem</TOKEN>
+      <TOKEN sid="p159_s54549" id="p159_w55" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="333.48" y="175.044" base="183.24" width="15.6" height="10.8">art.</TOKEN>
+      <TOKEN sid="p159_s54550" id="p159_w56" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="354.12" y="175.044" base="183.24" width="36.96" height="10.8">29–30f,</TOKEN>
+      <TOKEN sid="p159_s54551" id="p159_w57" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="396.12" y="175.044" base="183.24" width="36.048" height="10.8">pobiera</TOKEN>
+      <TOKEN sid="p159_s54552" id="p159_w58" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="437.28" y="171.156" base="183.24" width="13.368" height="15.768">się</TOKEN>
+      <TOKEN sid="p159_s54553" id="p159_w59" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="455.64" y="175.044" base="183.24" width="12" height="10.8">od</TOKEN>
+    </TEXT>
+    <TEXT width="251.616" height="11.88" id="p159_t10" x="56.64" y="192.036">
+      <TOKEN sid="p159_s54554" id="p159_w60" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="195.924" base="204.12" width="45.96" height="10.8">podstawy</TOKEN>
+      <TOKEN sid="p159_s54555" id="p159_w61" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.6" y="195.924" base="204.12" width="20.64" height="10.8">jego</TOKEN>
+      <TOKEN sid="p159_s54556" id="p159_w62" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="129.24" y="195.924" base="204.12" width="49.248" height="10.8">obliczenia</TOKEN>
+      <TOKEN sid="p159_s54557" id="p159_w63" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="181.56" y="192.036" base="204.12" width="35.28" height="15.768">według</TOKEN>
+      <TOKEN sid="p159_s54558" id="p159_w64" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="219.84" y="192.036" base="204.12" width="59.256" height="15.768">następującej</TOKEN>
+      <TOKEN sid="p159_s54559" id="p159_w65" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="282.12" y="195.924" base="204.12" width="26.136" height="10.8">skali:</TOKEN>
+    </TEXT>
+    <TEXT width="98.208" height="10.8" id="p159_t11" x="99.72" y="217.404">
+      <TOKEN sid="p159_s54563" id="p159_w66" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="99.72" y="217.404" base="225.6" width="46.008" height="10.8">Podstawa</TOKEN>
+      <TOKEN sid="p159_s54568" id="p159_w67" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="148.68" y="217.404" base="225.6" width="49.248" height="10.8">obliczenia</TOKEN>
+    </TEXT>
+    <TEXT width="88.56" height="11.88" id="p159_t12" x="104.52" y="234.276">
+      <TOKEN sid="p159_s54571" id="p159_w68" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="104.52" y="238.164" base="246.36" width="38.64" height="10.8">podatku</TOKEN>
+      <TOKEN sid="p159_s54572" id="p159_w69" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="146.16" y="238.164" base="246.36" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN sid="p159_s54573" id="p159_w70" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="157.8" y="234.276" base="246.36" width="35.28" height="15.768">złotych</TOKEN>
+    </TEXT>
+    <TEXT width="76.296" height="10.8" id="p159_t13" x="323.28" y="217.404">
+      <TOKEN sid="p159_s54576" id="p159_w71" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="323.28" y="217.404" base="225.6" width="38.64" height="10.8">Podatek</TOKEN>
+      <TOKEN sid="p159_s54581" id="p159_w72" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="364.92" y="217.404" base="225.6" width="34.656" height="10.8">wynosi</TOKEN>
+    </TEXT>
+    <TEXT width="29.28" height="10.8" id="p159_t14" x="98.76" y="259.524">
+      <TOKEN sid="p159_s54599" id="p159_w73" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="98.76" y="259.524" base="267.72" width="29.28" height="10.8">ponad</TOKEN>
+    </TEXT>
+    <TEXT width="12" height="10.8" id="p159_t15" x="178.32" y="259.524">
+      <TOKEN sid="p159_s54604" id="p159_w74" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="178.32" y="259.524" base="267.72" width="12" height="10.8">do</TOKEN>
+    </TEXT>
+    <TEXT width="33" height="10.8" id="p159_t16" x="167.76" y="281.004">
+      <TOKEN sid="p159_s54628" id="p159_w75" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="167.76" y="281.004" base="289.2" width="12" height="10.8">85</TOKEN>
+      <TOKEN sid="p159_s54633" id="p159_w76" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="182.76" y="281.004" base="289.2" width="18" height="10.8">528</TOKEN>
+    </TEXT>
+    <TEXT width="258.516" height="11.88" id="p159_t17" x="223.2" y="277.116">
+      <TOKEN sid="p159_s54638" id="p159_w77" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="223.2" y="281.004" base="289.2" width="21.996" height="10.8">18%</TOKEN>
+      <TOKEN sid="p159_s54643" id="p159_w78" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="248.16" y="281.004" base="289.2" width="29.388" height="10.8">minus</TOKEN>
+      <TOKEN sid="p159_s54648" id="p159_w79" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="280.56" y="281.004" base="289.2" width="29.328" height="10.8">kwota</TOKEN>
+      <TOKEN sid="p159_s54653" id="p159_w80" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="312.84" y="277.116" base="289.2" width="67.248" height="15.768">zmniejszająca</TOKEN>
+      <TOKEN sid="p159_s54658" id="p159_w81" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="383.04" y="281.004" base="289.2" width="37.92" height="10.8">podatek</TOKEN>
+      <TOKEN sid="p159_s54663" id="p159_w82" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="423.96" y="281.004" base="289.2" width="18" height="10.8">556</TOKEN>
+      <TOKEN sid="p159_s54668" id="p159_w83" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="445.08" y="277.116" base="289.2" width="8.616" height="15.768">zł</TOKEN>
+      <TOKEN sid="p159_s54673" id="p159_w84" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="456.72" y="281.004" base="289.2" width="12" height="10.8">02</TOKEN>
+      <TOKEN sid="p159_s54678" id="p159_w85" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="471.72" y="281.004" base="289.2" width="9.996" height="10.8">gr</TOKEN>
+    </TEXT>
+    <TEXT width="33" height="10.8" id="p159_t18" x="96.84" y="302.484">
+      <TOKEN sid="p159_s54697" id="p159_w86" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="96.84" y="302.484" base="310.68" width="12" height="10.8">85</TOKEN>
+      <TOKEN sid="p159_s54702" id="p159_w87" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="111.84" y="302.484" base="310.68" width="18" height="10.8">528</TOKEN>
+    </TEXT>
+    <TEXT width="236.976" height="11.88" id="p159_t19" x="223.2" y="298.596">
+      <TOKEN sid="p159_s54710" id="p159_w88" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="223.2" y="302.484" base="310.68" width="12" height="10.8">14</TOKEN>
+      <TOKEN sid="p159_s54715" id="p159_w89" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="238.2" y="302.484" base="310.68" width="18" height="10.8">839</TOKEN>
+      <TOKEN sid="p159_s54720" id="p159_w90" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="259.2" y="298.596" base="310.68" width="8.616" height="15.768">zł</TOKEN>
+      <TOKEN sid="p159_s54725" id="p159_w91" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="270.84" y="302.484" base="310.68" width="12" height="10.8">02</TOKEN>
+      <TOKEN sid="p159_s54730" id="p159_w92" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="285.84" y="302.484" base="310.68" width="9.996" height="10.8">gr</TOKEN>
+      <TOKEN sid="p159_s54735" id="p159_w93" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="298.8" y="302.484" base="310.68" width="6.768" height="10.8">+</TOKEN>
+      <TOKEN sid="p159_s54740" id="p159_w94" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="308.52" y="302.484" base="310.68" width="21.996" height="10.8">32%</TOKEN>
+      <TOKEN sid="p159_s54745" id="p159_w95" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="333.48" y="298.596" base="310.68" width="46.776" height="15.768">nadwyżki</TOKEN>
+      <TOKEN sid="p159_s54750" id="p159_w96" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="383.28" y="302.484" base="310.68" width="29.28" height="10.8">ponad</TOKEN>
+      <TOKEN sid="p159_s54755" id="p159_w97" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="415.56" y="302.484" base="310.68" width="12" height="10.8">85</TOKEN>
+      <TOKEN sid="p159_s54760" id="p159_w98" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="430.56" y="302.484" base="310.68" width="18" height="10.8">528</TOKEN>
+      <TOKEN sid="p159_s54765" id="p159_w99" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="451.56" y="298.596" base="310.68" width="8.616" height="15.768">zł</TOKEN>
+    </TEXT>
+    <TEXT width="385.536" height="11.88" id="p159_t20" x="82.2" y="319.956">
+      <TOKEN sid="p159_s54791" id="p159_w100" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="323.844" base="332.04" width="9" height="10.8">2.</TOKEN>
+      <TOKEN sid="p159_s54792" id="p159_w101" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="94.32" y="319.956" base="332.04" width="27.216" height="15.768">Jeżeli</TOKEN>
+      <TOKEN sid="p159_s54793" id="p159_w102" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="124.68" y="323.844" base="332.04" width="6" height="10.8">u</TOKEN>
+      <TOKEN sid="p159_s54794" id="p159_w103" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="133.8" y="323.844" base="332.04" width="59.64" height="10.8">podatników,</TOKEN>
+      <TOKEN sid="p159_s54795" id="p159_w104" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="196.56" y="323.844" base="332.04" width="30.72" height="10.8">którzy</TOKEN>
+      <TOKEN sid="p159_s54796" id="p159_w105" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="230.4" y="319.956" base="332.04" width="39.288" height="15.768">osiągają</TOKEN>
+      <TOKEN sid="p159_s54797" id="p159_w106" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="272.76" y="319.956" base="332.04" width="48.648" height="15.768">wyłącznie</TOKEN>
+      <TOKEN sid="p159_s54798" id="p159_w107" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="324.6" y="323.844" base="332.04" width="50.52" height="10.8">przychody</TOKEN>
+      <TOKEN sid="p159_s54799" id="p159_w108" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="378.24" y="323.844" base="332.04" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN sid="p159_s54800" id="p159_w109" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="386.64" y="319.956" base="332.04" width="28.08" height="15.768">tytułu</TOKEN>
+      <TOKEN sid="p159_s54801" id="p159_w110" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="417.84" y="323.844" base="332.04" width="43.476" height="10.8">emerytur.</TOKEN>
+    </TEXT>
+
+  </PAGE>
+
 </DOCUMENT>
