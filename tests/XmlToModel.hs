@@ -84,8 +84,6 @@ podstawaTable =
    ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "14 839 zł 02 gr + 32% nadwyżki ponad 85 528 zł"]}
    ]
   ]
-  where fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
-
 
 class Point a where
   mkLeaf :: String -> a

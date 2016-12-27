@@ -70,3 +70,5 @@ data TableCell =
     _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
    , _tcborderTop, _tcborderLeft, _tcborderRight, _tcborderBottom :: Bool
   } deriving (Show, Read, Eq)
+
+fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}

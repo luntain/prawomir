@@ -152,7 +152,7 @@ detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` l
 
 
 parseUstawa :: FilePath -> [FilePath] -> IO Akt
-parseUstawa path vecFiles = do
+parseUstawa path _vecFiles = do
   pages <- parsePages path
   --_cellsPerPage <- mapM processVecFilesPage vecFiles
   let partitioned = partitionPages pages
@@ -329,17 +329,45 @@ instance ToText Tok where
 data TableBuilder =
   TableBuilder {
     _tbxEdges :: (Float, Float)
-    , _tbcolEnds :: S.Set Float
     , _tbrowEnds :: S.Set Float
-    , _tbrows :: [[(VClip, TableCell)]] -- rows have cells in reverse order
+    , _tbcolEnds :: S.Set Float
+    , _tbrows :: [[TableCell]] -- rows have cells in reverse order
                }
+  deriving (Show, Eq)
+makeLenses ''TableBuilder
+
+data TableInfo =
+  TableInfo { _tix, _tiy, _tiwidth, _tiheight :: Float
+            , _tirowEnds, _ticolEnds :: [Float], _titable :: Table }
   deriving (Show, Eq)
 
 
-buildTables :: [VGroup] -> [VClip] -> [Table]
-buildTables = undefined
+buildTables :: [VGroup] -> [VClip] -> [TableInfo]
+buildTables groups clips =
+  let (horizontal, vertical) =
+       (doubleIntervalMap***doubleIntervalMap) . partitionEithers . map horizontalOrVertical $ groups
+      clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
+      hasBorderAt intervalMap a b =
+        any (not . null . IS.elems . (flip IS.containing b)) (IM.elems $ IM.containing intervalMap a)
+      cellFrom clip =
+        TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tccolSpan = 0, _tcrowSpan = 0, _tctext=[]
+                  , _tcborderTop    = hasBorderAt horizontal (_vcy clip)                   (_vcx clip + _vcwidth clip / 2)
+                  , _tcborderBottom = hasBorderAt horizontal (_vcy clip + _vcheight clip)  (_vcx clip + _vcwidth clip / 2)
+                  , _tcborderLeft   = hasBorderAt vertical   (_vcx clip)                   (_vcy clip + _vcheight clip / 2)
+                  , _tcborderRight  = hasBorderAt vertical   (_vcx clip + _vcwidth clip)   (_vcy clip + _vcheight clip / 2)
+                  }
+      visitClip [] clip = [TableBuilder {_tbxEdges = (_vcx clip, _vcx clip + _vcwidth clip)
+                                        ,_tbrowEnds = S.singleton (_vcy clip + _vcheight clip)
+                                        ,_tbcolEnds = S.singleton (_vcx clip + _vcwidth clip)
+                                        ,_tbrows = [[clip]]}]
+      visitClip (tb:tbs) clip = [TableBuilder {_tbxEdges = (_vcx clip, _vcx clip + _vcwidth clip)
+                                        ,_tbrowEnds = S.singleton (_vcy clip + _vcheight clip)
+                                        ,_tbcolEnds = S.singleton (_vcx clip + _vcwidth clip)
+                                        ,_tbrows = [[clip]]}]
+      builders = foldl' visitClip [] clips
 
-processVecFilesPage :: FilePath -> IO (Int, [(VClip, TableCell)])
+
+processVecFilesPage :: FilePath -> IO (Int, [TableInfo])
 processVecFilesPage file = do
   (groups, clips') <- ((nub *** nub) . partitionEithers) <$> parseVectorialImagesFile file
   let (horizontal, vertical) =
@@ -348,13 +376,6 @@ processVecFilesPage file = do
       clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
       hasBorderAt intervalMap a b =
         any (not . null . IS.elems . (flip IS.containing b)) (IM.elems $ IM.containing intervalMap a)
-      process clip =
-        TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tccolSpan = 0, _tcrowSpan = 0, _tctext=[]
-                  , _tcborderTop    = hasBorderAt horizontal (_vcy clip)                   (_vcx clip + _vcwidth clip / 2)
-                  , _tcborderBottom = hasBorderAt horizontal (_vcy clip + _vcheight clip)  (_vcx clip + _vcwidth clip / 2)
-                  , _tcborderLeft   = hasBorderAt vertical   (_vcx clip)                   (_vcy clip + _vcheight clip / 2)
-                  , _tcborderRight  = hasBorderAt vertical   (_vcx clip + _vcwidth clip)   (_vcy clip + _vcheight clip / 2)
-                  }
   return (pageNo, (map (id&&&process) clips))
 
 
@@ -381,11 +402,22 @@ horizontalOrVertical (VGroup {_vgpoints=points}) =
 
 tests =
   testGroup "table building tests"
-    [ testCase "tables" $ do
+    [ testCase "no tables" $ do
         assertEqual "empty" [] (buildTables [] [])
         assertEqual "whole page clip" [] (buildTables [] [
           VClip {_vcx=0,_vcy=0,_vcwidth=595.32,_vcheight=841.92,_vcpage=12,_vcgroup=undefined}])
         assertEqual "whole page + side note" [] (buildTables [] [
           VClip {_vcx=0,_vcy=0,_vcwidth=595.32,_vcheight=841.92,_vcpage=12,_vcgroup=undefined},
           VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
+    , testCase "some tables" $ do
+        assertEqual "table with one double row cell + side note "
+          (TableInfo 37 577.68 100 80 [627.68, 657.68] [87, 137]
+          [[fullyBordered $ TableCell {_tcwidth=50,_tcheight=100,_tccolspan=1,_tcrowspan=2,_tctext=[]}
+           ,fullyBordered $ TableCell {_tcwidth=50,_tcheight=50,_tccolspan=1,_tcrowspan=1,_tctext=[]}]
+          ,[fullyBordered $ TableCell {_tcwidth=50,_tcheight=50,_tccolspan=1,_tcrowspan=1,_tctext=[]}]])
+          (buildTables [] [
+             VClip {_vcx=37,_vcy=577.68,_vcwidth=50,_vcheight=80,_vcpage=13,_vcgroup=undefined}
+            ,VClip {_vcx=87,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
+            ,VClip {_vcx=87,_vcy=627.68,_vcwidth=50,_vcheight=30,_vcpage=13,_vcgroup=undefined}
+            ,VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     ]
