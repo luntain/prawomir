@@ -331,7 +331,7 @@ data TableBuilder =
     _tbxEdges :: (Float, Float)
     , _tbrowEnds :: S.Set Float
     , _tbcolEnds :: S.Set Float
-    , _tbrows :: [[TableCell]] -- rows have cells in reverse order
+    , _tbrows :: [[VClip]] -- rows have cells in reverse order, rows are in reverse order too
                }
   deriving (Show, Eq)
 makeLenses ''TableBuilder
@@ -343,7 +343,7 @@ data TableInfo =
 
 
 buildTables :: [VGroup] -> [VClip] -> [TableInfo]
-buildTables groups clips =
+buildTables groups clips' =
   let (horizontal, vertical) =
        (doubleIntervalMap***doubleIntervalMap) . partitionEithers . map horizontalOrVertical $ groups
       clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
@@ -360,23 +360,42 @@ buildTables groups clips =
                                         ,_tbrowEnds = S.singleton (_vcy clip + _vcheight clip)
                                         ,_tbcolEnds = S.singleton (_vcx clip + _vcwidth clip)
                                         ,_tbrows = [[clip]]}]
-      visitClip (tb:tbs) clip = [TableBuilder {_tbxEdges = (_vcx clip, _vcx clip + _vcwidth clip)
-                                        ,_tbrowEnds = S.singleton (_vcy clip + _vcheight clip)
-                                        ,_tbcolEnds = S.singleton (_vcx clip + _vcwidth clip)
-                                        ,_tbrows = [[clip]]}]
+      visitClip (tb:tbs) clip = if adjecent tb clip then addClip tb clip : tbs else tb : visitClip tbs clip
+      adjecent tb c = tb^.tbxEdges._1 <= _vcx c && _vcx c <= tb^.tbxEdges._2
+                      && (clipExtendsLastRow c tb || S.member (_vcy c) (tb^.tbrowEnds))
+      addClip tb c = TableBuilder {_tbxEdges = (min (_vcx c) *** max (_vcx c + _vcwidth c)) (tb^.tbxEdges)
+                                  ,_tbrowEnds = S.insert (_vcy c + _vcheight c) (tb^.tbrowEnds)
+                                  ,_tbcolEnds = S.insert (_vcx c + _vcwidth c) (tb^.tbrowEnds)
+                                  ,_tbrows = if clipExtendsLastRow c tb then over (_head) (c:) (tb^.tbrows)
+                                                                        else ([c] : tb^.tbrows) }
+      clipExtendsLastRow c tb = Just (_vcy c) == tb^?tbrows._head._head.vcy
       builders = foldl' visitClip [] clips
+      toTableInfo tb
+        | tb^.tbrows.to length < 2 = Nothing
+        | otherwise =
+          let rs = reverse $ map reverse (tb^.tbrows)
+              topLeftCell = head . head $ rs
+              x = _vcx topLeftCell
+              y = _vcy topLeftCell
+          in
+          Just $ TableInfo {
+              _tix = x
+            , _tiy = y
+            , _tiwidth = (maximum . S.toList . _tbcolEnds) tb - x
+            , _tiheight = (maximum . S.toList . _tbrowEnds) tb - y
+            , _ticolEnds = (sort . S.toList . _tbcolEnds) tb
+            , _tirowEnds = (sort . S.toList . _tbrowEnds) tb
+            , _titable = map (map cellFrom) rs
+
+          }
+  in catMaybes . map toTableInfo $ builders
 
 
 processVecFilesPage :: FilePath -> IO (Int, [TableInfo])
 processVecFilesPage file = do
-  (groups, clips') <- ((nub *** nub) . partitionEithers) <$> parseVectorialImagesFile file
-  let (horizontal, vertical) =
-       (doubleIntervalMap***doubleIntervalMap) . partitionEithers . map horizontalOrVertical $ groups
-      pageNo = fromMaybe 0 $ preview (ix 1.vcpage) clips'
-      clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
-      hasBorderAt intervalMap a b =
-        any (not . null . IS.elems . (flip IS.containing b)) (IM.elems $ IM.containing intervalMap a)
-  return (pageNo, (map (id&&&process) clips))
+  (groups, clips) <- (partitionEithers . nub) <$> parseVectorialImagesFile file
+  let pageNo = fromMaybe 0 $ preview (ix 1.vcpage) clips
+  return (pageNo, buildTables groups clips)
 
 
 doubleIntervalMap :: [(IM.Interval Float, IM.Interval Float)]
@@ -400,7 +419,7 @@ horizontalOrVertical (VGroup {_vgpoints=points}) =
     ys = map snd points
 
 
-tests =
+tableTests =
   testGroup "table building tests"
     [ testCase "no tables" $ do
         assertEqual "empty" [] (buildTables [] [])
@@ -411,13 +430,16 @@ tests =
           VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     , testCase "some tables" $ do
         assertEqual "table with one double row cell + side note "
-          (TableInfo 37 577.68 100 80 [627.68, 657.68] [87, 137]
-          [[fullyBordered $ TableCell {_tcwidth=50,_tcheight=100,_tccolspan=1,_tcrowspan=2,_tctext=[]}
-           ,fullyBordered $ TableCell {_tcwidth=50,_tcheight=50,_tccolspan=1,_tcrowspan=1,_tctext=[]}]
-          ,[fullyBordered $ TableCell {_tcwidth=50,_tcheight=50,_tccolspan=1,_tcrowspan=1,_tctext=[]}]])
+          [TableInfo 37 577.68 100 80 [627.68, 657.68] [87, 137]
+          [[cellBox {_tcwidth=50,_tcheight=100,_tccolSpan=1,_tcrowSpan=2,_tctext=[]}
+           ,cellBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
+          ,[cellBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]]
           (buildTables [] [
              VClip {_vcx=37,_vcy=577.68,_vcwidth=50,_vcheight=80,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=87,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=87,_vcy=627.68,_vcwidth=50,_vcheight=30,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     ]
+
+cellBox = TableCell {_tcwidth= -1,_tcheight= -1,_tccolSpan=0,_tcrowSpan=0,_tctext=[],
+                      _tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}

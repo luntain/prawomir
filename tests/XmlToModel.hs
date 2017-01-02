@@ -12,7 +12,7 @@ import Data.Algorithm.DiffOutput (ppDiff)
 import Data.Algorithm.Diff (getGroupedDiff)
 
 
-main = defaultMain tests
+main = defaultMain (testGroup "all" [tableTests, tests])
 
 tests =
   testGroup "HUnit tests"
