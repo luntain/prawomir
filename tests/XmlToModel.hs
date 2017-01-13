@@ -10,6 +10,8 @@ import Parse
 import Text.Nicify
 import Data.Algorithm.DiffOutput (ppDiff)
 import Data.Algorithm.Diff (getGroupedDiff)
+import System.IO.Unsafe (unsafePerformIO)
+import Text.Show.Unicode
 
 
 main = defaultMain (testGroup "all" [tableTests, tests])
@@ -31,7 +33,7 @@ expectedUstawa =
       Partitions "Rozdział" [("1", "Podmiot i przedmiot opodatkowania")
                             ,("1a", "Opodatkowanie przychodów nieznajdujących pokrycia w ujawnionych\
                                     \ źródłach lub pochodzących ze źródeł nieujawnionych")]
-         (M.fromList [("1", Articles ["1", "2"]), ("1a", Articles ["25b"])])
+         (M.fromList [("1", Articles ["1", "2"]), ("1a", Articles ["25b", "27"])])
     , _uarticles =
       M.fromList [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
                  ,("2", mkPoint "" [
@@ -58,32 +60,15 @@ expectedUstawa =
                                   \wydatkowanych w roku podatkowym środków, w przypadku gdy nie jest możliwe ustalenie \
                                   \roku podatkowego, w którym zgromadzono te środki.")] [])
                  ,("27", mkPoint "" [
-                      ("1", ZWyliczeniem [Text "Podatek dochodowy, z sastrzeżeniem art. 29-30f, pobiera się od\
+                      ("1", ZWyliczeniem [Text "Podatek dochodowy, z zastrzeżeniem art. 29–30f, pobiera się od\
                                                \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
                               [] M.empty [] )
-                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłacznie przychody z tytułu emerytur.")
+                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")
                                     ] [])]
          }
 
 
-podstawaTable =
-  map (map fullyBordered)
-  [[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=2, _tctext=[Text "Podstawa obliczenia podatku w złotych"]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=2, _tccolSpan=1, _tctext=[Text "Podatek wynosi"]}]
-
-  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "ponad"]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "do"]}]
-
-  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text ""]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "85 528"]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "18% minus kwota zmiejszająca podatek 556 zł 02 gr"]}
-   ]
-
-  ,[TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "85 528"]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text ""]}
-   ,TableCell {_tcwidth=0, _tcheight=1, _tcrowSpan=1, _tccolSpan=1, _tctext=[Text "14 839 zł 02 gr + 32% nadwyżki ponad 85 528 zł"]}
-   ]
-  ]
+podstawaTable = unsafePerformIO (read <$> readFile "tests/podstawaObliczeniaPodatku.table")
 
 class Point a where
   mkLeaf :: String -> a
@@ -94,8 +79,9 @@ instance Point Article where
   mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (M.fromList children)
 
 instance Point ZWyliczeniem where
-  mkLeaf text = ZWyliczeniem [Text $ T.pack text] [] M.empty []
-  mkPoint text children suffix = ZWyliczeniem [Text $ T.pack text] (map fst children) (M.fromList children) suffix
+  mkLeaf text = ZWyliczeniem (if null text then [] else [Text $ T.pack text]) [] M.empty []
+  mkPoint text children suffix = ZWyliczeniem (if null text then [] else [Text $ T.pack text])
+                                              (map fst children) (M.fromList children) suffix
 
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
@@ -108,7 +94,7 @@ diffAssertEqual expected actual =
           diff = ppDiff (getGroupedDiff (lines expected') (lines actual'))
       assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\n" expected' actual' diff)
   where
-    nice = nicify . show
+    nice = nicify . ushow
 
 -- TODO:
 -- tabelki w tekscie, art 27 s 159

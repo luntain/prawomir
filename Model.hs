@@ -1,6 +1,7 @@
 module Model where
 
 import MyPrelude
+import Control.Lens
 import Data.Time
 import qualified Data.Text as T
 import qualified Data.Map as M
@@ -43,7 +44,8 @@ data TableOfContents = -- [Dzial, [rozdzial]]
   deriving (Show, Read, Eq)
 
 type TextWithReferences = [TextOrReference]
-data TextOrReference = Text T.Text | Table Table -- just test for now
+data TextOrReference =
+  Text T.Text | Table [[TableCell]] -- just test for now
   deriving (Show, Read, Eq)
 
 data Article =
@@ -64,7 +66,8 @@ data ZWyliczeniem =
 
 emptyZWyliczeniem = ZWyliczeniem [] [] M.empty []
 
-type Table = [[TableCell]]
+--type Table = [[TableCell]]
+
 data TableCell =
   TableCell {
     _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
@@ -72,3 +75,6 @@ data TableCell =
   } deriving (Show, Read, Eq)
 
 fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
+
+makeLenses ''TableCell
+makePrisms ''TextOrReference

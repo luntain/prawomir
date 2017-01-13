@@ -1,0 +1,205 @@
+[
+    [
+        TableCell {
+            _tcwidth = 140.999,
+            _tcheight = 41.4,
+            _tccolSpan = 2,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "Podstawa obliczenia podatku w złotych"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 282.84,
+            _tcheight = 41.4,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "Podatek wynosi"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = False
+        },
+        TableCell {
+            _tcwidth = 28.32,
+            _tcheight = 41.4,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = False,
+            _tcborderLeft = True,
+            _tcborderRight = False,
+            _tcborderBottom = False
+        }
+    ],
+    [
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.76,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "ponad"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.76,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "do"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 283.2,
+            _tcheight = 20.76,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = False,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 27.96,
+            _tcheight = 20.76,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = False,
+            _tcborderLeft = True,
+            _tcborderRight = False,
+            _tcborderBottom = False
+        }
+    ],
+    [
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.64,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.64,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "85 528"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 283.56,
+            _tcheight = 20.64,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "18% minus kwota zmniejszająca podatek 556 zł 02 gr"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 27.96,
+            _tcheight = 20.64,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = False,
+            _tcborderLeft = True,
+            _tcborderRight = False,
+            _tcborderBottom = False
+        }
+    ],
+    [
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.641,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "85 528"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 70.2,
+            _tcheight = 20.641,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 282.84,
+            _tcheight = 20.641,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text "14 839 zł 02 gr + 32% nadwyżki ponad 85 528 zł"
+            ],
+            _tcborderTop = True,
+            _tcborderLeft = True,
+            _tcborderRight = True,
+            _tcborderBottom = True
+        },
+        TableCell {
+            _tcwidth = 27.96,
+            _tcheight = 20.641,
+            _tccolSpan = 1,
+            _tcrowSpan = 1,
+            _tctext = [
+                Text ""
+            ],
+            _tcborderTop = False,
+            _tcborderLeft = True,
+            _tcborderRight = False,
+            _tcborderBottom = False
+        }
+    ]
+]

@@ -5,11 +5,12 @@ import Data.Monoid
 import MyPrelude hiding (many, (<|>))
 import Control.Lens
 import Data.Time
+import Text.Nicify
+import qualified Data.List as L
 import qualified Data.Map as M
 import qualified Data.Text as T
 import qualified Data.IntervalMap as IM
 import qualified Data.IntervalSet as IS
-import qualified Data.Set as S
 import Model
 import ParseXml
 import Text.Parsec
@@ -17,6 +18,7 @@ import Text.Parsec.Pos
 import Data.Char (isDigit, isLower)
 import Test.Tasty
 import Test.Tasty.HUnit
+import Text.Show.Unicode
 
 data NonTerminal =
     RozdziałToken
@@ -24,8 +26,8 @@ data NonTerminal =
   | UstępToken String
   | PunktToken String
   | PodpunktToken String
+  | TableToken TableInfo
   deriving (Show, Read, Eq)
-makePrisms ''NonTerminal
 
 -- Tok not to clash with ParseXml.Token
 data Tok =
@@ -33,8 +35,6 @@ data Tok =
   -- following greatly simplify parsing
   | NonTerminal NonTerminal SourcePos
   deriving (Show, Eq)
-makeLenses ''Tok
-makePrisms ''Tok
 
 type Parser a = Parsec [Tok] () a
 
@@ -46,7 +46,29 @@ instance Monoid Partitioned where
   mempty = Partitioned [] [] []
   mappend (Partitioned m s f) (Partitioned m2 s2 f2) = Partitioned (m <>m2) (s<>s2) (f<>f2)
 
+
+-- has to be here because of the makeLenses TH
+data TableBuilder =
+  TableBuilder {
+    _tbxEdges :: (Float, Float)
+    , _tbrowEnds :: [Float]
+    , _tbcolEnds :: [Float]
+    , _tbrows :: [[VClip]] -- rows have cells in reverse order, rows are in reverse order too
+    }
+  deriving (Show, Eq)
+
+
+data TableInfo =
+  TableInfo { _tix, _tiy, _tiwidth, _tiheight :: Float
+            , _tirowEnds, _ticolEnds :: [Float], _titable :: [[TableCell]] }
+  deriving (Show, Eq, Read)
+
+makeLenses ''Tok
+makePrisms ''Tok
 makeLenses ''Partitioned
+makePrisms ''NonTerminal
+makeLenses ''TableInfo
+makeLenses ''TableBuilder
 
 partitionPages :: [Page] -> Partitioned
 partitionPages = mconcat . map partitionPage
@@ -55,25 +77,25 @@ partitionPage :: Page -> Partitioned
 partitionPage page = Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
   where
     (sidenotsLines, otherLines) = partition isSidenote (_ptexts page)
-    (mainCont, footnots) = forceRight . runParser parseOtherLines () (show (_pnumber page)) $ otherLines
+    (mainCont, footnots) = forceRight . runParser parseOtherLines () ("other lines: " ++ show (_pnumber page)) $ otherLines
     parseOtherLines =
-      parseLine mempty (parsec $ string "©Kancelaria Sejmu")
-        *> parseLine mempty (parsec $ string "s." *> space *> many1 digit *> string "/" *> many1 digit)
-        *> parseLine mempty (parsec $ count 4 digit *> string "-" *> count 2 digit *> string "-" *> count 2 digit)
-        *> manyTill' (parseLine mempty Just) (fmap concat parseFootnotes)
+      parseLine "kancelaria" mempty (parsec $ string "©Kancelaria Sejmu")
+        *> parseLine "strona header" mempty (parsec $ string "s." *> space *> many1 digit *> string "/" *> many1 digit)
+        *> parseLine "strona" mempty (parsec $ count 4 digit *> string "-" *> count 2 digit *> string "-" *> count 2 digit)
+        *> manyTill' (parseLine "footnotes" mempty Just) (fmap concat parseFootnotes)
     parseFootnotes =
-      many (parseLine ((All.(==6.48) . view (ltokens.to head.tfontsize)) <> (All.(==1).length.view ltokens)) (parsec $ many1 digit <* string ")")
-            *> many1 (parseLine (All .(==9.96). view (ltokens.to head.tfontsize)) Just)) <* eof
+      many (parseLine "footnote" ((All.(==6.48) . view (ltokens.to head.tfontsize)) <> (All.(==1).length.view ltokens)) (parsec $ many1 digit <* string ")")
+            *> many1 (parseLine "footnote body" (All .(==9.96). view (ltokens.to head.tfontsize)) Just)) <* eof
     isSidenote :: TEXT -> Bool
     isSidenote line = line^.lx > 470 && firstTok^.tfontsize == 9.96 && firstTok^.tbold
       where
         firstTok :: Token
         firstTok = head $ line^.ltokens
     toToks lines = [RawToken tk ln page | ln <- lines, tk <- _ltokens ln]
-    parseLine :: (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
-    parseLine fp parser =
+    parseLine :: String -> (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
+    parseLine what fp parser =
       ftoken
-      (\_line -> newPos ("Page " ++ show (_pnumber page)) 0 0) -- TODO put in a line and col number maybe?
+      (\_line -> newPos (what ++ " Page " ++ show (_pnumber page)) 0 0) -- TODO put in a line and col number maybe?
       fp
       parser
 
@@ -109,7 +131,8 @@ detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` l
   where
     lineId :: Tok -> Float
     lineId (RawToken {_tline=tline}) = _ly tline
-    lineId (NonTerminal _ _) = error "There should't be any NonTerminal's at this point"
+    lineId (NonTerminal (TableToken _) _) = -1 -- tables are the only allowed non terminal, we ban it into -1 class
+    lineId (NonTerminal _ _) = error "There should't be a NonTerminal's at this point yet"
     detect :: Float -> [Tok] -> (Float, [Tok])
     detect _ [] = error "There should not be an empty line"
     detect artXPos orig@(first:rest) =
@@ -152,12 +175,14 @@ detectNonTerminals = concat . snd . mapAccumL detect 82.2 . groupBy ((==) `on` l
 
 
 parseUstawa :: FilePath -> [FilePath] -> IO Akt
-parseUstawa path _vecFiles = do
+parseUstawa path vecFiles = do
   pages <- parsePages path
-  --_cellsPerPage <- mapM processVecFilesPage vecFiles
+  tablesPerPage <- mapM processVecFilesPage vecFiles
+  putStrLn (show $ tablesPerPage)
   let partitioned = partitionPages pages
-  forceResult path
-    $ toResult $ runParser tekstJednolity () path (detectNonTerminals . processAdditionsAndRemovals $ _mainContent partitioned)
+      tokenStream = detectNonTerminals . insertTables tablesPerPage . processAdditionsAndRemovals $ _mainContent partitioned
+  writeFile "/tmp/foo" (nicify. ushow . mapMaybe (preview (_NonTerminal . _1 . _TableToken)) $ tokenStream)
+  forceResult path $ toResult $ runParser tekstJednolity () path tokenStream
 
 tekstJednolity :: Parser Akt
 tekstJednolity = do
@@ -168,12 +193,12 @@ tekstJednolity = do
   rozdzialy <- many rozdział -- TODO what about the case of no rozdzialy?
   let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
   let spisTresci = M.fromList . map (view _1 &&& view _3) $ rozdzialy
-  return (Ustawa {
+  return Ustawa {
             _upId=pid
             , _uzDnia=zDnia
             , _uTytul=tytul
             , _uspisTresci = Partitions "Rozdział" rozdzialIndex spisTresci
-            , _uarticles = M.fromList . concat . map (view _4) $ rozdzialy })
+            , _uarticles = M.fromList . concatMap (view _4) $ rozdzialy }
 
 rozdział :: Parser (String, String, TableOfContents, [(String, Article)])
 rozdział = do
@@ -201,10 +226,10 @@ ustęp = do
 
 ustępBody :: Parser ZWyliczeniem
 ustępBody = do
-  text <- T.unwords <$> many (ftok mempty anyT)
+  text <- textWithReferencesAndTables 0
   punkty <- many punkt
-  suffix <- many $ ftok mempty anyT
-  return (ZWyliczeniem [Text text] (map fst punkty) (M.fromList punkty) (processText suffix))
+  suffix <- textWithReferencesAndTables 0
+  return (ZWyliczeniem text (map fst punkty) (M.fromList punkty) suffix)
 
 punkt :: Parser (String, ZWyliczeniem)
 punkt = do
@@ -215,14 +240,24 @@ punkt = do
 punktBody :: Parser ZWyliczeniem
 punktBody = do
   startX <- peekNextTokXPos
-  texts <- many $ ftok (indentedByAtLeast startX) anyT
+  wprowadzenie <- textWithReferencesAndTables startX
   podpunkty <- many podpunkt
-  suffix <- many $ ftok (indentedByAtLeast startX) anyT
-  return (ZWyliczeniem (processText texts) (map fst podpunkty) (M.fromList podpunkty) (processText suffix))
+  suffix <- textWithReferencesAndTables startX
+  return (ZWyliczeniem wprowadzenie (map fst podpunkty) (M.fromList podpunkty) suffix)
 
-processText :: [T.Text] -> TextWithReferences
-processText [] = []
-processText texts = [Text . T.unwords $ texts]
+textWithReferencesAndTables :: Float -> Parser TextWithReferences
+textWithReferencesAndTables indent =
+  fmap (mergeTexts []) $ many $
+    choice [Text  <$> ftok (indentedByAtLeast indent) anyT
+           ,Table <$> ftok (view $ _NonTerminal . _1 . _TableToken . tix . to (All.(>=indent)))
+                           (preview $ _NonTerminal . _1 . _TableToken . titable)
+           ]
+ where
+    mergeTexts acc (Text t1:rest) = mergeTexts (t1:acc) rest
+    mergeTexts [] [] = []
+    mergeTexts acc [] = [Text (T.unwords (reverse acc))]
+    mergeTexts acc (Table t:rest) = Text (T.unwords (reverse acc)) : Table t : mergeTexts [] rest
+
 
 podpunkt :: Parser (String, ZWyliczeniem)
 podpunkt = do
@@ -245,7 +280,7 @@ duPozId = do
   nr <- int
   consumeWords "poz."
   seq <- int
-  return $ PozId {_pidYear=rok, _pidNr=nr, _pidSeq=seq}
+  return PozId {_pidYear=rok, _pidNr=nr, _pidSeq=seq}
 
 consumeWords :: T.Text -> Parser ()
 consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string w))
@@ -298,7 +333,7 @@ tokPos (RawToken {_ttok=ttok, _tline=tline, _tpage=tpage}) =
 tokPos (NonTerminal _ sp) = sp
 
 -- try a parsec text parser on a text like thing, yielding a Maybe if it is successful
-parsec :: ToText t => Parsec T.Text () a -> (t->Maybe a)
+parsec :: ToText t => Parsec T.Text () a -> t -> Maybe a
 parsec parser = either (const Nothing) Just . runParser parser () "TODO" . toText
 
 
@@ -310,66 +345,89 @@ instance ToText TEXT where
 instance ToText Tok where
   toText t = t^.ttok.ttext
 
--- data Stream = Stream { _scurrentLine :: [Token], _scurrentPage :: [Text], _sotherPages :: [Page], _siLineBeginning :: Bool }
---               deriving (Show, Read)
--- makeLenses ''Stream
+-- puts text from token stream into cells, puts tables into the token stream
+insertTables :: [(Int, [TableInfo])] -> [Tok] -> [Tok]
+insertTables tis = insertTables' (sortWith (second _tiy) (tis >>= \(p, tis) -> map (p,) tis))
 
--- instance Monad m => Stream Stream m Stream where
---   uncons stream =
---     case _scurrentLine stream of
---       _:(rest@(_:_)) -> Just $ stream {_scurrentLine = rest, _siLineBeginning = False}
---       _ -> case _scurrentPage of
---         x:rest -> Just $ stream {_scurrentLine=_ltokens x, _siLineBeginning=True, _scurrentPage=rest}
---         [] -> case _sotherPages stream of
---           [] -> Nothing
---           p:pages ->
+insertTables' :: [(Int, TableInfo)] -> [Tok] -> [Tok]
+insertTables' [] toks = toks
+insertTables' ((page, ti):_) [] = [NonTerminal (TableToken (over titable reverseCellTexts ti)) (newPos ("Page " ++ show page) 0 0)]
+insertTables' allTis@((page, ti) : tis) allToks@(tok:toks)
+  | (Just tokPage, Just toky) <- (tok^?tpage.pnumber, tok^?ttok.tmidY)
+     , (page, _tiy ti + _tiheight ti) <= (tokPage, toky)
+    = NonTerminal (TableToken (over titable reverseCellTexts ti)) (tokPos tok) : insertTables' tis allToks
+  | (Just tokPage, Just toky) <- (tok^?tpage.pnumber, tok^?ttok.tmidY), (page, _tiy ti) > (tokPage, toky)
+    = tok : insertTables' allTis toks
+  | otherwise = insertTables' ((page, insertIntoCell ti tok):tis) toks
+ where
+    insertIntoCell _ (NonTerminal _ _) = error "unexpected non terminal, expected a raw token for table cell"
+    insertIntoCell ti RawToken {_ttok=ttok} =
+        fromMaybe (error $ "no such cell " ++ show (row, col))
+                  (failover (titable.tcell (row, col)._Just.tctext) ((Text $ ttok^.ttext):) ti)
+      where x = _tmidX ttok
+            y = _tmidY ttok
+            -- 0 based coords in the table
+            row = cellNo y (ti^.tirowEnds)
+            col = cellNo x (ti^.ticolEnds)
+            cellNo pos ends = length (takeWhile (<pos) ends)
 
---   feedLine =
+-- when collecting the text into cells, I put them in reverse order, reorder them when putting the
+-- complete table into the token stream
+reverseCellTexts :: [[TableCell]] -> [[TableCell]] -- TODO Table
+reverseCellTexts = map (map $ over tctext reverseAndProcess)
+reverseAndProcess :: TextWithReferences -> TextWithReferences
+reverseAndProcess = return . Text . T.unwords . reverse . mapMaybe (preview _Text)
 
-data TableBuilder =
-  TableBuilder {
-    _tbxEdges :: (Float, Float)
-    , _tbrowEnds :: S.Set Float
-    , _tbcolEnds :: S.Set Float
-    , _tbrows :: [[VClip]] -- rows have cells in reverse order, rows are in reverse order too
-               }
-  deriving (Show, Eq)
-makeLenses ''TableBuilder
-
-data TableInfo =
-  TableInfo { _tix, _tiy, _tiwidth, _tiheight :: Float
-            , _tirowEnds, _ticolEnds :: [Float], _titable :: Table }
-  deriving (Show, Eq)
+-- let it be 0 based
+tcell :: (Int, Int) -> Traversal' [[TableCell]] (Maybe TableCell)
+tcell (row, col) = ix row . tcell col
+  where tcell :: Int -> Lens' [TableCell] (Maybe TableCell)
+        tcell col = lens (getCell (col+1)) (changeCell (col+1))
+          where getCell _ [] = Nothing
+                getCell col (c:cs)
+                  | col <= _tccolSpan c = Just c
+                  | otherwise = getCell (col - _tccolSpan c) cs
+                changeCell :: Int -> [TableCell] -> Maybe TableCell -> [TableCell]
+                changeCell _ [] _ = []
+                changeCell col (c:cs) mNewCell
+                  | col <= _tccolSpan c = maybeToList mNewCell ++ cs
+                  | otherwise = c : changeCell (col - _tccolSpan c) cs mNewCell
 
 
 buildTables :: [VGroup] -> [VClip] -> [TableInfo]
 buildTables groups clips' =
   let (horizontal, vertical) =
-       (doubleIntervalMap***doubleIntervalMap) . partitionEithers . map horizontalOrVertical $ groups
-      clips = filter (\c -> _vcheight c < 800 || _vcwidth c < 500) clips'
+       (tableBordersMap***tableBordersMap) . partitionEithers . map horizontalOrVertical $ groups
+      clips = filter (\c -> _vcheight c < 840 || _vcwidth c < 590) clips'
       hasBorderAt intervalMap a b =
-        any (not . null . IS.elems . (flip IS.containing b)) (IM.elems $ IM.containing intervalMap a)
-      cellFrom clip =
-        TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tccolSpan = 0, _tcrowSpan = 0, _tctext=[]
+        any (not . null . IS.elems . flip IS.containing b) (IM.elems $ IM.containing intervalMap a)
+      cellFrom tb clip =
+        TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tctext=[]
+                  , _tccolSpan = span (tb^.tbcolEnds) (_vcx clip) (_vcx clip + _vcwidth clip)
+                  , _tcrowSpan = span (tb^.tbrowEnds) (_vcy clip) (_vcy clip + _vcheight clip)
                   , _tcborderTop    = hasBorderAt horizontal (_vcy clip)                   (_vcx clip + _vcwidth clip / 2)
                   , _tcborderBottom = hasBorderAt horizontal (_vcy clip + _vcheight clip)  (_vcx clip + _vcwidth clip / 2)
                   , _tcborderLeft   = hasBorderAt vertical   (_vcx clip)                   (_vcy clip + _vcheight clip / 2)
                   , _tcborderRight  = hasBorderAt vertical   (_vcx clip + _vcwidth clip)   (_vcy clip + _vcheight clip / 2)
                   }
+      span ends from to =
+        length . takeWhile (<= (to + 3)) . dropWhile (<= (from + 3)) $ ends
       visitClip [] clip = [TableBuilder {_tbxEdges = (_vcx clip, _vcx clip + _vcwidth clip)
-                                        ,_tbrowEnds = S.singleton (_vcy clip + _vcheight clip)
-                                        ,_tbcolEnds = S.singleton (_vcx clip + _vcwidth clip)
+                                        ,_tbrowEnds = [_vcy clip + _vcheight clip]
+                                        ,_tbcolEnds = [_vcx clip + _vcwidth clip]
                                         ,_tbrows = [[clip]]}]
       visitClip (tb:tbs) clip = if adjecent tb clip then addClip tb clip : tbs else tb : visitClip tbs clip
-      adjecent tb c = tb^.tbxEdges._1 <= _vcx c && _vcx c <= tb^.tbxEdges._2
-                      && (clipExtendsLastRow c tb || S.member (_vcy c) (tb^.tbrowEnds))
+      adjecent tb c = tb^.tbxEdges._1 <= _vcx c && _vcx c <= tb^.tbxEdges._2 + 5.2
+                      && (clipExtendsLastRow c tb || any (isAround 2 (_vcy c)) (tb^.tbrowEnds))
+      clipExtendsLastRow c tb
+         | Just ylastrow <- tb^?tbrows._head._head.vcy = isAround 2 (_vcy c) ylastrow
+         | otherwise = False
       addClip tb c = TableBuilder {_tbxEdges = (min (_vcx c) *** max (_vcx c + _vcwidth c)) (tb^.tbxEdges)
-                                  ,_tbrowEnds = S.insert (_vcy c + _vcheight c) (tb^.tbrowEnds)
-                                  ,_tbcolEnds = S.insert (_vcx c + _vcwidth c) (tb^.tbrowEnds)
-                                  ,_tbrows = if clipExtendsLastRow c tb then over (_head) (c:) (tb^.tbrows)
-                                                                        else ([c] : tb^.tbrows) }
-      clipExtendsLastRow c tb = Just (_vcy c) == tb^?tbrows._head._head.vcy
-      builders = foldl' visitClip [] clips
+                                  ,_tbrowEnds = insertWithTolerance 2.0 (_vcy c + _vcheight c) (tb^.tbrowEnds)
+                                  ,_tbcolEnds = insertWithTolerance 2.0 (_vcx c + _vcwidth c) (tb^.tbcolEnds)
+                                  ,_tbrows = if clipExtendsLastRow c tb then over _head (c:) (tb^.tbrows)
+                                                                        else [c] : tb^.tbrows }
+      builders = foldl' visitClip [] (sortWith (_vcy &&& _vcx) clips)
       toTableInfo tb
         | tb^.tbrows.to length < 2 = Nothing
         | otherwise =
@@ -378,38 +436,46 @@ buildTables groups clips' =
               x = _vcx topLeftCell
               y = _vcy topLeftCell
           in
-          Just $ TableInfo {
+          Just TableInfo {
               _tix = x
             , _tiy = y
-            , _tiwidth = (maximum . S.toList . _tbcolEnds) tb - x
-            , _tiheight = (maximum . S.toList . _tbrowEnds) tb - y
-            , _ticolEnds = (sort . S.toList . _tbcolEnds) tb
-            , _tirowEnds = (sort . S.toList . _tbrowEnds) tb
-            , _titable = map (map cellFrom) rs
+            , _tiwidth = (last . _tbcolEnds) tb - x
+            , _tiheight = (last . _tbrowEnds) tb - y
+            , _tirowEnds = _tbrowEnds tb
+            , _ticolEnds = _tbcolEnds tb
+            , _titable = map (map $ cellFrom tb) rs
 
           }
-  in catMaybes . map toTableInfo $ builders
+  in mapMaybe toTableInfo builders
 
+isAround :: Float -> Float -> Float -> Bool
+isAround tolerance val ref = val <= ref + tolerance && val >= ref - tolerance
+
+insertWithTolerance :: Float -> Float -> [Float] -> [Float]
+insertWithTolerance tolerance val list =
+  if any (isAround tolerance val) list then list else L.insert val list
 
 processVecFilesPage :: FilePath -> IO (Int, [TableInfo])
 processVecFilesPage file = do
   (groups, clips) <- (partitionEithers . nub) <$> parseVectorialImagesFile file
+  putStrLn (show $ map (\x -> map ( $ x) [_vcy, _vcx, _vcwidth, _vcheight]) $ sortWith (_vcy &&& _vcx) clips)
   let pageNo = fromMaybe 0 $ preview (ix 1.vcpage) clips
   return (pageNo, buildTables groups clips)
 
 
-doubleIntervalMap :: [(IM.Interval Float, IM.Interval Float)]
+tableBordersMap :: [(IM.Interval Float, IM.Interval Float)]
                         -> IM.IntervalMap Float (IS.IntervalSet (IM.Interval Float))
-doubleIntervalMap = foldr (\(k,v) -> IM.insertWith' IS.union k (IS.singleton v)) IM.empty
-
+tableBordersMap = IM.mapKeys expandInterval . foldr (\(k,v) -> IM.insertWith' IS.union k (IS.singleton v)) IM.empty
+  where
+    expandInterval i = IM.ClosedInterval (IS.lowerBound i - 1) (IS.upperBound i + 1)
 
 -- VGroups are really rectangles filled with black reprezenting lines (that could be borders)
 -- this decides if it is a vertical or a hirozontala line (Right - vertical, Left - horizontal)
--- the first interval is the span of the short end of the rectangle
+-- the first interval is the span of the short end of the rectangle (edge xs in case of vertical)
 horizontalOrVertical :: VGroup -> Either (IM.Interval Float, IM.Interval Float) (IM.Interval Float, IM.Interval Float)
 horizontalOrVertical (VGroup {_vgpoints=points}) =
   if h > w
-     then Right $ vertical
+     then Right vertical
      else Left $ swap vertical
   where
     vertical = (IM.ClosedInterval (minimum xs) (maximum xs), IM.ClosedInterval (minimum ys) (maximum ys))
@@ -430,16 +496,17 @@ tableTests =
           VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     , testCase "some tables" $ do
         assertEqual "table with one double row cell + side note "
-          [TableInfo 37 577.68 100 80 [627.68, 657.68] [87, 137]
-          [[cellBox {_tcwidth=50,_tcheight=100,_tccolSpan=1,_tcrowSpan=2,_tctext=[]}
-           ,cellBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
-          ,[cellBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]]
+          [TableInfo 37 577.68 102 80 [627.68, 657.68] [87, 139]
+          [[nakedBox {_tcwidth=50,_tcheight=80,_tccolSpan=1,_tcrowSpan=2,_tctext=[]}
+           ,nakedBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
+          ,[nakedBox {_tcwidth=50,_tcheight=28,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]]
           (buildTables [] [
              VClip {_vcx=37,_vcy=577.68,_vcwidth=50,_vcheight=80,_vcpage=13,_vcgroup=undefined}
-            ,VClip {_vcx=87,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
-            ,VClip {_vcx=87,_vcy=627.68,_vcwidth=50,_vcheight=30,_vcpage=13,_vcgroup=undefined}
+            ,VClip {_vcx=89,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
+            ,VClip {_vcx=89,_vcy=629.68,_vcwidth=50,_vcheight=28,_vcpage=13,_vcgroup=undefined}
+
             ,VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     ]
 
-cellBox = TableCell {_tcwidth= -1,_tcheight= -1,_tccolSpan=0,_tcrowSpan=0,_tctext=[],
-                      _tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
+nakedBox = TableCell {_tcwidth= -1,_tcheight= -1,_tccolSpan=0,_tcrowSpan=0,_tctext=[],
+                      _tcborderTop = False, _tcborderBottom = False, _tcborderLeft = False, _tcborderRight = False}

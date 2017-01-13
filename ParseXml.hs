@@ -14,7 +14,7 @@ data TEXT =
   TEXT { _lx, _ly, _lwidht, _lheight:: Float, _ltokens :: [Token]} deriving (Show, Read, Eq)
 
 data Token =
-  Token { _tx :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read, Eq)
+  Token { _tx, _tmidX, _tmidY :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read, Eq)
 
 makeLenses ''Page
 makeLenses ''TEXT
@@ -58,11 +58,13 @@ xpToken :: PU Token
 xpToken =
   xpFilterCont (removeAttr "sid" >>> removeAttr "id" >>> removeAttr "font-name" >>> removeAttr "symbolic"
                 >>> removeAttr "font-color" >>> removeAttr "rotation" >>> removeAttr "angle"
-                >>> removeAttr "base" >>> removeAttr "serif" >>> removeAttr "fixed-width" >>> removeAttr "y"
-                >>> removeAttr "width" >>> removeAttr "height") $
+                >>> removeAttr "base" >>> removeAttr "serif" >>> removeAttr "fixed-width") $
   xpElem "TOKEN" $
-    xpWrap (uncurry5 Token, undefined) $
-      xp5Tuple (xpAttr "x" xpPrim)
+    xpWrap (\(x, y, w, h, bold, italic, fs, text) -> Token x (x+w/2) (y+h/2) bold italic fs text, undefined) $
+      xp8Tuple (xpAttr "x" xpPrim)
+               (xpAttr "y" xpPrim)
+               (xpAttr "width" xpPrim)
+               (xpAttr "height" xpPrim)
                (xpAttr "bold" xpYesNo)
                (xpAttr "italic" xpYesNo)
                (xpAttr "font-size" xpPrim)

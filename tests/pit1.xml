@@ -456,6 +456,18 @@
 
   <PAGE width="595.32" height="841.92" number="159" id="p159"><MEDIABOX x1="0" y1="0" x2="595.32" y2="841.92"/><CROPBOX x1="0" y1="0" x2="595.32" y2="841.92"/><BLEEDBOX x1="0" y1="0" x2="595.32" y2="841.92"/><ARTBOX x1="0" y1="0" x2="595.32" y2="841.92"/><TRIMBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
 
+    <TEXT width="70.974" height="8.1" id="p19_t1" x="56.64" y="37.413">
+      <TOKEN sid="p19_s6464" id="p19_w1" font-name="Times-Roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="56.64" y="37.413" base="43.56" width="45.756" height="8.1">©Kancelaria</TOKEN>
+      <TOKEN sid="p19_s6465" id="p19_w2" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="104.637" y="37.413" base="43.56" width="22.977" height="8.1">Sejmu</TOKEN>
+    </TEXT>
+    <TEXT width="33.057" height="8.1" id="p19_t2" x="477.237" y="37.413">
+      <TOKEN sid="p19_s6467" id="p19_w3" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="477.237" y="37.413" base="43.56" width="5.733" height="8.1">s.</TOKEN>
+      <TOKEN sid="p19_s6468" id="p19_w4" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="485.274" y="37.413" base="43.56" width="25.02" height="8.1">159/253</TOKEN>
+    </TEXT>
+    <TEXT width="42.057" height="8.1" id="p19_t3" x="425.64" y="793.173">
+      <TOKEN sid="p19_s6470" id="p19_w5" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="425.64" y="793.173" base="799.32" width="42.057" height="8.1">2015-11-02</TOKEN>
+    </TEXT>
+
     <TEXT width="385.44" height="11.88" id="p159_t9" x="82.2" y="171.156">
       <TOKEN sid="p159_s54542" id="p159_w48" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="175.044" base="183.24" width="20.88" height="10.8">Art.</TOKEN>
       <TOKEN sid="p159_s54543" id="p159_w49" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="108.12" y="175.044" base="183.24" width="15" height="10.8">27.</TOKEN>
