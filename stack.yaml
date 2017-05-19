@@ -1,6 +1,6 @@
 flags: {}
 packages:
 - '.'
-- '../haskell-libs/myprelude'
+- 'submodules/myprelude'
 extra-deps: [ssv-0.3, hxt-tagsoup-9.1.4, hxt-cache-9.1.0.2]
-resolver: lts-7.2
+resolver: lts-8.4

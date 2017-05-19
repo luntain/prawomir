@@ -1,0 +1,3 @@
+[submodule "submodules/myprelude"]
+	path = submodules/myprelude
+	url = https://github.com/luntain/myprelude.git

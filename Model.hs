@@ -36,6 +36,8 @@ data Akt =
 --     Artykul -> 3
 --     Ustep -> 4
 --     Punkt -> 5
+--     Podpunkt albo litera?
+--     tireta -- TODO - not handled yet
 
 
 data TableOfContents = -- [Dzial, [rozdzial]]
