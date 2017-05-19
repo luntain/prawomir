@@ -26,20 +26,6 @@ data Akt =
          , _uarticles :: M.Map String Article
          } deriving (Show, Read, Eq)
 
--- data DivType =
---   Dzial | Rozdzial | Artykul | Ustep | Punkt
---   deriving (Show, Read)
--- hdrPriority divTyp =
---   case divtyp of
---     Dzial -> 1
---     Rozdzial -> 2
---     Artykul -> 3
---     Ustep -> 4
---     Punkt -> 5
---     Podpunkt albo litera?
---     tireta -- TODO - not handled yet
-
-
 data TableOfContents = -- [Dzial, [rozdzial]]
   Partitions String [(String, String)] (M.Map String TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
   | Articles [String]
@@ -47,7 +33,7 @@ data TableOfContents = -- [Dzial, [rozdzial]]
 
 type TextWithReferences = [TextOrReference]
 data TextOrReference =
-  Text T.Text | Table [[TableCell]] -- just test for now
+  Text T.Text | Table [[TableCell]]
   deriving (Show, Read, Eq)
 
 data Article =

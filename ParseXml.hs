@@ -33,6 +33,9 @@ parseDoc file =
   >>>
   xunpickleVal xpPage
 
+-- PU stands for pickler unpicker. We only use the unpickler (read) part since
+-- we don't need to write the xml.
+
 xpPage :: PU Page
 xpPage =
   xpFilterCont (removeAttr "id" >>> processChildren (hasName "TEXT")) $

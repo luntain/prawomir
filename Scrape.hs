@@ -18,9 +18,8 @@ data Pozycja =
           , _pRok :: Int
           , _pPoz :: Int
           , _pOpis :: T.Text
-          , _pPdf :: T.Text -- URI
-          , _pTekstAktu :: Maybe T.Text -- URI, I don't quite know what that is,
-                                        -- seems to be the same content as pdf, but diff formatting
+          , _pPdf :: T.Text -- Tekst ogloszony, z dziennika
+          , _pTekstAktu :: Maybe T.Text -- tresc ta sama jak "tekst ogloszony", ale ostylowanie ISAPu
           , _pTekstUjednolicony :: Maybe T.Text -- URI
           , _pUwagi :: Maybe T.Text
           , _pOrganZob :: Maybe T.Text
@@ -93,4 +92,3 @@ detailsServlet =
 
 allText :: ArrowXml a => a XmlTree String
 allText = deep isText >>> getText >. mconcat
-
