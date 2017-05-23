@@ -26,9 +26,12 @@ data Akt =
          , _uarticles :: M.Map String Article
          } deriving (Show, Read, Eq)
 
-data TableOfContents = -- [Dzial, [rozdzial]]
-  Partitions String [(String, String)] (M.Map String TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
-  | Articles [String]
+type PartNumber = String
+type PartTitle = String
+
+data TableOfContents =
+  Partitions String [(PartNumber, PartTitle)] (M.Map PartNumber TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
+  | Articles [PartNumber]
   deriving (Show, Read, Eq)
 
 type TextWithReferences = [TextOrReference]
