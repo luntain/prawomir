@@ -1,9 +1,12 @@
 module Scratch where
 
 import MyPrelude
+import System.Directory
 import Text.StringTemplate
 import Data.Aeson
 import ParseXml
+import Parse
+import Model
 
 main :: FilePath -> IO ()
 main vectorImagesFile = do
@@ -12,8 +15,6 @@ main vectorImagesFile = do
   let rectangles' = encode rectangles
   writeFile "/tmp/scratch.html" (toString (setAttribute "rectangles" rectangles' template))
 
---  rectangles :: [(String, [Float])]
-
 prepareForDisplay :: Either VGroup VClip -> (String, [Float])
 prepareForDisplay (Left vgroup) =
   ("group", [minimum xs, minimum ys, maximum xs - minimum xs, maximum ys - minimum ys])
@@ -21,3 +22,11 @@ prepareForDisplay (Left vgroup) =
         ys = map snd (_vgpoints vgroup)
 prepareForDisplay (Right vclip) =
   ("clip", snd . prepareForDisplay . Left . _vcgroup $ vclip)
+
+
+fromXml :: FilePath -> IO Akt
+fromXml path = do
+  let dataDir = path ++ "_data"
+  dataFiles <- listDirectory dataDir
+  let vecFiles = map (dataDir </>) . filter (".vec" `isSuffixOf`) $ dataFiles
+  parseUstawa path vecFiles

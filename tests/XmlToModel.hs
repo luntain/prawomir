@@ -71,16 +71,16 @@ expectedUstawa =
 podstawaTable = unsafePerformIO (read <$> readFile "tests/podstawaObliczeniaPodatku.table")
 
 class Point a where
-  mkLeaf :: String -> a
-  mkPoint :: String -> [(String, ZWyliczeniem)] -> TextWithReferences -> a
+  mkLeaf :: T.Text -> a
+  mkPoint :: T.Text -> [(T.Text, ZWyliczeniem)] -> TextWithReferences -> a
 
 instance Point Article where
   mkLeaf text = Article (mkLeaf text) [] M.empty
   mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (M.fromList children)
 
 instance Point ZWyliczeniem where
-  mkLeaf text = ZWyliczeniem (if null text then [] else [Text $ T.pack text]) [] M.empty []
-  mkPoint text children suffix = ZWyliczeniem (if null text then [] else [Text $ T.pack text])
+  mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) [] M.empty []
+  mkPoint text children suffix = ZWyliczeniem (if T.null text then [] else [Text text])
                                               (map fst children) (M.fromList children) suffix
 
 

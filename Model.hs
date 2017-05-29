@@ -21,16 +21,16 @@ data PozId =
 data Akt =
   Ustawa { _upId :: PozId
          , _uzDnia :: Day
-         , _uTytul :: String
+         , _uTytul :: T.Text
          , _uspisTresci :: TableOfContents
-         , _uarticles :: M.Map String Article
+         , _uarticles :: M.Map T.Text Article
          } deriving (Show, Read, Eq)
 
-type PartNumber = String
-type PartTitle = String
+type PartNumber = T.Text
+type PartTitle = T.Text
 
 data TableOfContents =
-  Partitions String [(PartNumber, PartTitle)] (M.Map PartNumber TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
+  Partitions T.Text [(PartNumber, PartTitle)] (M.Map PartNumber TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
   | Articles [PartNumber]
   deriving (Show, Read, Eq)
 
@@ -41,16 +41,16 @@ data TextOrReference =
 
 data Article =
   Article { _aprefix :: ZWyliczeniem
-          , _aindex :: [String]
-          , _apoints :: M.Map String ZWyliczeniem -- ustepy
+          , _aindex :: [T.Text]
+          , _apoints :: M.Map T.Text ZWyliczeniem -- ustepy
           }
   deriving (Show, Read, Eq)
 
 -- reprezents ustep, punkt, i nawet podpunkt (ten trzeci bez dzieci)
 data ZWyliczeniem =
   ZWyliczeniem { _zwprefix :: TextWithReferences
-               , _zwindex :: [String]
-               , _zwpoints :: M.Map String ZWyliczeniem
+               , _zwindex :: [T.Text]
+               , _zwpoints :: M.Map T.Text ZWyliczeniem
                , _zsuffix :: TextWithReferences
                }
   deriving (Show, Read, Eq)

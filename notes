@@ -16,3 +16,19 @@ https://openbylaws.org.za/about.html
 wywiad z dr Adamem Zadroznym (graf powiazan w prawie polskim)
 http://audycje.tokfm.pl/podcast/Konstytucja-jak-meduza-a-ustawa-o-vacie-jak-dmuchawiec/47709
 
+whitepapers:
+
+Grece, parsing from plain text, ~96% success (only general info)
+Mario Koniaris et al: Towards Automatic and Semantic Indexing of Legal Documents
+http://www.dbnet.ntua.gr/~mkoniari/docs/KoniarisPCI16.pdf
+
+Italy, parsing using hidden markov models from plain text (only general information)
+Lorenzo Bacci et al: Automatic mark-up of legislative documents and its application to parallel text generation
+http://ceur-ws.org/Vol-465/paper6.pdf
+
+schemas
+akoma ntoso (Republic of South Africa and others)
+MetaLex metalex.eu (dutch and uk legislation)
+
+other projects
+Agora-Lex - belgium
