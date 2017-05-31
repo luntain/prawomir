@@ -7,6 +7,8 @@ import Data.Aeson
 import ParseXml
 import Parse
 import Model
+import Text.Nicify
+import Text.Show.Unicode
 
 main :: FilePath -> IO ()
 main vectorImagesFile = do
@@ -24,9 +26,10 @@ prepareForDisplay (Right vclip) =
   ("clip", snd . prepareForDisplay . Left . _vcgroup $ vclip)
 
 
-fromXml :: FilePath -> IO Akt
+fromXml :: FilePath -> IO ()
 fromXml path = do
   let dataDir = path ++ "_data"
   dataFiles <- listDirectory dataDir
   let vecFiles = map (dataDir </>) . filter (".vec" `isSuffixOf`) $ dataFiles
-  parseUstawa path vecFiles
+  akt <- parseUstawa path vecFiles
+  putStrLn (nicify . ushow $ akt)

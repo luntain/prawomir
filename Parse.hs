@@ -233,6 +233,7 @@ tekstJednolity = do
   zDnia <- consumeWords "z dnia" *> dlugaData
   tytul <- T.unwords <$> many1 (ftok boldF (preview (ttok.ttext)))
   rozdzialy <- many rozdział -- TODO what about the case of no rozdzialy?
+  annexes <- many annex
   let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
   let spisTresci = M.fromList . map (view _1 &&& view _3) $ rozdzialy
   return Ustawa {
@@ -240,7 +241,8 @@ tekstJednolity = do
             , _uzDnia=zDnia
             , _uTytul=tytul
             , _uspisTresci = Partitions "Rozdział" rozdzialIndex spisTresci
-            , _uarticles = M.fromList . concatMap (view _4) $ rozdzialy }
+            , _uarticles = M.fromList . concatMap (view _4) $ rozdzialy
+            , _uannexes = annexes}
 
 rozdział :: Parser (T.Text, T.Text, TableOfContents, [(T.Text, Article)])
 rozdział = do
@@ -305,6 +307,19 @@ podpunkt = do
   startX <- peekNextTokXPos
   text <- many $ ftok (indentedByAtLeast startX) anyT
   return (num, ZWyliczeniem [Text . T.unwords $ text] [] M.empty [])
+
+-- Don't atttempt to parse annexes boyond recognizing their location in the
+-- pdf document.
+annex :: Parser Annex
+annex = do
+  (pageNum, annexNum) <- annexToken
+  -- skip to the last token in the annex, I am assuming here that there is
+  -- at least one token in the annex
+  skipMany (anyToken >> notFollowedBy (void annexToken <|> eof))
+  lastPageOfAnnex <- _tpPageNum <$> position
+  void anyToken
+  return (Annex {_anum = annexNum, _astartPage = pageNum, _apages = lastPageOfAnnex - pageNum + 1})
+ where annexToken = ftok mempty (preview (_NonTerminal . _2 . _AnnexToken))
 
 peekNextTokXPos :: Parser Float
 peekNextTokXPos = do

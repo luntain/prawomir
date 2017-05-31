@@ -65,7 +65,8 @@ expectedUstawa =
                               [] M.empty [] )
                       , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")
                                     ] [])]
-         }
+    , _uannexes = []
+    }
 
 
 podstawaTable = unsafePerformIO (read <$> readFile "tests/podstawaObliczeniaPodatku.table")
@@ -97,9 +98,7 @@ diffAssertEqual expected actual =
     nice = nicify . ushow
 
 -- TODO:
--- tabelki w tekscie, art 27 s 159
--- tabelki
--- zalacznik
+-- annex test
 -- bez podzialu na rozdzialy
 -- rozdzialy i inne dzialy
 -- przypisy s 159 art 26d
