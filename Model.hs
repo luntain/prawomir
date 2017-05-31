@@ -24,6 +24,7 @@ data Akt =
          , _uTytul :: T.Text
          , _uspisTresci :: TableOfContents
          , _uarticles :: M.Map T.Text Article
+         , _uannexes :: [Annex]
          } deriving (Show, Read, Eq)
 
 type PartNumber = T.Text
@@ -44,6 +45,11 @@ data Article =
           , _aindex :: [T.Text]
           , _apoints :: M.Map T.Text ZWyliczeniem -- ustepy
           }
+  deriving (Show, Read, Eq)
+
+data Annex =
+  Annex { _anum :: T.Text, _astartPage, _apages :: Int
+        }
   deriving (Show, Read, Eq)
 
 -- reprezents ustep, punkt, i nawet podpunkt (ten trzeci bez dzieci)
