@@ -46,8 +46,18 @@ expectedUstawa =
                           , ("b", mkLeaf "spółdzielczego własnościowego prawa do lokalu mieszkalnego lub,")
                           ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej"])
                      ] [Text "– w ramach stosunku pracy lub spółdzielczego stosunku pracy, podatnik ten traci w"])
-                   ,("2", mkLeaf "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca \
-                                 \na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym.")] [])
+                   ,("2", mkPoint "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca \
+                                 \na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym." [
+                      -- tirety
+                       ("19a", mkPoint "samochodzie osobowym – oznacza to pojazd samochodowy w rozumieniu\
+                                    \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
+                                    \ nieprzekraczającej 3,5 tony, konstrukcyjnie przeznaczony do przewozu nie\
+                                    \ wicej niż 9 osób łącznie z kierowca, z wyjątkiem:" [
+                          ("a", mkPoint "pojazdu samochodowego mającego jeden rząd siedzeń, który oddzielony jest\
+                                      \ od części przeznaczonej do przewozu ładunków ścianą lub trwałą przegrodą:" [
+                                  ("-", mkLeaf "klasyfikowanego na podstawie przepisów o ruchu drogowym do podrodzaju:\
+                                        \ wielozadaniowy, van lub")
+                                , ("-", mkLeaf "z otwartą częścią przeznaczoną do przewozu ładunków.")] [])] [])] [])] [])
                  ,("25b", mkPoint "" [
                     ("1", mkPoint "Za przychody, o których mowa w art. 20 ust. 1b, uważa się przychody:" [
                        ("1", mkLeaf "nieznajdujące pokrycia w ujawnionych źródłach obejmujące przychody ze\
@@ -63,8 +73,7 @@ expectedUstawa =
                       ("1", ZWyliczeniem [Text "Podatek dochodowy, z zastrzeżeniem art. 29–30f, pobiera się od\
                                                \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
                               [] M.empty [] )
-                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")
-                                    ] [])]
+                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")] [])]
     , _uannexes = []
     }
 

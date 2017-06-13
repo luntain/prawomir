@@ -6,7 +6,6 @@ import Text.StringTemplate
 import Data.Aeson
 import ParseXml
 import Parse
-import Model
 import Text.Nicify
 import Text.Show.Unicode
 

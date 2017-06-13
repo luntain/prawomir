@@ -41,7 +41,7 @@ data TextOrReference =
   deriving (Show, Read, Eq)
 
 data Article =
-  Article { _aprefix :: ZWyliczeniem
+  Article { _aprefix :: ZWyliczeniem -- TODO: Why not just text? Can it have points?
           , _aindex :: [T.Text]
           , _apoints :: M.Map T.Text ZWyliczeniem -- ustepy
           }
