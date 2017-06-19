@@ -51,9 +51,9 @@ expectedUstawa =
                                  \na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym." [
                       -- tirety
                        ("19a", mkPoint "samochodzie osobowym – oznacza to pojazd samochodowy w rozumieniu\
-                                    \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
+                                    \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
                                     \ nieprzekraczającej 3,5 tony, konstrukcyjnie przeznaczony do przewozu nie\
-                                    \ więcej niż 9 osób łącznie z kierowcą, z wyjątkiem:" [
+                                    \ więcej niż 9 osób łącznie z kierowcą, z wyjątkiem:" [
                           ("a", mkPoint "pojazdu samochodowego mającego jeden rząd siedzeń, który oddzielony jest\
                                       \ od części przeznaczonej do przewozu ładunków ścianą lub trwałą przegrodą:" [
                                   ("-", mkLeaf "klasyfikowanego na podstawie przepisów o ruchu drogowym do podrodzaju:\
@@ -73,7 +73,7 @@ expectedUstawa =
                  ,("27", mkPoint "" [
                       ("1", ZWyliczeniem [Text "Podatek dochodowy, z zastrzeżeniem art. 29–30f, pobiera się od\
                                                \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
-                              [] M.empty [] )
+                              [] [] [] )
                       , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")] [])]
     , _uannexes = []
     }
@@ -87,12 +87,12 @@ class Point a where
 
 instance Point Article where
   mkLeaf text = Article (mkLeaf text) [] M.empty
-  mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (children)
+  mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (M.fromList children)
 
 instance Point ZWyliczeniem where
-  mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) [] M.empty []
+  mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) [] [] []
   mkPoint text children suffix = ZWyliczeniem (if T.null text then [] else [Text text])
-                                              (map fst children) (children) suffix
+                                              (map fst children) children suffix
 
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
@@ -103,7 +103,10 @@ diffAssertEqual expected actual =
       let expected' = nice expected
           actual'   = nice actual
           diff = ppDiff (getGroupedDiff (lines expected') (lines actual'))
-      assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\n" expected' actual' diff)
+      -- take first 60 chars from the first char that differes
+      let firstDiff = unzip . take 60 . dropWhile (uncurry (==)) . zip actual' $ expected'
+      assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\nFirst diff:\nact: %s\nexp: %s\n"
+                             expected' actual' diff (fst firstDiff) (snd firstDiff))
   where
     nice = nicify . ushow
 
