@@ -35,6 +35,7 @@ expectedUstawa =
                                     \ źródłach lub pochodzących ze źródeł nieujawnionych")]
          (M.fromList [("1", Articles ["1", "2"]), ("1a", Articles ["25b", "27"])])
     , _uarticles =
+      -- this is a Frankenstein of fragments from "Ustawa o podatku doch. od osob fizycznych"
       M.fromList [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
                  ,("2", mkPoint "" [
                     ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
@@ -52,7 +53,7 @@ expectedUstawa =
                        ("19a", mkPoint "samochodzie osobowym – oznacza to pojazd samochodowy w rozumieniu\
                                     \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
                                     \ nieprzekraczającej 3,5 tony, konstrukcyjnie przeznaczony do przewozu nie\
-                                    \ wicej niż 9 osób łącznie z kierowca, z wyjątkiem:" [
+                                    \ więcej niż 9 osób łącznie z kierowcą, z wyjątkiem:" [
                           ("a", mkPoint "pojazdu samochodowego mającego jeden rząd siedzeń, który oddzielony jest\
                                       \ od części przeznaczonej do przewozu ładunków ścianą lub trwałą przegrodą:" [
                                   ("-", mkLeaf "klasyfikowanego na podstawie przepisów o ruchu drogowym do podrodzaju:\
@@ -86,12 +87,12 @@ class Point a where
 
 instance Point Article where
   mkLeaf text = Article (mkLeaf text) [] M.empty
-  mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (M.fromList children)
+  mkPoint text children _suffix = Article (mkLeaf text) (map fst children) (children)
 
 instance Point ZWyliczeniem where
   mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) [] M.empty []
   mkPoint text children suffix = ZWyliczeniem (if T.null text then [] else [Text text])
-                                              (map fst children) (M.fromList children) suffix
+                                              (map fst children) (children) suffix
 
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion

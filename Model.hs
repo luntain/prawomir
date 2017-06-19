@@ -52,16 +52,16 @@ data Annex =
         }
   deriving (Show, Read, Eq)
 
--- reprezents ustep, punkt, i nawet podpunkt (ten trzeci bez dzieci)
+-- reprezentuje ustęp, punkt, literę z opcjonalnymi tiretami
 data ZWyliczeniem =
   ZWyliczeniem { _zwprefix :: TextWithReferences
                , _zwindex :: [T.Text]
-               , _zwpoints :: M.Map T.Text ZWyliczeniem
+               , _zwpoints :: [(T.Text, ZWyliczeniem)]
                , _zsuffix :: TextWithReferences
                }
   deriving (Show, Read, Eq)
 
-emptyZWyliczeniem = ZWyliczeniem [] [] M.empty []
+emptyZWyliczeniem = ZWyliczeniem [] [] [] []
 
 --type Table = [[TableCell]]
 

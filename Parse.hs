@@ -26,6 +26,7 @@ data NonTerminal =
   | UstępToken T.Text
   | PunktToken T.Text
   | PodpunktToken T.Text
+  | TiretToken
   | TableToken TableInfo
   | AnnexToken Int T.Text -- PageNo in the source document, AppendixNumber
   deriving (Show, Read, Eq)
@@ -157,6 +158,7 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
                            <|> (offset (==  0) >> ustęp)    -- 1.
                            <|> (offset (< -24) >> punkt)    -- 1)
                            <|> (offset (== 0)  >> podpunkt) -- a)
+                           <|> (offset (> 0)   >> tiret)    -- -
                            <|> rozdział
                            <|> annex
                            <|> pure [] -- make sure it allways succeeds
@@ -182,6 +184,10 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
               tokPos <- position
               podpunktNum <- ftok mempty (anyT >=> guarded likePodpunktNumber)
               return [NonTerminal tokPos . PodpunktToken . T.init $ podpunktNum]
+            tiret = do
+              tokPos <- position
+              void $ ftok mempty (constT "–")
+              return [NonTerminal tokPos TiretToken]
             rozdział = do
               tokPos <- position
               ftok mempty (constT "Rozdział")
@@ -271,7 +277,7 @@ ustępBody = do
   text <- textWithReferencesAndTables 0
   punkty <- many punkt
   suffix <- textWithReferencesAndTables 0
-  return (ZWyliczeniem text (map fst punkty) (M.fromList punkty) suffix)
+  return (ZWyliczeniem text (map fst punkty) (punkty) suffix)
 
 punkt :: Parser (T.Text, ZWyliczeniem)
 punkt = do
@@ -285,7 +291,7 @@ punktBody = do
   wprowadzenie <- textWithReferencesAndTables startX
   podpunkty <- many podpunkt
   suffix <- textWithReferencesAndTables startX
-  return (ZWyliczeniem wprowadzenie (map fst podpunkty) (M.fromList podpunkty) suffix)
+  return (ZWyliczeniem wprowadzenie (map fst podpunkty) (podpunkty) suffix)
 
 textWithReferencesAndTables :: Float -> Parser TextWithReferences
 textWithReferencesAndTables indent =
@@ -306,7 +312,19 @@ podpunkt = do
   num <- ftok mempty (preview $ _NonTerminal . _2 . _PodpunktToken)
   startX <- peekNextTokXPos
   text <- many $ ftok (indentedByAtLeast startX) anyT
-  return (num, ZWyliczeniem [Text . T.unwords $ text] [] M.empty [])
+  tirety <- many (tiret startX)
+  return (num, ZWyliczeniem
+                  [Text . T.unwords $ text]
+                  (map (const "-") tirety)
+                  (map (const "-" &&& (\t -> ZWyliczeniem t [] mempty [])) $ tirety)
+                  []) -- TODO, test podsumowujący "-"
+
+tiret :: Float -> Parser TextWithReferences
+tiret indent = do
+  ftok mempty (preview $ _NonTerminal . _2 .  _TiretToken)
+  -- TODO, probably should detect tables even here
+  texts <- many $ ftok (indentedByAtLeast indent) anyT
+  return [Text . T.unwords $ texts]
 
 -- Don't atttempt to parse annexes boyond recognizing their location in the
 -- pdf document.
