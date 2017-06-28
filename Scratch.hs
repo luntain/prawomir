@@ -7,10 +7,11 @@ import Data.Aeson
 import ParseXml
 import Parse
 import Text.Nicify
-import Text.Show.Unicode
+--import Text.Show.Unicode
+--import qualified Data.Map.Strict as M
 
-main :: FilePath -> IO ()
-main vectorImagesFile = do
+visualize :: FilePath -> IO ()
+visualize vectorImagesFile = do
   rectangles <- (map prepareForDisplay . nub) <$> parseVectorialImagesFile vectorImagesFile
   template <- newSTMP <$> readFile "tool/visualize-vectorimages/template.html"
   let rectangles' = encode rectangles
@@ -31,4 +32,11 @@ fromXml path = do
   dataFiles <- listDirectory dataDir
   let vecFiles = map (dataDir </>) . filter (".vec" `isSuffixOf`) $ dataFiles
   akt <- parseUstawa path vecFiles
-  putStrLn (nicify . ushow $ akt)
+  putStrLn (nicify . show $ akt)
+
+explore :: FilePath -> IO ()
+explore path = do
+  pages <- parsePages path
+  let tokens = pages >>= _ptexts >>= _ltokens
+  --let fontSizes = foldl' (\acc fontSize -> M.insertWith (+) fontSize 1 acc) M.empty (map _tfontsize tokens) :: M.Map Float Int
+  print (map _ttext . filter ((== 9) . _tfontsize) $ tokens)

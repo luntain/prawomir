@@ -8,17 +8,17 @@ import Control.Lens hiding (deep)
 import Text.XML.HXT.Core
 
 data Page =
-  Page { _pnumber :: Int, _pwidth, _pheight :: Float, _ptexts:: [TEXT]} deriving (Show, Read, Eq)
+  Page { _pnumber :: Int, _pwidth, _pheight :: Float, _ptexts:: [TEXT]} deriving (Show, Read, Eq, Ord)
 
 data TEXT =
-  TEXT { _lx, _ly, _lwidht, _lheight:: Float, _ltokens :: [Token]} deriving (Show, Read, Eq)
+  TEXT { _lx, _ly, _lwidht, _lheight:: Float, _ltokens :: [WORD]} deriving (Show, Read, Eq, Ord)
 
-data Token =
-  Token { _tx, _tmidX, _tmidY :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read, Eq)
+data WORD =
+  WORD { _tx, _tmidX, _tmidY :: Float, _tbold:: Bool, _titalic::Bool, _tfontsize :: Float, _ttext :: T.Text} deriving (Show, Read, Eq, Ord)
 
 makeLenses ''Page
 makeLenses ''TEXT
-makeLenses ''Token
+makeLenses ''WORD
 
 
 parsePages :: FilePath -> IO [Page]
@@ -57,13 +57,13 @@ xpTEXT =
              (xpAttr "height" xpPrim)
              (xpList xpToken)
 
-xpToken :: PU Token
+xpToken :: PU WORD
 xpToken =
   xpFilterCont (removeAttr "sid" >>> removeAttr "id" >>> removeAttr "font-name" >>> removeAttr "symbolic"
                 >>> removeAttr "font-color" >>> removeAttr "rotation" >>> removeAttr "angle"
                 >>> removeAttr "base" >>> removeAttr "serif" >>> removeAttr "fixed-width") $
   xpElem "TOKEN" $
-    xpWrap (\(x, y, w, h, bold, italic, fs, text) -> Token x (x+w/2) (y+h/2) bold italic fs text, undefined) $
+    xpWrap (\(x, y, w, h, bold, italic, fs, text) -> WORD x (x+w/2) (y+h/2) bold italic fs text, undefined) $
       xp8Tuple (xpAttr "x" xpPrim)
                (xpAttr "y" xpPrim)
                (xpAttr "width" xpPrim)

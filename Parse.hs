@@ -14,11 +14,12 @@ import qualified Data.IntervalMap as IM
 import qualified Data.IntervalSet as IS
 import Model
 import ParseXml
-import Text.Parsec
-import Text.Parsec.Pos
+import Text.Megaparsec
+import Text.Megaparsec.Prim -- MonadParsec is not available from Text.Megaparsec
 import Data.Char (isDigit, isLower)
 import Test.Tasty
 import Test.Tasty.HUnit
+import Control.Monad.State.Lazy
 
 data NonTerminal =
     RozdziałToken T.Text
@@ -29,20 +30,19 @@ data NonTerminal =
   | TiretToken
   | TableToken TableInfo
   | AnnexToken Int T.Text -- PageNo in the source document, AppendixNumber
-  deriving (Show, Read, Eq)
+  deriving (Show, Read, Eq, Ord)
 
--- Tok not to clash with ParseXml.Token
 data Tok =
-  RawToken {_ttok :: Token, _tline:: TEXT, _tpage::Page}
+  RawToken {_ttok :: WORD, _tline:: TEXT, _tpage::Page}
   -- following greatly simplify parsing
   | NonTerminal TokPosition NonTerminal
-  deriving (Show, Eq)
+  deriving (Show, Eq, Ord) -- Megaparsec's Stream requires Tokens to have Ord
 
 data TokPosition =
   TokPosition { _tpPageNum :: Int, _tpLineY, _tpTokX :: Float }
   deriving (Show, Read, Eq, Ord)
 
-type Parser a = Parsec [Tok] () a
+type Parser a = Parsec Dec [Tok] a
 
 data Partitioned =
   Partitioned {_mainContent :: [Tok], _sidenotes :: [Tok], _footnotes::[Tok]}
@@ -67,7 +67,7 @@ data TableBuilder =
 data TableInfo =
   TableInfo { _tix, _tiy, _tiwidth, _tiheight :: Float
             , _tirowEnds, _ticolEnds :: [Float], _titable :: [[TableCell]] }
-  deriving (Show, Eq, Read)
+  deriving (Show, Eq, Read, Ord)
 
 makeLenses ''Tok
 makePrisms ''Tok
@@ -77,34 +77,50 @@ makeLenses ''TableInfo
 makeLenses ''TableBuilder
 makeLenses ''TokPosition
 
+instance (Ord t, HasTokPosition t) => Stream [t] where
+  type Token [t] = t
+  uncons [] = Nothing
+  uncons (a:as) = Just (a, as)
+  updatePos _ _ _ tok = (tokPos tok, tokPos tok)
+
+class HasTokPosition t where
+  tokPos :: t -> SourcePos
+
+
 partitionPages :: [Page] -> Partitioned
 partitionPages = mconcat . map partitionPage
 
 partitionPage :: Page -> Partitioned
-partitionPage page = Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
+partitionPage page =
+    Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
   where
     (sidenotsLines, otherLines) = partition isSidenote (_ptexts page)
-    (mainCont, footnots) = forceRight . runParser parseOtherLines () ("other lines: " ++ show (_pnumber page)) $ otherLines
+    (mainCont, footnots) = forceRight . runParser parseOtherLines ("other lines: " ++ show (_pnumber page)) $ otherLines
+    parseOtherLines :: Parsec Dec [TEXT] ([TEXT],[TEXT])
     parseOtherLines =
       parseLine "kancelaria" mempty (parsec $ string "©Kancelaria Sejmu")
-        *> parseLine "strona header" mempty (parsec $ string "s." *> space *> many1 digit *> string "/" *> many1 digit)
-        *> parseLine "strona" mempty (parsec $ count 4 digit *> string "-" *> count 2 digit *> string "-" *> count 2 digit)
-        *> manyTill' (parseLine "footnotes" mempty Just) (fmap concat parseFootnotes)
-    parseFootnotes =
-      many (parseLine "footnote" ((All.(==6.48) . view (ltokens.to head.tfontsize)) <> (All.(==1).length.view ltokens)) (parsec $ many1 digit <* string ")")
-            *> many1 (parseLine "footnote body" (All .(==9.96). view (ltokens.to head.tfontsize)) Just)) <* eof
+        *> parseLine "page header" mempty (parsec $ string "s." *> space *> some digitChar *> string "/" *> some digitChar)
+        *> parseLine "strona" mempty (parsec $ count 4 digitChar *> string "-" *> count 2 digitChar *> string "-" *> count 2 digitChar)
+        *> manyTill' (parseLine "footnotes" mempty Just) (parseFootnotes)
+    parseFootnotes = do
+      maybeContinuationFromPreviousPage <- option [] footnoteBody
+      footnotes <- many footnote
+      eof
+      return $ maybeContinuationFromPreviousPage ++ concat footnotes
+    footnote :: Parsec Dec [TEXT] [TEXT]
+    footnote =
+        -- looks like we are droping the footnote number
+       parseLine "footnote" (All.(==6.48) . view (ltokens.to head.tfontsize)) (parsec $ some digitChar <* string ")") *> footnoteBody
+    footnoteBody = some (parseLine "footnote body" (All .(==9.96). view (ltokens.to head.tfontsize)) Just)
     isSidenote :: TEXT -> Bool
     isSidenote line = line^.lx > 470 && firstTok^.tfontsize == 9.96 && firstTok^.tbold
       where
-        firstTok :: Token
+        firstTok :: WORD
         firstTok = head $ line^.ltokens
     toToks lines = [RawToken tk ln page | ln <- lines, tk <- _ltokens ln]
-    parseLine :: String -> (TEXT->All) -> (TEXT->Maybe a) -> Parsec [TEXT] () a
-    parseLine what fp parser =
-      ftoken
-      (\_line -> newPos (what ++ " Page " ++ show (_pnumber page)) 0 0) -- TODO put in a line and col number maybe?
-      fp
-      parser
+    parseLine :: String -> (TEXT->All) -> (TEXT->Maybe a) -> Parsec Dec [TEXT] a
+    parseLine _what fp parser = -- TODO set the page in the SourcePos somehow?
+      ftoken fp parser
 
 processAdditionsAndRemovals :: [Tok] -> [Tok]
 processAdditionsAndRemovals [] = []
@@ -140,20 +156,19 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
     lineId (NonTerminal _ _) = error "There should't be a NonTerminal's at this point yet"
     go :: Float -> [Tok] -> (Float, [Tok])
     go offset toks =
-      case runParser parseLine offset "pre-parsing line" toks of
-        Left err -> error $ "impossible, because detectnonTerminalsInLine always succeeds: " ++ show err
-        Right (offset, toks) -> (offset, toks)
+      case (runParser (runStateT parseLine offset) "pre-parsing line" toks) of
+        Left err -> error $ "impossible, because nonTerminalsInLine always succeeds: " ++ show err
+        Right (toks, offset) -> (offset, toks)
       where
-        parseLine :: Parsec [Tok] Float (Float, [Tok])
+        parseLine :: StateT Float (Parsec Dec [Tok]) [Tok]
         parseLine = do
           detectedNonTeminals <- nonTerminalsInALine
           unconsumed <- getInput
-          newOffset <- getState
-          return $ (newOffset, detectedNonTeminals ++ unconsumed)
+          return $ (detectedNonTeminals ++ unconsumed)
 
         -- we can have an `UstępToken` following an `ArticleToken`,
         -- otherwise there is at most 1 NonTerminal in a line
-        nonTerminalsInALine :: Parsec [Tok] Float [Tok]
+        nonTerminalsInALine :: StateT Float (Parsec Dec [Tok]) [Tok]
         nonTerminalsInALine =  artykuł
                            <|> (offset (==  0) >> ustęp)    -- 1.
                            <|> (offset (< -24) >> punkt)    -- 1)
@@ -165,39 +180,39 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
           where
             artykuł = do
               tokPos <- position
-              newArtXPos <- ftok boldF (\t -> constT "Art." t >> preview (ttok . tx) t)
-              setState newArtXPos
-              num <- T.init <$> ftok boldF (anyT >=> guarded (('.'==) . T.last))
+              newArtXPos <- ftoken boldF (\t -> constT "Art." t >> preview (ttok . tx) t)
+              put newArtXPos
+              num <- T.init <$> ftoken boldF (anyT >=> guarded (('.'==) . T.last))
               -- handle the case where ustęp starts in the same line as the article
-              mUstępTokens <- optionMaybe ustęp
+              mUstępTokens <- optional ustęp
               return $ (NonTerminal tokPos . ArticleToken $ num) : (join . toList $ mUstępTokens)
             ustęp = do
               tokPos <- position
-              ustępNum <- ftok mempty (anyT >=> guarded likeUstepNumber)
+              ustępNum <- ftoken mempty (anyT >=> guarded likeUstepNumber)
               return [NonTerminal tokPos . UstępToken . T.init $ ustępNum]
             punkt = do
               tokPos <- position
-              punktNum <- ftok mempty (anyT >=> guarded likePunktNumber)
+              punktNum <- ftoken mempty (anyT >=> guarded likePunktNumber)
               return [NonTerminal tokPos . PunktToken . T.init $ punktNum]
-            podpunkt :: Parsec [Tok] Float [Tok]
+            podpunkt :: StateT Float (Parsec Dec [Tok]) [Tok]
             podpunkt = do
               tokPos <- position
-              podpunktNum <- ftok mempty (anyT >=> guarded likePodpunktNumber)
+              podpunktNum <- ftoken mempty (anyT >=> guarded likePodpunktNumber)
               return [NonTerminal tokPos . PodpunktToken . T.init $ podpunktNum]
             tiret = do
               tokPos <- position
-              void $ ftok mempty (constT "–")
+              void $ ftoken mempty (constT "–")
               return [NonTerminal tokPos TiretToken]
             rozdział = do
               tokPos <- position
-              ftok mempty (constT "Rozdział")
-              num <- ftok mempty anyT
+              ftoken mempty (constT "Rozdział")
+              num <- ftoken mempty anyT
               eof
               return [NonTerminal tokPos (RozdziałToken num)]
             annex = do
               tokPos <- position
-              ftok mempty (constT "Załącznik")
-              (pageNum, num) <- ftok mempty $ \t -> (,) <$> preview (tpage.pnumber) t <*> anyT t
+              ftoken mempty (constT "Załącznik")
+              (pageNum, num) <- ftoken mempty $ \t -> (,) <$> preview (tpage.pnumber) t <*> anyT t
               eof
               return [NonTerminal tokPos $ AnnexToken pageNum num]
 
@@ -206,20 +221,20 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
             likePodpunktNumber text = isLower (T.head text) && T.last text == ')'
 
             -- run a predicate on the x offset from the enclosing Art
-            offset :: (Float -> Bool) -> Parsec [Tok] Float ()
+            offset :: (Float -> Bool) -> StateT Float (Parsec Dec [Tok]) ()
             offset predicateOnOffset = do
-              artX <- getState
+              artX <- get
               remainingInput <- getInput
               case remainingInput of
                 RawToken {_ttok=tok}:_ ->
                   guard (predicateOnOffset $ tok^.tx - artX)
                 _ -> mzero
 
-position :: Parsec [Tok] s TokPosition
+position :: MonadParsec e [Tok] m => m TokPosition
 position = do
   tokens <- getInput
   case tokens of
-    [] -> error "eof"
+    [] -> mzero
     tok:_ -> return $ tokPosition tok
 
 parseUstawa :: FilePath -> [FilePath] -> IO Akt
@@ -227,21 +242,21 @@ parseUstawa path vecFiles = do
   pages <- parsePages path
   tablesPerPage <- mapM processVecFilesPage vecFiles
   --putStrLn (nicify . show . filter ((==234). fst) $ tablesPerPage)
-  let partitioned = partitionPages pages
+  let partitioned = partitionPages (take 80 pages)
       tokenStream = recognizeNonTerminals . insertTables tablesPerPage . processAdditionsAndRemovals $ _mainContent partitioned
   --writeFile "/tmp/foo" (nicify. ushow . mapMaybe (preview (_NonTerminal . _2 . _TableToken)) $ tokenStream)
-  forceResult path $ toResult $ runParser tekstJednolity () path tokenStream
+  forceResult path $ toResult $ runParser tekstJednolity path tokenStream
 
 tekstJednolity :: Parser Akt
 tekstJednolity = do
   pid <- duPozId
   consumeWords "U S T A W A"
   zDnia <- consumeWords "z dnia" *> dlugaData
-  tytul <- T.unwords <$> many1 (ftok boldF (preview (ttok.ttext)))
+  tytul <- T.unwords <$> some (ftoken boldF (preview (ttok.ttext)))
   rozdzialy <- many rozdział -- TODO what about the case of no rozdzialy?
   annexes <- many annex
   let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
-  let spisTresci = M.fromList . map (view _1 &&& view _3) $ rozdzialy
+  let spisTresci = map (view _1 &&& view _3) $ rozdzialy
   return Ustawa {
             _upId=pid
             , _uzDnia=zDnia
@@ -252,14 +267,14 @@ tekstJednolity = do
 
 rozdział :: Parser (T.Text, T.Text, TableOfContents, [(T.Text, Article)])
 rozdział = do
-  number <- ftok mempty (preview $ _NonTerminal . _2 . _RozdziałToken)
-  podtytul <- T.unwords <$> many1 (ftok boldF (preview (ttok.ttext)))
-  articles <- many1 article
+  number <- ftoken mempty (preview $ _NonTerminal . _2 . _RozdziałToken)
+  podtytul <- T.unwords <$> some (ftoken boldF (preview (ttok.ttext)))
+  articles <- some article
   return (number, podtytul, Articles (map fst articles), articles)
 
 article :: Parser (T.Text, Article)
 article = do
-  number <- ftok mempty (preview (_NonTerminal . _2 . _ArticleToken))
+  number <- ftoken mempty (preview (_NonTerminal . _2 . _ArticleToken))
   prefix <- option emptyZWyliczeniem ustępBody
   ustępy <- many ustęp
   return $ (number, Article {_aprefix = prefix, _aindex = map fst ustępy, _apoints = M.fromList ustępy})
@@ -267,7 +282,7 @@ article = do
 
 ustęp :: Parser (T.Text, ZWyliczeniem)
 ustęp = do
-  ustępNum <- ftok mempty (preview $ _NonTerminal . _2 . _UstępToken)
+  ustępNum <- ftoken mempty (preview $ _NonTerminal . _2 . _UstępToken)
   ustęp <- ustępBody
   return (ustępNum, ustęp)
 
@@ -281,7 +296,7 @@ ustępBody = do
 
 punkt :: Parser (T.Text, ZWyliczeniem)
 punkt = do
-  num <- ftok mempty (preview $ _NonTerminal . _2 . _PunktToken)
+  num <- ftoken mempty (preview $ _NonTerminal . _2 . _PunktToken)
   body <- punktBody
   return (num, body)
 
@@ -296,8 +311,8 @@ punktBody = do
 textWithReferencesAndTables :: Float -> Parser TextWithReferences
 textWithReferencesAndTables indent =
   fmap (mergeTexts []) $ many $
-    choice [Text  <$> ftok (indentedByAtLeast indent) anyT
-           ,Table <$> ftok (view $ _NonTerminal . _2 . _TableToken . tix . to (All.(>=indent)))
+    choice [Text  <$> ftoken (indentedByAtLeast indent) anyT
+           ,Table <$> ftoken (view $ _NonTerminal . _2 . _TableToken . tix . to (All.(>=indent)))
                            (preview $ _NonTerminal . _2 . _TableToken . titable)
            ]
  where
@@ -309,9 +324,9 @@ textWithReferencesAndTables indent =
 
 podpunkt :: Parser (T.Text, ZWyliczeniem)
 podpunkt = do
-  num <- ftok mempty (preview $ _NonTerminal . _2 . _PodpunktToken)
+  num <- ftoken mempty (preview $ _NonTerminal . _2 . _PodpunktToken)
   startX <- peekNextTokXPos
-  text <- many $ ftok (indentedByAtLeast startX) anyT
+  text <- many $ ftoken (indentedByAtLeast startX) anyT
   tirety <- many (tiret startX)
   return (num, ZWyliczeniem
                   [Text . T.unwords $ text]
@@ -321,9 +336,9 @@ podpunkt = do
 
 tiret :: Float -> Parser TextWithReferences
 tiret indent = do
-  ftok mempty (preview $ _NonTerminal . _2 .  _TiretToken)
+  ftoken mempty (preview $ _NonTerminal . _2 .  _TiretToken)
   -- TODO, probably should detect tables even here
-  texts <- many $ ftok (indentedByAtLeast indent) anyT
+  texts <- many $ ftoken (indentedByAtLeast indent) anyT
   return [Text . T.unwords $ texts]
 
 -- Don't atttempt to parse annexes boyond recognizing their location in the
@@ -337,7 +352,7 @@ annex = do
   lastPageOfAnnex <- _tpPageNum <$> position
   void anyToken
   return (Annex {_anum = annexNum, _astartPage = pageNum, _apages = lastPageOfAnnex - pageNum + 1})
- where annexToken = ftok mempty (preview (_NonTerminal . _2 . _AnnexToken))
+ where annexToken = ftoken mempty (preview (_NonTerminal . _2 . _AnnexToken))
 
 peekNextTokXPos :: Parser Float
 peekNextTokXPos = do
@@ -360,7 +375,7 @@ consumeWords ws = forM_ (words . T.unpack $ ws) (\w -> parsecTok mempty (string 
 
 dlugaData :: Parser Day
 dlugaData = do
-  components <- sequence . take 4 . repeat $ ftok mempty (preview (ttok.ttext))
+  components <- sequence . take 4 . repeat $ ftoken mempty (preview (ttok.ttext))
   let date_text = unwords . map T.unpack $ components
   case parseTimeM True polishTimeLocaleLc "%d %B %Y r." date_text of
     Just r -> return r
@@ -377,42 +392,54 @@ indentedByAtLeast :: Float -> Tok -> All
 indentedByAtLeast ind = view $ ttok.tx.to (All.(>=ind))
 
 int :: Parser Int
-int = read <$> parsecTok mempty (many1 digit)
+int = read <$> parsecTok mempty (some digitChar)
 
+-- TODO can this be a performance problem?
 -- this generalized the manyTill operator from Parsec lib
-manyTill' :: Stream s m t => ParsecT s u m a -> ParsecT s u m end -> ParsecT s u m ([a], end)
-manyTill' m end = do
-  res <- fmap Left end <|> fmap Right m
-  case res of
-    Left end -> return ([], end)
-    Right part -> first (part:) <$> manyTill' m end
+manyTill' :: MonadParsec e s m => m a -> m end -> m ([a], end)
+manyTill' m end =
+  ([],) <$> end
+  <|> (m >>= \part -> first (part:) <$> manyTill' m end)
 
--- specialise ftoken for Tok
-ftok :: (Tok -> All) -> (Tok -> Maybe a) -> Parsec [Tok] s a
-ftok = ftoken tokPos
+
+anyToken = ftoken (const mempty) Just
+
 -- formatted token
-ftoken :: Show t => (t->SourcePos) -> (t -> All) -> (t -> Maybe a) -> Parsec [t] s a
-ftoken srcPos fp match = token show srcPos (\t -> if getAll (fp t) then match t else Nothing)
+ftoken :: MonadParsec e [t] m => (t -> All) -> (t -> Maybe a) -> m a
+ftoken fp match =
+  token (\t -> let mres = if getAll (fp t) then match t else Nothing in
+               maybe (Left (mempty, mempty, mempty)) Right mres) Nothing
 
-parsecTok :: (Tok->All) -> Parsec T.Text () a -> Parser a
+parsecTok :: (Tok->All) -> Parsec Dec T.Text a -> Parser a
 parsecTok fp parser =
-  ftok fp
-    (\t -> case runParser parser () (show (tokPos t)) (t^.ttok.ttext) of
+  ftoken fp
+    (\t -> case runParser parser (show (tokPos t)) (t^.ttok.ttext) of
             Left _err -> Nothing
             Right res -> Just res)
 
-tokPos (RawToken {_ttok=ttok, _tline=tline, _tpage=tpage}) =
-  newPos ("Page " ++ (show $ tpage^.pnumber)) (round $ tline^.ly) (round $ ttok^.tx)
-tokPos (NonTerminal tp _) =
-  newPos ("Page " ++ (show $ tp^.tpPageNum)) (round $ tp^.tpLineY) (round $ tp^.tpTokX)
+instance HasTokPosition TEXT where
+  tokPos TEXT {_ly=ly} = initialPos ("Line y " ++ show ly)
+
+instance HasTokPosition Tok where
+  tokPos (RawToken {_ttok=ttok, _tline=tline, _tpage=tpage}) =
+    SourcePos ("Page " ++ (show $ tpage^.pnumber))
+        (forcePos . round $ tline^.ly)
+        (forcePos . round $ ttok^.tx)
+  tokPos (NonTerminal tp _) =
+    SourcePos ("Page " ++ (show $ tp^.tpPageNum))
+        (forcePos . round $ tp^.tpLineY)
+        (forcePos . round $ tp^.tpTokX)
+
+forcePos :: Int -> Pos
+forcePos x = forceEitherMsg ("forcePos: " ++ show x) . mkPos $ succ x
 
 tokPosition (NonTerminal pos _) = pos
 tokPosition (RawToken {_ttok=ttok, _tline=tline, _tpage=tpage}) =
   TokPosition (tpage^.pnumber) (tline^.ly) (ttok^.tx)
 
 -- try a parsec text parser on a text like thing, yielding a Maybe if it is successful
-parsec :: ToText t => Parsec T.Text () a -> t -> Maybe a
-parsec parser = either (const Nothing) Just . runParser parser () "TODO" . toText
+parsec :: ToText t => Parsec Dec T.Text a -> t -> Maybe a
+parsec parser = either (const Nothing) Just . runParser parser "TODO" . toText
 
 
 class ToText t where

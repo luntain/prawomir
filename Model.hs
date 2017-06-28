@@ -31,14 +31,14 @@ type PartNumber = T.Text
 type PartTitle = T.Text
 
 data TableOfContents =
-  Partitions T.Text [(PartNumber, PartTitle)] (M.Map PartNumber TableOfContents) -- partition has a number and a title (perhaps no title, but not sure)
+  Partitions T.Text [(PartNumber, PartTitle)] [(PartNumber, TableOfContents)] -- partition has a number and a title (perhaps no title, but not sure)
   | Articles [PartNumber]
   deriving (Show, Read, Eq)
 
 type TextWithReferences = [TextOrReference]
 data TextOrReference =
   Text T.Text | Table [[TableCell]]
-  deriving (Show, Read, Eq)
+  deriving (Show, Read, Eq, Ord)
 
 data Article =
   Article { _aprefix :: ZWyliczeniem -- TODO: Why not just text? Can it have points?
@@ -69,7 +69,7 @@ data TableCell =
   TableCell {
     _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
    , _tcborderTop, _tcborderLeft, _tcborderRight, _tcborderBottom :: Bool
-  } deriving (Show, Read, Eq)
+  } deriving (Show, Read, Eq, Ord)
 
 fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
 
