@@ -2,7 +2,7 @@
 module Parse where
 
 import Data.Monoid
-import MyPrelude hiding (many, (<|>))
+import MyPrelude
 import Control.Lens
 import Data.Time
 --import Text.Nicify
@@ -15,7 +15,7 @@ import qualified Data.IntervalSet as IS
 import Model
 import ParseXml
 import Text.Megaparsec
-import Text.Megaparsec.Prim -- MonadParsec is not available from Text.Megaparsec
+import Text.Megaparsec.Prim (MonadParsec)
 import Data.Char (isDigit, isLower)
 import Test.Tasty
 import Test.Tasty.HUnit
