@@ -33,10 +33,10 @@ expectedUstawa =
       Partitions "Rozdział" [("1", "Podmiot i przedmiot opodatkowania")
                             ,("1a", "Opodatkowanie przychodów nieznajdujących pokrycia w ujawnionych\
                                     \ źródłach lub pochodzących ze źródeł nieujawnionych")]
-         (M.fromList [("1", Articles ["1", "2"]), ("1a", Articles ["25b", "27"])])
+         ([("1", Articles ["1", "2"]), ("1a", Articles ["25b", "27"])])
     , _uarticles =
       -- this is a Frankenstein of fragments from "Ustawa o podatku doch. od osob fizycznych"
-      M.fromList [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
+                 [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
                  ,("2", mkPoint "" [
                     ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
                       ("1", mkLeaf "przychodów z działalności rolniczej, z wyjątkiem przychodów z \

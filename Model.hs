@@ -23,7 +23,7 @@ data Akt =
          , _uzDnia :: Day
          , _uTytul :: T.Text
          , _uspisTresci :: TableOfContents
-         , _uarticles :: M.Map T.Text Article
+         , _uarticles :: [(T.Text, Article)]
          , _uannexes :: [Annex]
          } deriving (Show, Read, Eq)
 
