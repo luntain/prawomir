@@ -9,652 +9,537 @@
       <CREATIONDATE>Sat Nov 14 13:02:27 2015</CREATIONDATE>
     </PROCESS>
   </METADATA>
-  <PAGE width="595.32" height="841.92" number="1" id="p1">
-    <MEDIABOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <CROPBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <BLEEDBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <ARTBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <TRIMBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <TEXT width="70.974" height="8.1" id="p1_t1" x="56.64" y="37.413">
-      <TOKEN sid="p1_s3" id="p1_w1" font-name="Times-Roman" symbolic="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="56.64" y="37.413" base="43.56" width="45.756" height="8.1">©Kancelaria</TOKEN>
-      <TOKEN sid="p1_s4" id="p1_w2" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="104.637" y="37.413" base="43.56" width="22.977" height="8.1">Sejmu</TOKEN>
-    </TEXT>
-    <TEXT width="28.62" height="8.1" id="p1_t2" x="481.683" y="37.413">
-      <TOKEN sid="p1_s6" id="p1_w3" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="481.683" y="37.413" base="43.56" width="5.733" height="8.1">s.</TOKEN>
-      <TOKEN sid="p1_s7" id="p1_w4" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="489.72" y="37.413" base="43.56" width="20.583" height="8.1">1/253</TOKEN>
-    </TEXT>
-    <TEXT width="42.057" height="8.1" id="p1_t3" x="425.64" y="793.173">
-      <TOKEN sid="p1_s9" id="p1_w5" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="425.64" y="793.173" base="799.32" width="42.057" height="8.1">2015-11-02</TOKEN>
-    </TEXT>
-    <TEXT width="132.6" height="10.8" id="p1_t4" x="185.64" y="59.604">
-      <TOKEN sid="p1_s53" id="p1_w6" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="185.64" y="59.604" base="67.8" width="28.56" height="10.8">Dz.U.</TOKEN>
-      <TOKEN sid="p1_s54" id="p1_w7" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="217.2" y="59.604" base="67.8" width="24" height="10.8">1991</TOKEN>
-      <TOKEN sid="p1_s55" id="p1_w8" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="244.2" y="59.604" base="67.8" width="13.968" height="10.8">Nr</TOKEN>
-      <TOKEN sid="p1_s56" id="p1_w9" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="261.12" y="59.604" base="67.8" width="12" height="10.8">80</TOKEN>
-      <TOKEN sid="p1_s57" id="p1_w10" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="276.12" y="59.604" base="67.8" width="21" height="10.8">poz.</TOKEN>
-      <TOKEN sid="p1_s58" id="p1_w11" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="300.24" y="59.604" base="67.8" width="18" height="10.8">350</TOKEN>
-    </TEXT>
-    <TEXT width="66.264" height="10.8" id="p1_t5" x="227.64" y="100.884">
-      <TOKEN sid="p1_s60" id="p1_w12" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="227.64" y="100.884" base="109.08" width="8.664" height="10.8">U</TOKEN>
-      <TOKEN sid="p1_s61" id="p1_w13" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="239.04" y="100.884" base="109.08" width="6.672" height="10.8">S</TOKEN>
-      <TOKEN sid="p1_s62" id="p1_w14" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="248.4" y="100.884" base="109.08" width="8.004" height="10.8">T</TOKEN>
-      <TOKEN sid="p1_s63" id="p1_w15" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="259.2" y="100.884" base="109.08" width="8.664" height="10.8">A</TOKEN>
-      <TOKEN sid="p1_s64" id="p1_w16" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="270.48" y="100.884" base="109.08" width="12" height="10.8">W</TOKEN>
-      <TOKEN sid="p1_s65" id="p1_w17" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="285.24" y="100.884" base="109.08" width="8.664" height="10.8">A</TOKEN>
-    </TEXT>
-    <TEXT width="107.16" height="10.8" id="p1_t6" x="208.44" y="127.764">
-      <TOKEN sid="p1_s66" id="p1_w18" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="208.44" y="127.764" base="135.96" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p1_s67" id="p1_w19" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="216.72" y="127.764" base="135.96" width="20.688" height="10.8">dnia</TOKEN>
-      <TOKEN sid="p1_s68" id="p1_w20" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="240.36" y="127.764" base="135.96" width="12" height="10.8">26</TOKEN>
-      <TOKEN sid="p1_s69" id="p1_w21" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="255.36" y="127.764" base="135.96" width="23.328" height="10.8">lipca</TOKEN>
-      <TOKEN sid="p1_s70" id="p1_w22" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="281.64" y="127.764" base="135.96" width="24" height="10.8">1991</TOKEN>
-      <TOKEN sid="p1_s71" id="p1_w23" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="308.64" y="127.764" base="135.96" width="6.96" height="10.8">r.</TOKEN>
-    </TEXT>
-    <TEXT width="221.712" height="10.8" id="p1_t7" x="151.2" y="154.404">
-      <TOKEN sid="p1_s72" id="p1_w24" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="151.2" y="154.404" base="162.6" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p1_s73" id="p1_w25" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="160.2" y="154.404" base="162.6" width="42.792" height="10.8">podatku</TOKEN>
-      <TOKEN sid="p1_s74" id="p1_w26" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="205.92" y="154.404" base="162.6" width="68.076" height="10.8">dochodowym</TOKEN>
-      <TOKEN sid="p1_s75" id="p1_w27" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="276.96" y="154.404" base="162.6" width="12.672" height="10.8">od</TOKEN>
-      <TOKEN sid="p1_s76" id="p1_w28" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="292.68" y="154.404" base="162.6" width="23.352" height="10.8">osób</TOKEN>
-      <TOKEN sid="p1_s77" id="p1_w29" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="319.08" y="154.404" base="162.6" width="53.832" height="10.8">fizycznych</TOKEN>
-    </TEXT>
-    <TEXT width="51.6" height="15.768" id="p1_t8" x="236.28" y="189.396">
-      <TOKEN sid="p1_s78" id="p1_w30" font-name="TimesNewRomanPSMT" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="236.28" y="189.396" base="201.48" width="42.576" height="15.768">Rozdział</TOKEN>
-      <TOKEN sid="p1_s79" id="p1_w31" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="281.88" y="193.284" base="201.48" width="6" height="10.8">1</TOKEN>
-    </TEXT>
-    <TEXT width="187.08" height="10.8" id="p1_t9" x="168.6" y="219.804">
-      <TOKEN sid="p1_s80" id="p1_w32" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="168.6" y="219.804" base="228" width="43.356" height="10.8">Podmiot</TOKEN>
-      <TOKEN sid="p1_s81" id="p1_w33" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="214.92" y="219.804" base="228" width="3.336" height="10.8">i</TOKEN>
-      <TOKEN sid="p1_s82" id="p1_w34" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="221.28" y="219.804" base="228" width="52.596" height="10.8">przedmiot</TOKEN>
-      <TOKEN sid="p1_s83" id="p1_w35" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="276.84" y="219.804" base="228" width="78.84" height="10.8">opodatkowania</TOKEN>
-    </TEXT>
-    <TEXT width="385.464" height="10.8" id="p1_t10" x="82.2" y="246.564">
-      <TOKEN sid="p1_s84" id="p1_w36" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="246.564" base="254.76" width="20.88" height="10.8">Art.</TOKEN>
-      <TOKEN sid="p1_s85" id="p1_w37" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="108.96" y="246.564" base="254.76" width="9" height="10.8">1.</TOKEN>
-      <TOKEN sid="p1_s86" id="p1_w38" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="123.84" y="246.564" base="254.76" width="35.928" height="10.8">Ustawa</TOKEN>
-      <TOKEN sid="p1_s87" id="p1_w39" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="165.6" y="246.564" base="254.76" width="39.408" height="10.8">reguluje</TOKEN>
-      <TOKEN sid="p1_s88" id="p1_w40" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="210.84" y="246.564" base="254.76" width="73.248" height="10.8">opodatkowanie</TOKEN>
-      <TOKEN sid="p1_s89" id="p1_w41" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="289.92" y="246.564" base="254.76" width="50.736" height="10.8">podatkiem</TOKEN>
-      <TOKEN sid="p1_s90" id="p1_w42" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="346.56" y="246.564" base="254.76" width="65.256" height="10.8">dochodowym</TOKEN>
-      <TOKEN sid="p1_s91" id="p1_w43" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="417.72" y="246.564" base="254.76" width="49.944" height="10.8">dochodów</TOKEN>
-    </TEXT>
-    <TEXT width="81.24" height="10.8" id="p1_t11" x="56.64" y="267.444">
-      <TOKEN sid="p1_s92" id="p1_w44" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="267.444" base="275.64" width="22.68" height="10.8">osób</TOKEN>
-      <TOKEN sid="p1_s93" id="p1_w45" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.32" y="267.444" base="275.64" width="55.56" height="10.8">fizycznych.</TOKEN>
-    </TEXT>
-    <TEXT width="223.656" height="11.88" id="p1_t12" x="82.2" y="290.196">
-      <TOKEN sid="p1_s94" id="p1_w46" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="294.084" base="302.28" width="20.88" height="10.8">Art.</TOKEN>
-      <TOKEN sid="p1_s95" id="p1_w47" font-name="times-bold" symbolic="yes" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="106.08" y="294.084" base="302.28" width="9" height="10.8">2.</TOKEN>
-      <TOKEN sid="p1_s96" id="p1_w48" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="118.08" y="294.084" base="302.28" width="9" height="10.8">1.</TOKEN>
-      <TOKEN sid="p1_s97" id="p1_w49" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="130.08" y="294.084" base="302.28" width="50.064" height="10.8">Przepisów</TOKEN>
-      <TOKEN sid="p1_s98" id="p1_w50" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="183.12" y="294.084" base="302.28" width="34.08" height="10.8">ustawy</TOKEN>
-      <TOKEN sid="p1_s99" id="p1_w51" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="220.2" y="294.084" base="302.28" width="14.688" height="10.8">nie</TOKEN>
-      <TOKEN sid="p1_s100" id="p1_w52" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="237.84" y="294.084" base="302.28" width="33.408" height="10.8">stosuje</TOKEN>
-      <TOKEN sid="p1_s101" id="p1_w53" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="274.2" y="290.196" base="302.28" width="13.368" height="15.768">się</TOKEN>
-      <TOKEN sid="p1_s102" id="p1_w54" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="290.52" y="294.084" base="302.28" width="15.336" height="10.8">do:</TOKEN>
-    </TEXT>
-    <TEXT width="411.024" height="11.88" id="p1_t13" x="56.64" y="311.076">
-      <TOKEN sid="p1_s103" id="p1_w55" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="314.964" base="323.16" width="9.996" height="10.8">1)</TOKEN>
-      <TOKEN sid="p1_s104" id="p1_w56" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="314.964" base="323.16" width="59.184" height="10.8">przychodów</TOKEN>
-      <TOKEN sid="p1_s105" id="p1_w57" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="148.92" y="314.964" base="323.16" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p1_s106" id="p1_w58" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="161.76" y="311.076" base="323.16" width="57.336" height="15.768">działalności</TOKEN>
-      <TOKEN sid="p1_s107" id="p1_w59" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="226.56" y="314.964" base="323.16" width="45" height="10.8">rolniczej,</TOKEN>
-      <TOKEN sid="p1_s108" id="p1_w60" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="279" y="314.964" base="323.16" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p1_s109" id="p1_w61" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="291.84" y="311.076" base="323.16" width="50.736" height="15.768">wyjątkiem</TOKEN>
-      <TOKEN sid="p1_s110" id="p1_w62" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="350.04" y="314.964" base="323.16" width="59.304" height="10.8">przychodów</TOKEN>
-      <TOKEN sid="p1_s111" id="p1_w63" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="416.88" y="314.964" base="323.16" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p1_s112" id="p1_w64" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="429.6" y="311.076" base="323.16" width="38.064" height="15.768">działów</TOKEN>
-    </TEXT>
-    <TEXT width="139.896" height="10.8" id="p1_t14" x="82.2" y="335.604">
-      <TOKEN sid="p1_s113" id="p1_w65" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="335.604" base="343.8" width="56.52" height="10.8">specjalnych</TOKEN>
-      <TOKEN sid="p1_s114" id="p1_w66" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="141.72" y="335.604" base="343.8" width="46.056" height="10.8">produkcji</TOKEN>
-      <TOKEN sid="p1_s115" id="p1_w67" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="190.8" y="335.604" base="343.8" width="31.296" height="10.8">rolnej;</TOKEN>
-    </TEXT>
-    <TEXT width="331.896" height="11.88" id="p1_t15" x="56.64" y="352.476">
-      <TOKEN sid="p1_s116" id="p1_w68" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="356.364" base="364.56" width="9.996" height="10.8">2)</TOKEN>
-      <TOKEN sid="p1_s117" id="p1_w69" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="356.364" base="364.56" width="59.184" height="10.8">przychodów</TOKEN>
-      <TOKEN sid="p1_s118" id="p1_w70" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="144.48" y="356.364" base="364.56" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p1_s119" id="p1_w71" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="152.76" y="356.364" base="364.56" width="53.376" height="10.8">gospodarki</TOKEN>
-      <TOKEN sid="p1_s120" id="p1_w72" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="209.16" y="352.476" base="364.56" width="27.936" height="15.768">leśnej</TOKEN>
-      <TOKEN sid="p1_s121" id="p1_w73" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="240.12" y="356.364" base="364.56" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p1_s122" id="p1_w74" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="251.76" y="356.364" base="364.56" width="54.6" height="10.8">rozumieniu</TOKEN>
-      <TOKEN sid="p1_s123" id="p1_w75" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="309.36" y="356.364" base="364.56" width="33.96" height="10.8">ustawy</TOKEN>
-      <TOKEN sid="p1_s124" id="p1_w76" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="346.32" y="356.364" base="364.56" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p1_s125" id="p1_w77" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="355.32" y="356.364" base="364.56" width="33.216" height="10.8">lasach.</TOKEN>
-    </TEXT>
+  <PAGE width="595.32" height="841.92" number="1"><TEXT width="70.974" height="8.1" x="56.64" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="56.64" y="37.413" width="45.756" height="8.1">©Kancelaria</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="104.637" y="37.413" width="22.977" height="8.1">Sejmu</TOKEN>
+    </TEXT><TEXT width="28.62" height="8.1" x="481.683" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="481.683" y="37.413" width="5.733" height="8.1">s.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="489.72" y="37.413" width="20.583" height="8.1">1/253</TOKEN>
+    </TEXT><TEXT width="42.057" height="8.1" x="425.64" y="793.173">
+      <TOKEN bold="no" italic="no" font-size="9" x="425.64" y="793.173" width="42.057" height="8.1">2015-11-02</TOKEN>
+    </TEXT><TEXT width="132.6" height="10.8" x="185.64" y="59.604">
+      <TOKEN bold="yes" italic="no" font-size="12" x="185.64" y="59.604" width="28.56" height="10.8">Dz.U.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="217.2" y="59.604" width="24" height="10.8">1991</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="244.2" y="59.604" width="13.968" height="10.8">Nr</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="261.12" y="59.604" width="12" height="10.8">80</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="276.12" y="59.604" width="21" height="10.8">poz.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="300.24" y="59.604" width="18" height="10.8">350</TOKEN>
+    </TEXT><TEXT width="66.264" height="10.8" x="227.64" y="100.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="227.64" y="100.884" width="8.664" height="10.8">U</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="239.04" y="100.884" width="6.672" height="10.8">S</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="248.4" y="100.884" width="8.004" height="10.8">T</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="259.2" y="100.884" width="8.664" height="10.8">A</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="270.48" y="100.884" width="12" height="10.8">W</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="285.24" y="100.884" width="8.664" height="10.8">A</TOKEN>
+    </TEXT><TEXT width="107.16" height="10.8" x="208.44" y="127.764">
+      <TOKEN bold="no" italic="no" font-size="12" x="208.44" y="127.764" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="216.72" y="127.764" width="20.688" height="10.8">dnia</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="240.36" y="127.764" width="12" height="10.8">26</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="255.36" y="127.764" width="23.328" height="10.8">lipca</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="281.64" y="127.764" width="24" height="10.8">1991</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="308.64" y="127.764" width="6.96" height="10.8">r.</TOKEN>
+    </TEXT><TEXT width="221.712" height="10.8" x="151.2" y="154.404">
+      <TOKEN bold="yes" italic="no" font-size="12" x="151.2" y="154.404" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="160.2" y="154.404" width="42.792" height="10.8">podatku</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="205.92" y="154.404" width="68.076" height="10.8">dochodowym</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="276.96" y="154.404" width="12.672" height="10.8">od</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="292.68" y="154.404" width="23.352" height="10.8">osób</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="319.08" y="154.404" width="53.832" height="10.8">fizycznych</TOKEN>
+    </TEXT><TEXT width="51.6" height="15.768" x="236.28" y="189.396">
+      <TOKEN bold="no" italic="no" font-size="12" x="236.28" y="189.396" width="42.576" height="15.768">Rozdział</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="281.88" y="193.284" width="6" height="10.8">1</TOKEN>
+    </TEXT><TEXT width="187.08" height="10.8" x="168.6" y="219.804">
+      <TOKEN bold="yes" italic="no" font-size="12" x="168.6" y="219.804" width="43.356" height="10.8">Podmiot</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="214.92" y="219.804" width="3.336" height="10.8">i</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="221.28" y="219.804" width="52.596" height="10.8">przedmiot</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="276.84" y="219.804" width="78.84" height="10.8">opodatkowania</TOKEN>
+    </TEXT><TEXT width="385.464" height="10.8" x="82.2" y="246.564">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="246.564" width="20.88" height="10.8">Art.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="108.96" y="246.564" width="9" height="10.8">1.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="123.84" y="246.564" width="35.928" height="10.8">Ustawa</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="165.6" y="246.564" width="39.408" height="10.8">reguluje</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="210.84" y="246.564" width="73.248" height="10.8">opodatkowanie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="289.92" y="246.564" width="50.736" height="10.8">podatkiem</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="346.56" y="246.564" width="65.256" height="10.8">dochodowym</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="417.72" y="246.564" width="49.944" height="10.8">dochodów</TOKEN>
+    </TEXT><TEXT width="81.24" height="10.8" x="56.64" y="267.444">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="267.444" width="22.68" height="10.8">osób</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="82.32" y="267.444" width="55.56" height="10.8">fizycznych.</TOKEN>
+    </TEXT><TEXT width="223.656" height="11.88" x="82.2" y="290.196">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="294.084" width="20.88" height="10.8">Art.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="106.08" y="294.084" width="9" height="10.8">2.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="118.08" y="294.084" width="9" height="10.8">1.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="130.08" y="294.084" width="50.064" height="10.8">Przepisów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="183.12" y="294.084" width="34.08" height="10.8">ustawy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="220.2" y="294.084" width="14.688" height="10.8">nie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="237.84" y="294.084" width="33.408" height="10.8">stosuje</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="274.2" y="290.196" width="13.368" height="15.768">się</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="290.52" y="294.084" width="15.336" height="10.8">do:</TOKEN>
+    </TEXT><TEXT width="411.024" height="11.88" x="56.64" y="311.076">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="314.964" width="9.996" height="10.8">1)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="314.964" width="59.184" height="10.8">przychodów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="148.92" y="314.964" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="161.76" y="311.076" width="57.336" height="15.768">działalności</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="226.56" y="314.964" width="45" height="10.8">rolniczej,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="279" y="314.964" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="291.84" y="311.076" width="50.736" height="15.768">wyjątkiem</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="350.04" y="314.964" width="59.304" height="10.8">przychodów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="416.88" y="314.964" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="429.6" y="311.076" width="38.064" height="15.768">działów</TOKEN>
+    </TEXT><TEXT width="139.896" height="10.8" x="82.2" y="335.604">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="335.604" width="56.52" height="10.8">specjalnych</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="141.72" y="335.604" width="46.056" height="10.8">produkcji</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="190.8" y="335.604" width="31.296" height="10.8">rolnej;</TOKEN>
+    </TEXT><TEXT width="331.896" height="11.88" x="56.64" y="352.476">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="356.364" width="9.996" height="10.8">2)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="356.364" width="59.184" height="10.8">przychodów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="144.48" y="356.364" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="152.76" y="356.364" width="53.376" height="10.8">gospodarki</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="209.16" y="352.476" width="27.936" height="15.768">leśnej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="240.12" y="356.364" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="251.76" y="356.364" width="54.6" height="10.8">rozumieniu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="309.36" y="356.364" width="33.96" height="10.8">ustawy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="346.32" y="356.364" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="355.32" y="356.364" width="33.216" height="10.8">lasach.</TOKEN>
+    </TEXT><TEXT width="215.736" height="11.88" x="56.64" y="612.036">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="615.924" width="9.996" height="10.8">3)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="612.036" width="41.328" height="15.768">odpłatne</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="126.48" y="615.924" width="34.2" height="10.8">zbycie,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="163.8" y="615.924" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="172.08" y="612.036" width="67.896" height="15.768">zastrzeżeniem</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="243" y="615.924" width="17.04" height="10.8">ust.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="263.04" y="615.924" width="9.336" height="10.8">2:</TOKEN>
+    </TEXT><TEXT width="313.08" height="11.88" x="82.2" y="632.676">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="636.564" width="9.276" height="10.8">a)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="632.676" width="70.536" height="15.768">nieruchomości</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="179.52" y="636.564" width="15.36" height="10.8">lub</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="197.88" y="636.564" width="14.64" height="10.8">ich</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="215.52" y="632.676" width="29.376" height="15.768">części</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="247.92" y="636.564" width="20.688" height="10.8">oraz</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="271.56" y="632.676" width="35.28" height="15.768">udziału</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="309.84" y="636.564" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="321.48" y="632.676" width="73.8" height="15.768">nieruchomości,</TOKEN>
+    </TEXT><TEXT width="385.44" height="11.88" x="82.2" y="653.436">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="657.324" width="9.996" height="10.8">b)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="653.436" width="71.16" height="15.768">spółdzielczego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="186.96" y="653.436" width="79.32" height="15.768">własnościowego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="276" y="657.324" width="29.328" height="10.8">prawa</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="315.12" y="657.324" width="12" height="10.8">do</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="336.84" y="657.324" width="30.12" height="10.8">lokalu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="376.68" y="657.324" width="65.88" height="10.8">mieszkalnego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="452.28" y="657.324" width="15.36" height="10.8">lub,</TOKEN>
+    </TEXT></PAGE>
 
 
-    <TEXT width="215.736" height="11.88" id="p18_t30" x="56.64" y="612.036">
-      <TOKEN sid="p18_s6421" id="p18_w209" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="615.924" base="624.12" width="9.996" height="10.8">3)</TOKEN>
-      <TOKEN sid="p18_s6422" id="p18_w210" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="612.036" base="624.12" width="41.328" height="15.768">odpłatne</TOKEN>
-      <TOKEN sid="p18_s6423" id="p18_w211" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="126.48" y="615.924" base="624.12" width="34.2" height="10.8">zbycie,</TOKEN>
-      <TOKEN sid="p18_s6424" id="p18_w212" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="163.8" y="615.924" base="624.12" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p18_s6425" id="p18_w213" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="172.08" y="612.036" base="624.12" width="67.896" height="15.768">zastrzeżeniem</TOKEN>
-      <TOKEN sid="p18_s6426" id="p18_w214" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="243" y="615.924" base="624.12" width="17.04" height="10.8">ust.</TOKEN>
-      <TOKEN sid="p18_s6427" id="p18_w215" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="263.04" y="615.924" base="624.12" width="9.336" height="10.8">2:</TOKEN>
-    </TEXT>
-    <TEXT width="313.08" height="11.88" id="p18_t31" x="82.2" y="632.676">
-      <TOKEN sid="p18_s6428" id="p18_w216" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="636.564" base="644.76" width="9.276" height="10.8">a)</TOKEN>
-      <TOKEN sid="p18_s6429" id="p18_w217" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="632.676" base="644.76" width="70.536" height="15.768">nieruchomości</TOKEN>
-      <TOKEN sid="p18_s6430" id="p18_w218" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="179.52" y="636.564" base="644.76" width="15.36" height="10.8">lub</TOKEN>
-      <TOKEN sid="p18_s6431" id="p18_w219" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="197.88" y="636.564" base="644.76" width="14.64" height="10.8">ich</TOKEN>
-      <TOKEN sid="p18_s6432" id="p18_w220" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="215.52" y="632.676" base="644.76" width="29.376" height="15.768">części</TOKEN>
-      <TOKEN sid="p18_s6433" id="p18_w221" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="247.92" y="636.564" base="644.76" width="20.688" height="10.8">oraz</TOKEN>
-      <TOKEN sid="p18_s6434" id="p18_w222" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="271.56" y="632.676" base="644.76" width="35.28" height="15.768">udziału</TOKEN>
-      <TOKEN sid="p18_s6435" id="p18_w223" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="309.84" y="636.564" base="644.76" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p18_s6436" id="p18_w224" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="321.48" y="632.676" base="644.76" width="73.8" height="15.768">nieruchomości,</TOKEN>
-    </TEXT>
-    <TEXT width="385.44" height="11.88" id="p18_t32" x="82.2" y="653.436">
-      <TOKEN sid="p18_s6437" id="p18_w225" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="657.324" base="665.52" width="9.996" height="10.8">b)</TOKEN>
-      <TOKEN sid="p18_s6438" id="p18_w226" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="653.436" base="665.52" width="71.16" height="15.768">spółdzielczego</TOKEN>
-      <TOKEN sid="p18_s6439" id="p18_w227" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="186.96" y="653.436" base="665.52" width="79.32" height="15.768">własnościowego</TOKEN>
-      <TOKEN sid="p18_s6440" id="p18_w228" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="276" y="657.324" base="665.52" width="29.328" height="10.8">prawa</TOKEN>
-      <TOKEN sid="p18_s6441" id="p18_w229" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="315.12" y="657.324" base="665.52" width="12" height="10.8">do</TOKEN>
-      <TOKEN sid="p18_s6442" id="p18_w230" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="336.84" y="657.324" base="665.52" width="30.12" height="10.8">lokalu</TOKEN>
-      <TOKEN sid="p18_s6443" id="p18_w231" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="376.68" y="657.324" base="665.52" width="65.88" height="10.8">mieszkalnego</TOKEN>
-      <TOKEN sid="p18_s6444" id="p18_w232" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="452.28" y="657.324" base="665.52" width="15.36" height="10.8">lub,</TOKEN>
-    </TEXT>
-    <xi:include href="pit.xml_data/image-18.vec"/>
+  <PAGE width="595.32" height="841.92" number="19"><TEXT width="70.974" height="8.1" x="56.64" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="56.64" y="37.413" width="45.756" height="8.1">©Kancelaria</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="104.637" y="37.413" width="22.977" height="8.1">Sejmu</TOKEN>
+    </TEXT><TEXT width="33.057" height="8.1" x="477.237" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="477.237" y="37.413" width="5.733" height="8.1">s.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="485.274" y="37.413" width="25.02" height="8.1">19/253</TOKEN>
+    </TEXT><TEXT width="42.057" height="8.1" x="425.64" y="793.173">
+      <TOKEN bold="no" italic="no" font-size="9" x="425.64" y="793.173" width="42.057" height="8.1">2015-11-02</TOKEN>
+    </TEXT><TEXT width="385.416" height="11.88" x="82.2" y="55.716">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="59.604" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="90.6" y="55.716" width="25.896" height="15.768">jeżeli</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="120.12" y="55.716" width="41.328" height="15.768">odpłatne</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="165" y="59.604" width="31.368" height="10.8">zbycie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="199.92" y="59.604" width="14.808" height="10.8">nie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="218.28" y="55.716" width="45.288" height="15.768">następuje</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="267.12" y="59.604" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="279.48" y="59.604" width="53.4" height="10.8">wykonaniu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="336.48" y="55.716" width="57.216" height="15.768">działalności</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="397.32" y="59.604" width="63.336" height="10.8">gospodarczej</TOKEN>
+    </TEXT><TEXT width="410.904" height="11.88" x="56.64" y="242.076">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="245.964" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="65.16" y="245.964" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="77.76" y="245.964" width="35.28" height="10.8">ramach</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="117" y="245.964" width="42.72" height="10.8">stosunku</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="163.68" y="245.964" width="26.64" height="10.8">pracy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="194.28" y="245.964" width="15.36" height="10.8">lub</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="213.6" y="242.076" width="71.16" height="15.768">spółdzielczego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="288.72" y="245.964" width="42.84" height="10.8">stosunku</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="335.52" y="245.964" width="29.52" height="10.8">pracy,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="369" y="245.964" width="42.12" height="10.8">podatnik</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="415.08" y="245.964" width="14.64" height="10.8">ten</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="433.68" y="245.964" width="21.216" height="10.8">traci</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="458.88" y="245.964" width="8.664" height="10.8">w</TOKEN>
+    </TEXT><TEXT width="385.464" height="11.88" x="82.2" y="413.484">
+      <TOKEN bold="no" italic="yes" font-size="12" x="82.2" y="417.564" width="19.68" height="10.8">[2.</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="105.12" y="413.484" width="27.216" height="15.96">Jeżeli</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="135.6" y="417.564" width="42.048" height="10.8">podatnik</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="180.84" y="417.564" width="40.608" height="10.8">uzyskuje</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="224.64" y="417.564" width="40.608" height="10.8">dochody</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="268.44" y="417.564" width="4.668" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="276.36" y="413.484" width="30.696" height="15.96">więcej</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="310.32" y="413.484" width="14.028" height="15.96">niż</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="327.6" y="417.564" width="37.92" height="10.8">jednego</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="368.76" y="413.484" width="33.72" height="15.96">źródła,</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="405.72" y="417.564" width="61.944" height="10.8">przedmiotem</TOKEN>
+    </TEXT><TEXT width="411.12" height="11.88" x="56.64" y="434.244">
+      <TOKEN bold="no" italic="yes" font-size="12" x="56.64" y="438.324" width="74.04" height="10.8">opodatkowania</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="135.84" y="438.324" width="8.004" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="148.92" y="438.324" width="31.944" height="10.8">danym</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="186" y="438.324" width="21.96" height="10.8">roku</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="213.12" y="438.324" width="60.624" height="10.8">podatkowym</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="278.88" y="438.324" width="19.68" height="10.8">jest,</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="303.72" y="438.324" width="4.668" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="313.56" y="434.244" width="66.504" height="15.96">zastrzeżeniem</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="385.2" y="438.324" width="17.04" height="10.8">art.</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="407.4" y="438.324" width="38.16" height="10.8">29–30c,</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="450.72" y="438.324" width="17.04" height="10.8">art.</TOKEN>
+    </TEXT><TEXT width="410.976" height="11.88" x="56.64" y="454.884">
+      <TOKEN bold="no" italic="yes" font-size="12" x="56.64" y="458.964" width="20.28" height="10.8">30e,</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="84.36" y="458.964" width="17.04" height="10.8">art.</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="108.84" y="458.964" width="15.336" height="10.8">30f</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="131.64" y="458.964" width="21.348" height="10.8">oraz</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="160.44" y="458.964" width="17.04" height="10.8">art.</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="184.8" y="458.964" width="12" height="10.8">44</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="204.24" y="458.964" width="17.04" height="10.8">ust.</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="228.72" y="458.964" width="11.328" height="10.8">7e</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="247.44" y="458.964" width="3.336" height="10.8">i</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="258.24" y="458.964" width="12.36" height="10.8">7f,</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="278.04" y="458.964" width="25.2" height="10.8">suma</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="310.68" y="458.964" width="49.284" height="10.8">dochodów</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="367.44" y="458.964" width="4.668" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="379.56" y="458.964" width="50.64" height="10.8">wszystkich</TOKEN>
+      <TOKEN bold="no" italic="yes" font-size="12" x="437.64" y="454.884" width="29.976" height="15.96">źródeł</TOKEN>
+    </TEXT><TEXT width="65.628" height="10.8" x="56.64" y="479.724">
+      <TOKEN bold="no" italic="yes" font-size="12" x="56.64" y="479.724" width="65.628" height="10.8">przychodów.]</TOKEN>
+    </TEXT><TEXT width="385.368" height="11.88" x="82.2" y="642.156">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="646.044" width="9" height="10.8">2.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="94.56" y="642.156" width="65.208" height="15.768">Działalnością</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="163.2" y="642.156" width="41.52" height="15.768">rolniczą,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="208.2" y="646.044" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="220.2" y="646.044" width="54.6" height="10.8">rozumieniu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="278.16" y="646.044" width="17.04" height="10.8">ust.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="298.56" y="646.044" width="6" height="10.8">1</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="307.92" y="646.044" width="15.336" height="10.8">pkt</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="326.64" y="646.044" width="9" height="10.8">1,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="339" y="646.044" width="16.656" height="10.8">jest</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="359.04" y="642.156" width="53.928" height="15.768">działalność</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="416.28" y="642.156" width="51.288" height="15.768">polegająca</TOKEN>
+    </TEXT><TEXT width="410.976" height="11.88" x="56.64" y="662.916">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="666.804" width="11.328" height="10.8">na</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="72.12" y="666.804" width="61.92" height="10.8">wytwarzaniu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="138.24" y="666.804" width="51.984" height="10.8">produktów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="194.4" y="662.916" width="50.64" height="15.768">roślinnych</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="249.24" y="666.804" width="15.36" height="10.8">lub</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="268.8" y="662.916" width="59.76" height="15.768">zwierzęcych</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="332.76" y="666.804" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="345.6" y="666.804" width="28.008" height="10.8">stanie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="377.76" y="666.804" width="89.856" height="10.8">nieprzetworzonym.</TOKEN>
+    </TEXT><TEXT width="411.12" height="10.8" x="56.64" y="245.964">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="245.964" width="21.276" height="10.8">19a)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="245.964" width="62.568" height="10.8">samochodzie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="151.2" y="245.964" width="52.656" height="10.8">osobowym</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="210.48" y="245.964" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="222.96" y="245.964" width="38.448" height="10.8">oznacza</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="267.84" y="245.964" width="9.36" height="10.8">to</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="283.68" y="245.964" width="31.92" height="10.8">pojazd</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="322.2" y="245.964" width="69.24" height="10.8">samochodowy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="397.92" y="245.964" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="413.04" y="245.964" width="54.72" height="10.8">rozumieniu</TOKEN>
+    </TEXT><TEXT width="385.536" height="11.88" x="82.2" y="262.716">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="266.604" width="49.224" height="10.8">przepisów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="145.56" y="266.604" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="165.72" y="266.604" width="27.24" height="10.8">ruchu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="207.24" y="266.604" width="51.936" height="10.8">drogowym</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="273.36" y="266.604" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="293.52" y="266.604" width="67.896" height="10.8">dopuszczalnej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="375.6" y="266.604" width="28.008" height="10.8">masie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="417.72" y="262.716" width="50.016" height="15.768">całkowitej</TOKEN>
+    </TEXT><TEXT width="385.488" height="15.768" x="82.2" y="283.476">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="283.476" width="89.136" height="15.768">nieprzekraczającej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="177.96" y="287.364" width="15" height="10.8">3,5</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="199.56" y="287.364" width="24.48" height="10.8">tony,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="230.64" y="287.364" width="71.328" height="10.8">konstrukcyjnie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="308.52" y="287.364" width="65.88" height="10.8">przeznaczony</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="381" y="287.364" width="12" height="10.8">do</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="399.6" y="287.364" width="46.68" height="10.8">przewozu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="453" y="287.364" width="14.688" height="10.8">nie</TOKEN>
+    </TEXT><TEXT width="244.176" height="15.768" x="82.2" y="304.116">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="304.116" width="31.176" height="15.768">więcej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="116.4" y="304.116" width="14.688" height="15.768">niż</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="134.04" y="308.004" width="6" height="10.8">9</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="143.04" y="308.004" width="22.68" height="10.8">osób</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="168.72" y="304.116" width="34.008" height="15.768">łącznie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="205.8" y="308.004" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="214.08" y="304.116" width="46.92" height="15.768">kierowcą,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="264" y="308.004" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="272.28" y="304.116" width="54.096" height="15.768">wyjątkiem:</TOKEN>
+    </TEXT><TEXT width="385.44" height="11.88" x="82.2" y="324.876">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="328.764" width="9.276" height="10.8">a)</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="328.764" width="37.92" height="10.8">pojazdu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="148.56" y="328.764" width="80.76" height="10.8">samochodowego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="234" y="324.876" width="45.84" height="15.768">mającego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="284.52" y="328.764" width="26.04" height="10.8">jeden</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="315.24" y="324.876" width="20.64" height="15.768">rząd</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="340.56" y="324.876" width="39" height="15.768">siedzeń,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="384.24" y="328.764" width="25.32" height="10.8">który</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="414.24" y="328.764" width="53.4" height="10.8">oddzielony</TOKEN>
+    </TEXT><TEXT width="361.728" height="11.88" x="105.96" y="345.516">
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="349.404" width="16.656" height="10.8">jest</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="128.64" y="349.404" width="12" height="10.8">od</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="146.64" y="345.516" width="29.136" height="15.768">części</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="181.8" y="349.404" width="68.616" height="10.8">przeznaczonej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="256.44" y="349.404" width="12" height="10.8">do</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="274.44" y="349.404" width="46.56" height="10.8">przewozu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="327" y="345.516" width="47.424" height="15.768">ładunków</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="380.4" y="345.516" width="29.928" height="15.768">ścianą</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="416.28" y="349.404" width="15.36" height="10.8">lub</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="437.64" y="345.516" width="30.048" height="15.768">trwałą</TOKEN>
+    </TEXT><TEXT width="51.216" height="15.768" x="105.96" y="366.276">
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="366.276" width="51.216" height="15.768">przegrodą:</TOKEN>
+    </TEXT><TEXT width="361.56" height="10.8" x="105.96" y="390.804">
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="390.804" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="125.88" y="390.804" width="81.84" height="10.8">klasyfikowanego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="215.4" y="390.804" width="11.328" height="10.8">na</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="234.24" y="390.804" width="48.768" height="10.8">podstawie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="290.52" y="390.804" width="49.344" height="10.8">przepisów</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="347.4" y="390.804" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="361.08" y="390.804" width="27.36" height="10.8">ruchu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="396" y="390.804" width="51.936" height="10.8">drogowym</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="455.52" y="390.804" width="12" height="10.8">do</TOKEN>
+    </TEXT><TEXT width="180.6" height="10.8" x="125.88" y="411.564">
+      <TOKEN bold="no" italic="no" font-size="12" x="125.88" y="411.564" width="57.216" height="10.8">podrodzaju:</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="186.12" y="411.564" width="81.72" height="10.8">wielozadaniowy,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="270.84" y="411.564" width="17.28" height="10.8">van</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="291.12" y="411.564" width="15.36" height="10.8">lub</TOKEN>
+    </TEXT><TEXT width="288.12" height="11.88" x="105.96" y="428.316">
+      <TOKEN bold="no" italic="no" font-size="12" x="105.96" y="432.204" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="125.88" y="432.204" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="134.16" y="428.316" width="35.928" height="15.768">otwartą</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="173.16" y="428.316" width="34.608" height="15.768">częścią</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="210.72" y="428.316" width="65.328" height="15.768">przeznaczoną</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="279" y="432.204" width="12" height="10.8">do</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="294" y="432.204" width="46.68" height="10.8">przewozu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="343.68" y="428.316" width="50.4" height="15.768">ładunków.</TOKEN>
+    </TEXT><TEXT width="66.48" height="15.996" x="241.68" y="303.768">
+      <TOKEN bold="yes" italic="no" font-size="12" x="241.68" y="303.768" width="51.456" height="15.996">&lt;Rozdział</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="296.16" y="307.884" width="12" height="10.8">1a</TOKEN>
+    </TEXT><TEXT width="363.072" height="11.88" x="93.36" y="324.528">
+      <TOKEN bold="yes" italic="no" font-size="12" x="93.36" y="328.644" width="81.528" height="10.8">Opodatkowanie</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="177.84" y="328.644" width="62.544" height="10.8">przychodów</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="243.36" y="324.528" width="83.952" height="15.996">nieznajdujących</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="330.36" y="328.644" width="45.36" height="10.8">pokrycia</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="378.72" y="328.644" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="390.36" y="328.644" width="66.072" height="10.8">ujawnionych</TOKEN>
+    </TEXT><TEXT width="272.352" height="15.996" x="138.72" y="345.288">
+      <TOKEN bold="yes" italic="no" font-size="12" x="138.72" y="345.288" width="44.592" height="15.996">źródłach</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="186.36" y="349.404" width="16.752" height="10.8">lub</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="206.16" y="345.288" width="71.832" height="15.996">pochodzących</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="281.04" y="349.404" width="10.608" height="10.8">ze</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="294.6" y="345.288" width="32.016" height="15.996">źródeł</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="329.64" y="349.404" width="81.432" height="10.8">nieujawnionych</TOKEN>
+    </TEXT><TEXT width="360.12" height="11.88" x="107.64" y="366.048">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="370.164" width="20.88" height="10.8">Art.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="132.72" y="370.164" width="21.72" height="10.8">25b.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="158.64" y="370.164" width="9" height="10.8">1.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="171.84" y="370.164" width="14.04" height="10.8">Za</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="190.08" y="370.164" width="57.24" height="10.8">przychody,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="251.52" y="370.164" width="6" height="10.8">o</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="261.72" y="370.164" width="39.912" height="10.8">których</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="305.88" y="370.164" width="30.6" height="10.8">mowa</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="340.92" y="370.164" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="353.76" y="370.164" width="18.24" height="10.8">art.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="376.2" y="370.164" width="12" height="10.8">20</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="392.52" y="370.164" width="18.36" height="10.8">ust.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="415.08" y="370.164" width="15.72" height="10.8">1b,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="435" y="366.048" width="32.76" height="15.996">uważa</TOKEN>
+    </TEXT><TEXT width="74.316" height="15.996" x="82.2" y="386.808">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="386.808" width="13.368" height="15.996">się</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="98.52" y="390.924" width="57.996" height="10.8">przychody:</TOKEN>
+    </TEXT><TEXT width="385.368" height="11.88" x="82.2" y="407.568">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="411.684" width="9.996" height="10.8">1)</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="407.568" width="71.328" height="15.996">nieznajdujące</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="191.88" y="411.684" width="45.36" height="10.8">pokrycia</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="250.2" y="411.684" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="271.8" y="411.684" width="66.072" height="10.8">ujawnionych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="350.76" y="407.568" width="44.592" height="15.996">źródłach</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="408.36" y="407.568" width="59.208" height="15.996">obejmujące</TOKEN>
+    </TEXT><TEXT width="360.144" height="11.88" x="107.64" y="428.328">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="432.444" width="54" height="10.8">przychody</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="169.68" y="432.444" width="10.608" height="10.8">ze</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="188.28" y="428.328" width="32.016" height="15.996">źródeł</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="228.48" y="432.444" width="61.992" height="10.8">wskazanych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="298.56" y="432.444" width="27.888" height="10.8">przez</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="334.44" y="432.444" width="55.32" height="10.8">podatnika,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="397.8" y="432.444" width="53.328" height="10.8">ujawnione</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="459.12" y="432.444" width="8.664" height="10.8">w</TOKEN>
+    </TEXT><TEXT width="136.68" height="15.996" x="107.64" y="449.088">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="449.088" width="79.356" height="15.996">nieprawidłowej</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="189.96" y="449.088" width="54.36" height="15.996">wysokości,</TOKEN>
+    </TEXT><TEXT width="385.416" height="11.88" x="82.2" y="469.848">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="473.964" width="9.996" height="10.8">2)</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="473.964" width="10.608" height="10.8">ze</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="131.52" y="469.848" width="32.016" height="15.996">źródeł</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="176.88" y="473.964" width="81.432" height="10.8">nieujawnionych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="271.68" y="469.848" width="59.208" height="15.996">obejmujące</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="344.28" y="473.964" width="54" height="10.8">przychody</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="411.6" y="473.964" width="10.608" height="10.8">ze</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="435.6" y="469.848" width="32.016" height="15.996">źródeł</TOKEN>
+    </TEXT><TEXT width="359.832" height="10.8" x="107.64" y="494.724">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="494.724" width="77.352" height="10.8">niewskazanych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="196.8" y="494.724" width="27.888" height="10.8">przez</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="236.52" y="494.724" width="52.2" height="10.8">podatnika</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="300.48" y="494.724" width="3.336" height="10.8">i</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="315.48" y="494.724" width="70.632" height="10.8">nieustalonych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="397.92" y="494.724" width="27.888" height="10.8">przez</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="437.52" y="494.724" width="29.952" height="10.8">organ</TOKEN>
+    </TEXT><TEXT width="210.036" height="10.8" x="107.64" y="515.484">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="515.484" width="56.76" height="10.8">podatkowy</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="167.4" y="515.484" width="16.632" height="10.8">lub</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="187.08" y="515.484" width="29.952" height="10.8">organ</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="220.08" y="515.484" width="41.256" height="10.8">kontroli</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="264.36" y="515.484" width="53.316" height="10.8">skarbowej</TOKEN>
+    </TEXT><TEXT width="385.416" height="11.88" x="82.2" y="532.008">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="536.124" width="6" height="10.8">–</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="90.6" y="536.124" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="111.12" y="536.124" width="35.328" height="10.8">kwocie</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="158.28" y="532.008" width="80.556" height="15.996">odpowiadającej</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="250.68" y="532.008" width="50.088" height="15.996">nadwyżce</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="312.6" y="536.124" width="44.712" height="10.8">wydatku</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="369.12" y="536.124" width="19.392" height="10.8">nad</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="400.32" y="536.124" width="67.296" height="10.8">przychodami</TOKEN>
+    </TEXT><TEXT width="64.716" height="10.8" x="82.2" y="556.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="556.884" width="64.716" height="10.8">(dochodami)</TOKEN>
+    </TEXT><TEXT width="88.656" height="10.8" x="167.76" y="556.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="167.76" y="556.884" width="88.656" height="10.8">opodatkowanymi</TOKEN>
+    </TEXT><TEXT width="16.632" height="10.8" x="277.32" y="556.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="277.32" y="556.884" width="16.632" height="10.8">lub</TOKEN>
+    </TEXT><TEXT width="67.176" height="10.8" x="314.88" y="556.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="314.88" y="556.884" width="67.176" height="10.8">przychodami</TOKEN>
+    </TEXT><TEXT width="64.716" height="10.8" x="402.96" y="556.884">
+      <TOKEN bold="yes" italic="no" font-size="12" x="402.96" y="556.884" width="64.716" height="10.8">(dochodami)</TOKEN>
+    </TEXT><TEXT width="348.36" height="10.8" x="82.2" y="577.644">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="577.644" width="107.16" height="10.8">nieopodatkowanymi,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="192.36" y="577.644" width="61.296" height="10.8">uzyskanymi</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="256.68" y="577.644" width="29.232" height="10.8">przed</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="288.96" y="577.644" width="66.636" height="10.8">poniesieniem</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="358.56" y="577.644" width="21.24" height="10.8">tego</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="382.8" y="577.644" width="47.76" height="10.8">wydatku.</TOKEN>
+    </TEXT><TEXT width="359.832" height="11.88" x="107.64" y="594.288">
+      <TOKEN bold="yes" italic="no" font-size="12" x="107.64" y="598.404" width="9" height="10.8">2.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="128.16" y="598.404" width="14.04" height="10.8">Za</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="153.72" y="598.404" width="43.272" height="10.8">wydatek</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="208.56" y="598.404" width="34.008" height="10.8">uznaje</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="254.04" y="594.288" width="13.368" height="15.996">się</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="278.88" y="594.288" width="40.008" height="15.996">wartość</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="330.48" y="598.404" width="80.64" height="10.8">zgromadzonego</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="422.64" y="598.404" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="442.8" y="598.404" width="24.672" height="10.8">roku</TOKEN>
+    </TEXT><TEXT width="385.596" height="11.88" x="82.2" y="615.048">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="619.164" width="66.756" height="10.8">podatkowym</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="154.08" y="619.164" width="34.68" height="10.8">mienia</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="193.92" y="619.164" width="16.632" height="10.8">lub</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="215.76" y="615.048" width="48.048" height="15.996">wysokość</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="268.92" y="619.164" width="83.352" height="10.8">wydatkowanych</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="357.48" y="619.164" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="371.28" y="619.164" width="24.672" height="10.8">roku</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="401.16" y="619.164" width="66.636" height="10.8">podatkowym</TOKEN>
+    </TEXT><TEXT width="385.584" height="15.996" x="82.2" y="635.808">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="635.808" width="47.04" height="15.996">środków,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="132.24" y="639.924" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="143.88" y="639.924" width="56.112" height="10.8">przypadku</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="202.92" y="639.924" width="18.72" height="10.8">gdy</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="224.64" y="639.924" width="15.408" height="10.8">nie</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="243" y="639.924" width="17.916" height="10.8">jest</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="263.88" y="635.808" width="42.048" height="15.996">możliwe</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="308.88" y="639.924" width="45.528" height="10.8">ustalenie</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="357.36" y="639.924" width="24.672" height="10.8">roku</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="385.08" y="639.924" width="71.04" height="10.8">podatkowego,</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="459.12" y="639.924" width="8.664" height="10.8">w</TOKEN>
+    </TEXT><TEXT width="161.4" height="11.88" x="82.2" y="656.568">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="660.684" width="37.956" height="10.8">którym</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="123.12" y="660.684" width="69.36" height="10.8">zgromadzono</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="195.48" y="660.684" width="9.288" height="10.8">te</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="207.84" y="656.568" width="35.76" height="15.996">środki.></TOKEN>
+    </TEXT></PAGE>
 
-  </PAGE>
-
-
-  <PAGE width="595.32" height="841.92" number="19" id="p19">
-    <MEDIABOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <CROPBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <BLEEDBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <ARTBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <TRIMBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-    <TEXT width="70.974" height="8.1" id="p19_t1" x="56.64" y="37.413">
-      <TOKEN sid="p19_s6464" id="p19_w1" font-name="Times-Roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="56.64" y="37.413" base="43.56" width="45.756" height="8.1">©Kancelaria</TOKEN>
-      <TOKEN sid="p19_s6465" id="p19_w2" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="104.637" y="37.413" base="43.56" width="22.977" height="8.1">Sejmu</TOKEN>
-    </TEXT>
-    <TEXT width="33.057" height="8.1" id="p19_t2" x="477.237" y="37.413">
-      <TOKEN sid="p19_s6467" id="p19_w3" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="477.237" y="37.413" base="43.56" width="5.733" height="8.1">s.</TOKEN>
-      <TOKEN sid="p19_s6468" id="p19_w4" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="485.274" y="37.413" base="43.56" width="25.02" height="8.1">19/253</TOKEN>
-    </TEXT>
-    <TEXT width="42.057" height="8.1" id="p19_t3" x="425.64" y="793.173">
-      <TOKEN sid="p19_s6470" id="p19_w5" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="425.64" y="793.173" base="799.32" width="42.057" height="8.1">2015-11-02</TOKEN>
-    </TEXT>
-    <TEXT width="385.416" height="11.88" id="p19_t4" x="82.2" y="55.716">
-      <TOKEN sid="p19_s6471" id="p19_w6" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="59.604" base="67.8" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p19_s6472" id="p19_w7" font-name="TimesNewRomanPSMT" symbolic="yes" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="90.6" y="55.716" base="67.8" width="25.896" height="15.768">jeżeli</TOKEN>
-      <TOKEN sid="p19_s6473" id="p19_w8" font-name="timesnewromanpsmt" symbolic="yes" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="120.12" y="55.716" base="67.8" width="41.328" height="15.768">odpłatne</TOKEN>
-      <TOKEN sid="p19_s6474" id="p19_w9" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="165" y="59.604" base="67.8" width="31.368" height="10.8">zbycie</TOKEN>
-      <TOKEN sid="p19_s6475" id="p19_w10" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="199.92" y="59.604" base="67.8" width="14.808" height="10.8">nie</TOKEN>
-      <TOKEN sid="p19_s6476" id="p19_w11" font-name="timesnewromanpsmt" symbolic="yes" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="218.28" y="55.716" base="67.8" width="45.288" height="15.768">następuje</TOKEN>
-      <TOKEN sid="p19_s6477" id="p19_w12" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="267.12" y="59.604" base="67.8" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p19_s6478" id="p19_w13" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="279.48" y="59.604" base="67.8" width="53.4" height="10.8">wykonaniu</TOKEN>
-      <TOKEN sid="p19_s6479" id="p19_w14" font-name="timesnewromanpsmt" symbolic="yes" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="336.48" y="55.716" base="67.8" width="57.216" height="15.768">działalności</TOKEN>
-      <TOKEN sid="p19_s6480" id="p19_w15" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="397.32" y="59.604" base="67.8" width="63.336" height="10.8">gospodarczej</TOKEN>
-    </TEXT>
-
-
-    <TEXT width="410.904" height="11.88" id="p17_t13" x="56.64" y="242.076">
-      <TOKEN sid="p17_s5944" id="p17_w78" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="245.964" base="254.16" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p17_s5945" id="p17_w79" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="65.16" y="245.964" base="254.16" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p17_s5946" id="p17_w80" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="77.76" y="245.964" base="254.16" width="35.28" height="10.8">ramach</TOKEN>
-      <TOKEN sid="p17_s5947" id="p17_w81" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="117" y="245.964" base="254.16" width="42.72" height="10.8">stosunku</TOKEN>
-      <TOKEN sid="p17_s5948" id="p17_w82" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="163.68" y="245.964" base="254.16" width="26.64" height="10.8">pracy</TOKEN>
-      <TOKEN sid="p17_s5949" id="p17_w83" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="194.28" y="245.964" base="254.16" width="15.36" height="10.8">lub</TOKEN>
-      <TOKEN sid="p17_s5950" id="p17_w84" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="213.6" y="242.076" base="254.16" width="71.16" height="15.768">spółdzielczego</TOKEN>
-      <TOKEN sid="p17_s5951" id="p17_w85" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="288.72" y="245.964" base="254.16" width="42.84" height="10.8">stosunku</TOKEN>
-      <TOKEN sid="p17_s5952" id="p17_w86" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="335.52" y="245.964" base="254.16" width="29.52" height="10.8">pracy,</TOKEN>
-      <TOKEN sid="p17_s5953" id="p17_w87" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="369" y="245.964" base="254.16" width="42.12" height="10.8">podatnik</TOKEN>
-      <TOKEN sid="p17_s5954" id="p17_w88" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="415.08" y="245.964" base="254.16" width="14.64" height="10.8">ten</TOKEN>
-      <TOKEN sid="p17_s5955" id="p17_w89" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="433.68" y="245.964" base="254.16" width="21.216" height="10.8">traci</TOKEN>
-      <TOKEN sid="p17_s5956" id="p17_w90" font-name="times-roman" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="458.88" y="245.964" base="254.16" width="8.664" height="10.8">w</TOKEN>
-    </TEXT>
-
-
-
-
-
-    <TEXT width="385.464" height="11.88" id="p15_t21" x="82.2" y="413.484">
-      <TOKEN sid="p15_s5307" id="p15_w165" font-name="Times-Italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="417.564" base="425.76" width="19.68" height="10.8">[2.</TOKEN>
-      <TOKEN sid="p15_s5308" id="p15_w166" font-name="TimesNewRomanPS-ItalicMT" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.12" y="413.484" base="425.76" width="27.216" height="15.96">Jeżeli</TOKEN>
-      <TOKEN sid="p15_s5309" id="p15_w167" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="135.6" y="417.564" base="425.76" width="42.048" height="10.8">podatnik</TOKEN>
-      <TOKEN sid="p15_s5310" id="p15_w168" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="180.84" y="417.564" base="425.76" width="40.608" height="10.8">uzyskuje</TOKEN>
-      <TOKEN sid="p15_s5311" id="p15_w169" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="224.64" y="417.564" base="425.76" width="40.608" height="10.8">dochody</TOKEN>
-      <TOKEN sid="p15_s5312" id="p15_w170" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="268.44" y="417.564" base="425.76" width="4.668" height="10.8">z</TOKEN>
-      <TOKEN sid="p15_s5313" id="p15_w171" font-name="timesnewromanps-italicmt" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="276.36" y="413.484" base="425.76" width="30.696" height="15.96">więcej</TOKEN>
-      <TOKEN sid="p15_s5314" id="p15_w172" font-name="timesnewromanps-italicmt" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="310.32" y="413.484" base="425.76" width="14.028" height="15.96">niż</TOKEN>
-      <TOKEN sid="p15_s5315" id="p15_w173" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="327.6" y="417.564" base="425.76" width="37.92" height="10.8">jednego</TOKEN>
-      <TOKEN sid="p15_s5316" id="p15_w174" font-name="timesnewromanps-italicmt" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="368.76" y="413.484" base="425.76" width="33.72" height="15.96">źródła,</TOKEN>
-      <TOKEN sid="p15_s5317" id="p15_w175" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="405.72" y="417.564" base="425.76" width="61.944" height="10.8">przedmiotem</TOKEN>
-    </TEXT>
-    <TEXT width="411.12" height="11.88" id="p15_t22" x="56.64" y="434.244">
-      <TOKEN sid="p15_s5318" id="p15_w176" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="438.324" base="446.52" width="74.04" height="10.8">opodatkowania</TOKEN>
-      <TOKEN sid="p15_s5319" id="p15_w177" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="135.84" y="438.324" base="446.52" width="8.004" height="10.8">w</TOKEN>
-      <TOKEN sid="p15_s5320" id="p15_w178" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="148.92" y="438.324" base="446.52" width="31.944" height="10.8">danym</TOKEN>
-      <TOKEN sid="p15_s5321" id="p15_w179" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="186" y="438.324" base="446.52" width="21.96" height="10.8">roku</TOKEN>
-      <TOKEN sid="p15_s5322" id="p15_w180" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="213.12" y="438.324" base="446.52" width="60.624" height="10.8">podatkowym</TOKEN>
-      <TOKEN sid="p15_s5323" id="p15_w181" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="278.88" y="438.324" base="446.52" width="19.68" height="10.8">jest,</TOKEN>
-      <TOKEN sid="p15_s5324" id="p15_w182" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="303.72" y="438.324" base="446.52" width="4.668" height="10.8">z</TOKEN>
-      <TOKEN sid="p15_s5325" id="p15_w183" font-name="timesnewromanps-italicmt" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="313.56" y="434.244" base="446.52" width="66.504" height="15.96">zastrzeżeniem</TOKEN>
-      <TOKEN sid="p15_s5326" id="p15_w184" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="385.2" y="438.324" base="446.52" width="17.04" height="10.8">art.</TOKEN>
-      <TOKEN sid="p15_s5327" id="p15_w185" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="407.4" y="438.324" base="446.52" width="38.16" height="10.8">29–30c,</TOKEN>
-      <TOKEN sid="p15_s5328" id="p15_w186" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="450.72" y="438.324" base="446.52" width="17.04" height="10.8">art.</TOKEN>
-    </TEXT>
-    <TEXT width="410.976" height="11.88" id="p15_t23" x="56.64" y="454.884">
-      <TOKEN sid="p15_s5329" id="p15_w187" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="458.964" base="467.16" width="20.28" height="10.8">30e,</TOKEN>
-      <TOKEN sid="p15_s5330" id="p15_w188" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="84.36" y="458.964" base="467.16" width="17.04" height="10.8">art.</TOKEN>
-      <TOKEN sid="p15_s5331" id="p15_w189" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="108.84" y="458.964" base="467.16" width="15.336" height="10.8">30f</TOKEN>
-      <TOKEN sid="p15_s5332" id="p15_w190" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="131.64" y="458.964" base="467.16" width="21.348" height="10.8">oraz</TOKEN>
-      <TOKEN sid="p15_s5333" id="p15_w191" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="160.44" y="458.964" base="467.16" width="17.04" height="10.8">art.</TOKEN>
-      <TOKEN sid="p15_s5334" id="p15_w192" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="184.8" y="458.964" base="467.16" width="12" height="10.8">44</TOKEN>
-      <TOKEN sid="p15_s5335" id="p15_w193" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="204.24" y="458.964" base="467.16" width="17.04" height="10.8">ust.</TOKEN>
-      <TOKEN sid="p15_s5336" id="p15_w194" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="228.72" y="458.964" base="467.16" width="11.328" height="10.8">7e</TOKEN>
-      <TOKEN sid="p15_s5337" id="p15_w195" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="247.44" y="458.964" base="467.16" width="3.336" height="10.8">i</TOKEN>
-      <TOKEN sid="p15_s5338" id="p15_w196" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="258.24" y="458.964" base="467.16" width="12.36" height="10.8">7f,</TOKEN>
-      <TOKEN sid="p15_s5339" id="p15_w197" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="278.04" y="458.964" base="467.16" width="25.2" height="10.8">suma</TOKEN>
-      <TOKEN sid="p15_s5340" id="p15_w198" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="310.68" y="458.964" base="467.16" width="49.284" height="10.8">dochodów</TOKEN>
-      <TOKEN sid="p15_s5341" id="p15_w199" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="367.44" y="458.964" base="467.16" width="4.668" height="10.8">z</TOKEN>
-      <TOKEN sid="p15_s5342" id="p15_w200" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="379.56" y="458.964" base="467.16" width="50.64" height="10.8">wszystkich</TOKEN>
-      <TOKEN sid="p15_s5343" id="p15_w201" font-name="timesnewromanps-italicmt" symbolic="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="437.64" y="454.884" base="467.16" width="29.976" height="15.96">źródeł</TOKEN>
-    </TEXT>
-    <TEXT width="65.628" height="10.8" id="p15_t24" x="56.64" y="479.724">
-      <TOKEN sid="p15_s5344" id="p15_w202" font-name="times-italic" serif="yes" bold="no" italic="yes" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="479.724" base="487.92" width="65.628" height="10.8">przychodów.]</TOKEN>
-    </TEXT>
-
-
-
-
-    <TEXT width="385.368" height="11.88" id="p1_t29" x="82.2" y="642.156">
-      <TOKEN sid="p1_s246" id="p1_w198" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="646.044" base="654.24" width="9" height="10.8">2.</TOKEN>
-      <TOKEN sid="p1_s247" id="p1_w199" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="94.56" y="642.156" base="654.24" width="65.208" height="15.768">Działalnością</TOKEN>
-      <TOKEN sid="p1_s248" id="p1_w200" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="163.2" y="642.156" base="654.24" width="41.52" height="15.768">rolniczą,</TOKEN>
-      <TOKEN sid="p1_s249" id="p1_w201" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="208.2" y="646.044" base="654.24" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p1_s250" id="p1_w202" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="220.2" y="646.044" base="654.24" width="54.6" height="10.8">rozumieniu</TOKEN>
-      <TOKEN sid="p1_s251" id="p1_w203" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="278.16" y="646.044" base="654.24" width="17.04" height="10.8">ust.</TOKEN>
-      <TOKEN sid="p1_s252" id="p1_w204" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="298.56" y="646.044" base="654.24" width="6" height="10.8">1</TOKEN>
-      <TOKEN sid="p1_s253" id="p1_w205" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="307.92" y="646.044" base="654.24" width="15.336" height="10.8">pkt</TOKEN>
-      <TOKEN sid="p1_s254" id="p1_w206" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="326.64" y="646.044" base="654.24" width="9" height="10.8">1,</TOKEN>
-      <TOKEN sid="p1_s255" id="p1_w207" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="339" y="646.044" base="654.24" width="16.656" height="10.8">jest</TOKEN>
-      <TOKEN sid="p1_s256" id="p1_w208" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="359.04" y="642.156" base="654.24" width="53.928" height="15.768">działalność</TOKEN>
-      <TOKEN sid="p1_s257" id="p1_w209" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="416.28" y="642.156" base="654.24" width="51.288" height="15.768">polegająca</TOKEN>
-    </TEXT>
-    <TEXT width="410.976" height="11.88" id="p1_t30" x="56.64" y="662.916">
-      <TOKEN sid="p1_s258" id="p1_w210" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="666.804" base="675" width="11.328" height="10.8">na</TOKEN>
-      <TOKEN sid="p1_s259" id="p1_w211" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="72.12" y="666.804" base="675" width="61.92" height="10.8">wytwarzaniu</TOKEN>
-      <TOKEN sid="p1_s260" id="p1_w212" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="138.24" y="666.804" base="675" width="51.984" height="10.8">produktów</TOKEN>
-      <TOKEN sid="p1_s261" id="p1_w213" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="194.4" y="662.916" base="675" width="50.64" height="15.768">roślinnych</TOKEN>
-      <TOKEN sid="p1_s262" id="p1_w214" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="249.24" y="666.804" base="675" width="15.36" height="10.8">lub</TOKEN>
-      <TOKEN sid="p1_s263" id="p1_w215" font-name="timesnewromanpsmt" serif="yes" fixed-width="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="268.8" y="662.916" base="675" width="59.76" height="15.768">zwierzęcych</TOKEN>
-      <TOKEN sid="p1_s264" id="p1_w216" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="332.76" y="666.804" base="675" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p1_s265" id="p1_w217" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="345.6" y="666.804" base="675" width="28.008" height="10.8">stanie</TOKEN>
-      <TOKEN sid="p1_s266" id="p1_w218" font-name="times-roman" symbolic="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="377.76" y="666.804" base="675" width="89.856" height="10.8">nieprzetworzonym.</TOKEN>
-    </TEXT>
-
-
-
-
-    <TEXT width="411.12" height="10.8" id="p6_t13" x="56.64" y="245.964">
-      <TOKEN sid="p6_s2070" id="p6_w119" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="245.964" base="254.16" width="21.276" height="10.8">19a)</TOKEN>
-      <TOKEN sid="p6_s2071" id="p6_w120" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="245.964" base="254.16" width="62.568" height="10.8">samochodzie</TOKEN>
-      <TOKEN sid="p6_s2072" id="p6_w121" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="151.2" y="245.964" base="254.16" width="52.656" height="10.8">osobowym</TOKEN>
-      <TOKEN sid="p6_s2073" id="p6_w122" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="210.48" y="245.964" base="254.16" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p6_s2074" id="p6_w123" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="222.96" y="245.964" base="254.16" width="38.448" height="10.8">oznacza</TOKEN>
-      <TOKEN sid="p6_s2075" id="p6_w124" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="267.84" y="245.964" base="254.16" width="9.36" height="10.8">to</TOKEN>
-      <TOKEN sid="p6_s2076" id="p6_w125" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="283.68" y="245.964" base="254.16" width="31.92" height="10.8">pojazd</TOKEN>
-      <TOKEN sid="p6_s2077" id="p6_w126" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="322.2" y="245.964" base="254.16" width="69.24" height="10.8">samochodowy</TOKEN>
-      <TOKEN sid="p6_s2078" id="p6_w127" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="397.92" y="245.964" base="254.16" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p6_s2079" id="p6_w128" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="413.04" y="245.964" base="254.16" width="54.72" height="10.8">rozumieniu</TOKEN>
-    </TEXT>
-    <TEXT width="385.536" height="11.88" id="p6_t14" x="82.2" y="262.716">
-      <TOKEN sid="p6_s2080" id="p6_w129" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="266.604" base="274.8" width="49.224" height="10.8">przepisów</TOKEN>
-      <TOKEN sid="p6_s2081" id="p6_w130" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="145.56" y="266.604" base="274.8" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p6_s2082" id="p6_w131" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="165.72" y="266.604" base="274.8" width="27.24" height="10.8">ruchu</TOKEN>
-      <TOKEN sid="p6_s2083" id="p6_w132" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="207.24" y="266.604" base="274.8" width="51.936" height="10.8">drogowym</TOKEN>
-      <TOKEN sid="p6_s2084" id="p6_w133" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="273.36" y="266.604" base="274.8" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p6_s2085" id="p6_w134" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="293.52" y="266.604" base="274.8" width="67.896" height="10.8">dopuszczalnej</TOKEN>
-      <TOKEN sid="p6_s2086" id="p6_w135" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="375.6" y="266.604" base="274.8" width="28.008" height="10.8">masie</TOKEN>
-      <TOKEN sid="p6_s2087" id="p6_w136" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="417.72" y="262.716" base="274.8" width="50.016" height="15.768">całkowitej</TOKEN>
-    </TEXT>
-    <TEXT width="385.488" height="15.768" id="p6_t15" x="82.2" y="283.476">
-      <TOKEN sid="p6_s2088" id="p6_w137" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="283.476" base="295.56" width="89.136" height="15.768">nieprzekraczającej</TOKEN>
-      <TOKEN sid="p6_s2089" id="p6_w138" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="177.96" y="287.364" base="295.56" width="15" height="10.8">3,5</TOKEN>
-      <TOKEN sid="p6_s2090" id="p6_w139" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="199.56" y="287.364" base="295.56" width="24.48" height="10.8">tony,</TOKEN>
-      <TOKEN sid="p6_s2091" id="p6_w140" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="230.64" y="287.364" base="295.56" width="71.328" height="10.8">konstrukcyjnie</TOKEN>
-      <TOKEN sid="p6_s2092" id="p6_w141" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="308.52" y="287.364" base="295.56" width="65.88" height="10.8">przeznaczony</TOKEN>
-      <TOKEN sid="p6_s2093" id="p6_w142" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="381" y="287.364" base="295.56" width="12" height="10.8">do</TOKEN>
-      <TOKEN sid="p6_s2094" id="p6_w143" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="399.6" y="287.364" base="295.56" width="46.68" height="10.8">przewozu</TOKEN>
-      <TOKEN sid="p6_s2095" id="p6_w144" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="453" y="287.364" base="295.56" width="14.688" height="10.8">nie</TOKEN>
-    </TEXT>
-    <TEXT width="244.176" height="15.768" id="p6_t16" x="82.2" y="304.116">
-      <TOKEN sid="p6_s2096" id="p6_w145" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="304.116" base="316.2" width="31.176" height="15.768">więcej</TOKEN>
-      <TOKEN sid="p6_s2097" id="p6_w146" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="116.4" y="304.116" base="316.2" width="14.688" height="15.768">niż</TOKEN>
-      <TOKEN sid="p6_s2098" id="p6_w147" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="134.04" y="308.004" base="316.2" width="6" height="10.8">9</TOKEN>
-      <TOKEN sid="p6_s2099" id="p6_w148" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="143.04" y="308.004" base="316.2" width="22.68" height="10.8">osób</TOKEN>
-      <TOKEN sid="p6_s2100" id="p6_w149" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="168.72" y="304.116" base="316.2" width="34.008" height="15.768">łącznie</TOKEN>
-      <TOKEN sid="p6_s2101" id="p6_w150" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="205.8" y="308.004" base="316.2" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p6_s2102" id="p6_w151" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="214.08" y="304.116" base="316.2" width="46.92" height="15.768">kierowcą,</TOKEN>
-      <TOKEN sid="p6_s2103" id="p6_w152" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="264" y="308.004" base="316.2" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p6_s2104" id="p6_w153" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="272.28" y="304.116" base="316.2" width="54.096" height="15.768">wyjątkiem:</TOKEN>
-    </TEXT>
-    <TEXT width="385.44" height="11.88" id="p6_t17" x="82.2" y="324.876">
-      <TOKEN sid="p6_s2105" id="p6_w154" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="328.764" base="336.96" width="9.276" height="10.8">a)</TOKEN>
-      <TOKEN sid="p6_s2106" id="p6_w155" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="328.764" base="336.96" width="37.92" height="10.8">pojazdu</TOKEN>
-      <TOKEN sid="p6_s2107" id="p6_w156" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="148.56" y="328.764" base="336.96" width="80.76" height="10.8">samochodowego</TOKEN>
-      <TOKEN sid="p6_s2108" id="p6_w157" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="234" y="324.876" base="336.96" width="45.84" height="15.768">mającego</TOKEN>
-      <TOKEN sid="p6_s2109" id="p6_w158" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="284.52" y="328.764" base="336.96" width="26.04" height="10.8">jeden</TOKEN>
-      <TOKEN sid="p6_s2110" id="p6_w159" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="315.24" y="324.876" base="336.96" width="20.64" height="15.768">rząd</TOKEN>
-      <TOKEN sid="p6_s2111" id="p6_w160" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="340.56" y="324.876" base="336.96" width="39" height="15.768">siedzeń,</TOKEN>
-      <TOKEN sid="p6_s2112" id="p6_w161" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="384.24" y="328.764" base="336.96" width="25.32" height="10.8">który</TOKEN>
-      <TOKEN sid="p6_s2113" id="p6_w162" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="414.24" y="328.764" base="336.96" width="53.4" height="10.8">oddzielony</TOKEN>
-    </TEXT>
-    <TEXT width="361.728" height="11.88" id="p6_t18" x="105.96" y="345.516">
-      <TOKEN sid="p6_s2114" id="p6_w163" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="349.404" base="357.6" width="16.656" height="10.8">jest</TOKEN>
-      <TOKEN sid="p6_s2115" id="p6_w164" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="128.64" y="349.404" base="357.6" width="12" height="10.8">od</TOKEN>
-      <TOKEN sid="p6_s2116" id="p6_w165" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="146.64" y="345.516" base="357.6" width="29.136" height="15.768">części</TOKEN>
-      <TOKEN sid="p6_s2117" id="p6_w166" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="181.8" y="349.404" base="357.6" width="68.616" height="10.8">przeznaczonej</TOKEN>
-      <TOKEN sid="p6_s2118" id="p6_w167" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="256.44" y="349.404" base="357.6" width="12" height="10.8">do</TOKEN>
-      <TOKEN sid="p6_s2119" id="p6_w168" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="274.44" y="349.404" base="357.6" width="46.56" height="10.8">przewozu</TOKEN>
-      <TOKEN sid="p6_s2120" id="p6_w169" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="327" y="345.516" base="357.6" width="47.424" height="15.768">ładunków</TOKEN>
-      <TOKEN sid="p6_s2121" id="p6_w170" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="380.4" y="345.516" base="357.6" width="29.928" height="15.768">ścianą</TOKEN>
-      <TOKEN sid="p6_s2122" id="p6_w171" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="416.28" y="349.404" base="357.6" width="15.36" height="10.8">lub</TOKEN>
-      <TOKEN sid="p6_s2123" id="p6_w172" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="437.64" y="345.516" base="357.6" width="30.048" height="15.768">trwałą</TOKEN>
-    </TEXT>
-    <TEXT width="51.216" height="15.768" id="p6_t19" x="105.96" y="366.276">
-      <TOKEN sid="p6_s2124" id="p6_w173" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="366.276" base="378.36" width="51.216" height="15.768">przegrodą:</TOKEN>
-    </TEXT>
-    <TEXT width="361.56" height="10.8" id="p6_t20" x="105.96" y="390.804">
-      <TOKEN sid="p6_s2125" id="p6_w174" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="390.804" base="399" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p6_s2126" id="p6_w175" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="125.88" y="390.804" base="399" width="81.84" height="10.8">klasyfikowanego</TOKEN>
-      <TOKEN sid="p6_s2127" id="p6_w176" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="215.4" y="390.804" base="399" width="11.328" height="10.8">na</TOKEN>
-      <TOKEN sid="p6_s2128" id="p6_w177" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="234.24" y="390.804" base="399" width="48.768" height="10.8">podstawie</TOKEN>
-      <TOKEN sid="p6_s2129" id="p6_w178" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="290.52" y="390.804" base="399" width="49.344" height="10.8">przepisów</TOKEN>
-      <TOKEN sid="p6_s2130" id="p6_w179" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="347.4" y="390.804" base="399" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p6_s2131" id="p6_w180" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="361.08" y="390.804" base="399" width="27.36" height="10.8">ruchu</TOKEN>
-      <TOKEN sid="p6_s2132" id="p6_w181" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="396" y="390.804" base="399" width="51.936" height="10.8">drogowym</TOKEN>
-      <TOKEN sid="p6_s2133" id="p6_w182" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="455.52" y="390.804" base="399" width="12" height="10.8">do</TOKEN>
-    </TEXT>
-    <TEXT width="180.6" height="10.8" id="p6_t21" x="125.88" y="411.564">
-      <TOKEN sid="p6_s2134" id="p6_w183" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="125.88" y="411.564" base="419.76" width="57.216" height="10.8">podrodzaju:</TOKEN>
-      <TOKEN sid="p6_s2135" id="p6_w184" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="186.12" y="411.564" base="419.76" width="81.72" height="10.8">wielozadaniowy,</TOKEN>
-      <TOKEN sid="p6_s2136" id="p6_w185" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="270.84" y="411.564" base="419.76" width="17.28" height="10.8">van</TOKEN>
-      <TOKEN sid="p6_s2137" id="p6_w186" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="291.12" y="411.564" base="419.76" width="15.36" height="10.8">lub</TOKEN>
-    </TEXT>
-    <TEXT width="288.12" height="11.88" id="p6_t22" x="105.96" y="428.316">
-      <TOKEN sid="p6_s2138" id="p6_w187" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.96" y="432.204" base="440.4" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p6_s2139" id="p6_w188" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="125.88" y="432.204" base="440.4" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p6_s2140" id="p6_w189" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="134.16" y="428.316" base="440.4" width="35.928" height="15.768">otwartą</TOKEN>
-      <TOKEN sid="p6_s2141" id="p6_w190" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="173.16" y="428.316" base="440.4" width="34.608" height="15.768">częścią</TOKEN>
-      <TOKEN sid="p6_s2142" id="p6_w191" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="210.72" y="428.316" base="440.4" width="65.328" height="15.768">przeznaczoną</TOKEN>
-      <TOKEN sid="p6_s2143" id="p6_w192" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="279" y="432.204" base="440.4" width="12" height="10.8">do</TOKEN>
-      <TOKEN sid="p6_s2144" id="p6_w193" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="294" y="432.204" base="440.4" width="46.68" height="10.8">przewozu</TOKEN>
-      <TOKEN sid="p6_s2145" id="p6_w194" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="343.68" y="428.316" base="440.4" width="50.4" height="15.768">ładunków.</TOKEN>
-    </TEXT>
-
-
-
-    <TEXT width="66.48" height="15.996" id="p146_t16" x="241.68" y="303.768">
-      <TOKEN sid="p146_s50714" id="p146_w111" font-name="TimesNewRomanPS-BoldMT" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="241.68" y="303.768" base="316.08" width="51.456" height="15.996">&lt;Rozdział</TOKEN>
-      <TOKEN sid="p146_s50715" id="p146_w112" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="296.16" y="307.884" base="316.08" width="12" height="10.8">1a</TOKEN>
-    </TEXT>
-    <TEXT width="363.072" height="11.88" id="p146_t17" x="93.36" y="324.528">
-      <TOKEN sid="p146_s50716" id="p146_w113" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="93.36" y="328.644" base="336.84" width="81.528" height="10.8">Opodatkowanie</TOKEN>
-      <TOKEN sid="p146_s50717" id="p146_w114" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="177.84" y="328.644" base="336.84" width="62.544" height="10.8">przychodów</TOKEN>
-      <TOKEN sid="p146_s50718" id="p146_w115" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="243.36" y="324.528" base="336.84" width="83.952" height="15.996">nieznajdujących</TOKEN>
-      <TOKEN sid="p146_s50719" id="p146_w116" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="330.36" y="328.644" base="336.84" width="45.36" height="10.8">pokrycia</TOKEN>
-      <TOKEN sid="p146_s50720" id="p146_w117" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="378.72" y="328.644" base="336.84" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50721" id="p146_w118" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="390.36" y="328.644" base="336.84" width="66.072" height="10.8">ujawnionych</TOKEN>
-    </TEXT>
-    <TEXT width="272.352" height="15.996" id="p146_t18" x="138.72" y="345.288">
-      <TOKEN sid="p146_s50722" id="p146_w119" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="138.72" y="345.288" base="357.6" width="44.592" height="15.996">źródłach</TOKEN>
-      <TOKEN sid="p146_s50723" id="p146_w120" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="186.36" y="349.404" base="357.6" width="16.752" height="10.8">lub</TOKEN>
-      <TOKEN sid="p146_s50724" id="p146_w121" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="206.16" y="345.288" base="357.6" width="71.832" height="15.996">pochodzących</TOKEN>
-      <TOKEN sid="p146_s50725" id="p146_w122" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="281.04" y="349.404" base="357.6" width="10.608" height="10.8">ze</TOKEN>
-      <TOKEN sid="p146_s50726" id="p146_w123" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="294.6" y="345.288" base="357.6" width="32.016" height="15.996">źródeł</TOKEN>
-      <TOKEN sid="p146_s50727" id="p146_w124" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="329.64" y="349.404" base="357.6" width="81.432" height="10.8">nieujawnionych</TOKEN>
-    </TEXT>
-    <TEXT width="360.12" height="11.88" id="p146_t19" x="107.64" y="366.048">
-      <TOKEN sid="p146_s50728" id="p146_w125" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="370.164" base="378.36" width="20.88" height="10.8">Art.</TOKEN>
-      <TOKEN sid="p146_s50729" id="p146_w126" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="132.72" y="370.164" base="378.36" width="21.72" height="10.8">25b.</TOKEN>
-      <TOKEN sid="p146_s50730" id="p146_w127" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="158.64" y="370.164" base="378.36" width="9" height="10.8">1.</TOKEN>
-      <TOKEN sid="p146_s50731" id="p146_w128" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="171.84" y="370.164" base="378.36" width="14.04" height="10.8">Za</TOKEN>
-      <TOKEN sid="p146_s50732" id="p146_w129" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="190.08" y="370.164" base="378.36" width="57.24" height="10.8">przychody,</TOKEN>
-      <TOKEN sid="p146_s50733" id="p146_w130" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="251.52" y="370.164" base="378.36" width="6" height="10.8">o</TOKEN>
-      <TOKEN sid="p146_s50734" id="p146_w131" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="261.72" y="370.164" base="378.36" width="39.912" height="10.8">których</TOKEN>
-      <TOKEN sid="p146_s50735" id="p146_w132" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="305.88" y="370.164" base="378.36" width="30.6" height="10.8">mowa</TOKEN>
-      <TOKEN sid="p146_s50736" id="p146_w133" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="340.92" y="370.164" base="378.36" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50737" id="p146_w134" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="353.76" y="370.164" base="378.36" width="18.24" height="10.8">art.</TOKEN>
-      <TOKEN sid="p146_s50738" id="p146_w135" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="376.2" y="370.164" base="378.36" width="12" height="10.8">20</TOKEN>
-      <TOKEN sid="p146_s50739" id="p146_w136" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="392.52" y="370.164" base="378.36" width="18.36" height="10.8">ust.</TOKEN>
-      <TOKEN sid="p146_s50740" id="p146_w137" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="415.08" y="370.164" base="378.36" width="15.72" height="10.8">1b,</TOKEN>
-      <TOKEN sid="p146_s50741" id="p146_w138" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="435" y="366.048" base="378.36" width="32.76" height="15.996">uważa</TOKEN>
-    </TEXT>
-    <TEXT width="74.316" height="15.996" id="p146_t20" x="82.2" y="386.808">
-      <TOKEN sid="p146_s50742" id="p146_w139" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="386.808" base="399.12" width="13.368" height="15.996">się</TOKEN>
-      <TOKEN sid="p146_s50743" id="p146_w140" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="98.52" y="390.924" base="399.12" width="57.996" height="10.8">przychody:</TOKEN>
-    </TEXT>
-    <TEXT width="385.368" height="11.88" id="p146_t21" x="82.2" y="407.568">
-      <TOKEN sid="p146_s50744" id="p146_w141" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="411.684" base="419.88" width="9.996" height="10.8">1)</TOKEN>
-      <TOKEN sid="p146_s50745" id="p146_w142" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="407.568" base="419.88" width="71.328" height="15.996">nieznajdujące</TOKEN>
-      <TOKEN sid="p146_s50746" id="p146_w143" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="191.88" y="411.684" base="419.88" width="45.36" height="10.8">pokrycia</TOKEN>
-      <TOKEN sid="p146_s50747" id="p146_w144" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="250.2" y="411.684" base="419.88" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50748" id="p146_w145" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="271.8" y="411.684" base="419.88" width="66.072" height="10.8">ujawnionych</TOKEN>
-      <TOKEN sid="p146_s50749" id="p146_w146" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="350.76" y="407.568" base="419.88" width="44.592" height="15.996">źródłach</TOKEN>
-      <TOKEN sid="p146_s50750" id="p146_w147" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="408.36" y="407.568" base="419.88" width="59.208" height="15.996">obejmujące</TOKEN>
-    </TEXT>
-    <TEXT width="360.144" height="11.88" id="p146_t22" x="107.64" y="428.328">
-      <TOKEN sid="p146_s50751" id="p146_w148" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="432.444" base="440.64" width="54" height="10.8">przychody</TOKEN>
-      <TOKEN sid="p146_s50752" id="p146_w149" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="169.68" y="432.444" base="440.64" width="10.608" height="10.8">ze</TOKEN>
-      <TOKEN sid="p146_s50753" id="p146_w150" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="188.28" y="428.328" base="440.64" width="32.016" height="15.996">źródeł</TOKEN>
-      <TOKEN sid="p146_s50754" id="p146_w151" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="228.48" y="432.444" base="440.64" width="61.992" height="10.8">wskazanych</TOKEN>
-      <TOKEN sid="p146_s50755" id="p146_w152" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="298.56" y="432.444" base="440.64" width="27.888" height="10.8">przez</TOKEN>
-      <TOKEN sid="p146_s50756" id="p146_w153" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="334.44" y="432.444" base="440.64" width="55.32" height="10.8">podatnika,</TOKEN>
-      <TOKEN sid="p146_s50757" id="p146_w154" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="397.8" y="432.444" base="440.64" width="53.328" height="10.8">ujawnione</TOKEN>
-      <TOKEN sid="p146_s50758" id="p146_w155" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="459.12" y="432.444" base="440.64" width="8.664" height="10.8">w</TOKEN>
-    </TEXT>
-    <TEXT width="136.68" height="15.996" id="p146_t23" x="107.64" y="449.088">
-      <TOKEN sid="p146_s50759" id="p146_w156" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="449.088" base="461.4" width="79.356" height="15.996">nieprawidłowej</TOKEN>
-      <TOKEN sid="p146_s50760" id="p146_w157" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="189.96" y="449.088" base="461.4" width="54.36" height="15.996">wysokości,</TOKEN>
-    </TEXT>
-    <TEXT width="385.416" height="11.88" id="p146_t24" x="82.2" y="469.848">
-      <TOKEN sid="p146_s50761" id="p146_w158" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="473.964" base="482.16" width="9.996" height="10.8">2)</TOKEN>
-      <TOKEN sid="p146_s50762" id="p146_w159" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="473.964" base="482.16" width="10.608" height="10.8">ze</TOKEN>
-      <TOKEN sid="p146_s50763" id="p146_w160" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="131.52" y="469.848" base="482.16" width="32.016" height="15.996">źródeł</TOKEN>
-      <TOKEN sid="p146_s50764" id="p146_w161" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="176.88" y="473.964" base="482.16" width="81.432" height="10.8">nieujawnionych</TOKEN>
-      <TOKEN sid="p146_s50765" id="p146_w162" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="271.68" y="469.848" base="482.16" width="59.208" height="15.996">obejmujące</TOKEN>
-      <TOKEN sid="p146_s50766" id="p146_w163" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="344.28" y="473.964" base="482.16" width="54" height="10.8">przychody</TOKEN>
-      <TOKEN sid="p146_s50767" id="p146_w164" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="411.6" y="473.964" base="482.16" width="10.608" height="10.8">ze</TOKEN>
-      <TOKEN sid="p146_s50768" id="p146_w165" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="435.6" y="469.848" base="482.16" width="32.016" height="15.996">źródeł</TOKEN>
-    </TEXT>
-    <TEXT width="359.832" height="10.8" id="p146_t25" x="107.64" y="494.724">
-      <TOKEN sid="p146_s50769" id="p146_w166" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="494.724" base="502.92" width="77.352" height="10.8">niewskazanych</TOKEN>
-      <TOKEN sid="p146_s50770" id="p146_w167" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="196.8" y="494.724" base="502.92" width="27.888" height="10.8">przez</TOKEN>
-      <TOKEN sid="p146_s50771" id="p146_w168" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="236.52" y="494.724" base="502.92" width="52.2" height="10.8">podatnika</TOKEN>
-      <TOKEN sid="p146_s50772" id="p146_w169" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="300.48" y="494.724" base="502.92" width="3.336" height="10.8">i</TOKEN>
-      <TOKEN sid="p146_s50773" id="p146_w170" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="315.48" y="494.724" base="502.92" width="70.632" height="10.8">nieustalonych</TOKEN>
-      <TOKEN sid="p146_s50774" id="p146_w171" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="397.92" y="494.724" base="502.92" width="27.888" height="10.8">przez</TOKEN>
-      <TOKEN sid="p146_s50775" id="p146_w172" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="437.52" y="494.724" base="502.92" width="29.952" height="10.8">organ</TOKEN>
-    </TEXT>
-    <TEXT width="210.036" height="10.8" id="p146_t26" x="107.64" y="515.484">
-      <TOKEN sid="p146_s50776" id="p146_w173" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="515.484" base="523.68" width="56.76" height="10.8">podatkowy</TOKEN>
-      <TOKEN sid="p146_s50777" id="p146_w174" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="167.4" y="515.484" base="523.68" width="16.632" height="10.8">lub</TOKEN>
-      <TOKEN sid="p146_s50778" id="p146_w175" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="187.08" y="515.484" base="523.68" width="29.952" height="10.8">organ</TOKEN>
-      <TOKEN sid="p146_s50779" id="p146_w176" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="220.08" y="515.484" base="523.68" width="41.256" height="10.8">kontroli</TOKEN>
-      <TOKEN sid="p146_s50780" id="p146_w177" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="264.36" y="515.484" base="523.68" width="53.316" height="10.8">skarbowej</TOKEN>
-    </TEXT>
-    <TEXT width="385.416" height="11.88" id="p146_t27" x="82.2" y="532.008">
-      <TOKEN sid="p146_s50781" id="p146_w178" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="536.124" base="544.32" width="6" height="10.8">–</TOKEN>
-      <TOKEN sid="p146_s50782" id="p146_w179" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="90.6" y="536.124" base="544.32" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50783" id="p146_w180" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="111.12" y="536.124" base="544.32" width="35.328" height="10.8">kwocie</TOKEN>
-      <TOKEN sid="p146_s50784" id="p146_w181" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="158.28" y="532.008" base="544.32" width="80.556" height="15.996">odpowiadającej</TOKEN>
-      <TOKEN sid="p146_s50785" id="p146_w182" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="250.68" y="532.008" base="544.32" width="50.088" height="15.996">nadwyżce</TOKEN>
-      <TOKEN sid="p146_s50786" id="p146_w183" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="312.6" y="536.124" base="544.32" width="44.712" height="10.8">wydatku</TOKEN>
-      <TOKEN sid="p146_s50787" id="p146_w184" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="369.12" y="536.124" base="544.32" width="19.392" height="10.8">nad</TOKEN>
-      <TOKEN sid="p146_s50788" id="p146_w185" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="400.32" y="536.124" base="544.32" width="67.296" height="10.8">przychodami</TOKEN>
-    </TEXT>
-    <TEXT width="64.716" height="10.8" id="p146_t28" x="82.2" y="556.884">
-      <TOKEN sid="p146_s50789" id="p146_w186" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="556.884" base="565.08" width="64.716" height="10.8">(dochodami)</TOKEN>
-    </TEXT>
-    <TEXT width="88.656" height="10.8" id="p146_t29" x="167.76" y="556.884">
-      <TOKEN sid="p146_s50790" id="p146_w187" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="167.76" y="556.884" base="565.08" width="88.656" height="10.8">opodatkowanymi</TOKEN>
-    </TEXT>
-    <TEXT width="16.632" height="10.8" id="p146_t30" x="277.32" y="556.884">
-      <TOKEN sid="p146_s50791" id="p146_w188" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="277.32" y="556.884" base="565.08" width="16.632" height="10.8">lub</TOKEN>
-    </TEXT>
-    <TEXT width="67.176" height="10.8" id="p146_t31" x="314.88" y="556.884">
-      <TOKEN sid="p146_s50792" id="p146_w189" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="314.88" y="556.884" base="565.08" width="67.176" height="10.8">przychodami</TOKEN>
-    </TEXT>
-    <TEXT width="64.716" height="10.8" id="p146_t32" x="402.96" y="556.884">
-      <TOKEN sid="p146_s50793" id="p146_w190" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="402.96" y="556.884" base="565.08" width="64.716" height="10.8">(dochodami)</TOKEN>
-    </TEXT>
-    <TEXT width="348.36" height="10.8" id="p146_t33" x="82.2" y="577.644">
-      <TOKEN sid="p146_s50794" id="p146_w191" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="577.644" base="585.84" width="107.16" height="10.8">nieopodatkowanymi,</TOKEN>
-      <TOKEN sid="p146_s50795" id="p146_w192" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="192.36" y="577.644" base="585.84" width="61.296" height="10.8">uzyskanymi</TOKEN>
-      <TOKEN sid="p146_s50796" id="p146_w193" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="256.68" y="577.644" base="585.84" width="29.232" height="10.8">przed</TOKEN>
-      <TOKEN sid="p146_s50797" id="p146_w194" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="288.96" y="577.644" base="585.84" width="66.636" height="10.8">poniesieniem</TOKEN>
-      <TOKEN sid="p146_s50798" id="p146_w195" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="358.56" y="577.644" base="585.84" width="21.24" height="10.8">tego</TOKEN>
-      <TOKEN sid="p146_s50799" id="p146_w196" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="382.8" y="577.644" base="585.84" width="47.76" height="10.8">wydatku.</TOKEN>
-    </TEXT>
-    <TEXT width="359.832" height="11.88" id="p146_t34" x="107.64" y="594.288">
-      <TOKEN sid="p146_s50800" id="p146_w197" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="107.64" y="598.404" base="606.6" width="9" height="10.8">2.</TOKEN>
-      <TOKEN sid="p146_s50801" id="p146_w198" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="128.16" y="598.404" base="606.6" width="14.04" height="10.8">Za</TOKEN>
-      <TOKEN sid="p146_s50802" id="p146_w199" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="153.72" y="598.404" base="606.6" width="43.272" height="10.8">wydatek</TOKEN>
-      <TOKEN sid="p146_s50803" id="p146_w200" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="208.56" y="598.404" base="606.6" width="34.008" height="10.8">uznaje</TOKEN>
-      <TOKEN sid="p146_s50804" id="p146_w201" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="254.04" y="594.288" base="606.6" width="13.368" height="15.996">się</TOKEN>
-      <TOKEN sid="p146_s50805" id="p146_w202" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="278.88" y="594.288" base="606.6" width="40.008" height="15.996">wartość</TOKEN>
-      <TOKEN sid="p146_s50806" id="p146_w203" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="330.48" y="598.404" base="606.6" width="80.64" height="10.8">zgromadzonego</TOKEN>
-      <TOKEN sid="p146_s50807" id="p146_w204" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="422.64" y="598.404" base="606.6" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50808" id="p146_w205" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="442.8" y="598.404" base="606.6" width="24.672" height="10.8">roku</TOKEN>
-    </TEXT>
-    <TEXT width="385.596" height="11.88" id="p146_t35" x="82.2" y="615.048">
-      <TOKEN sid="p146_s50809" id="p146_w206" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="619.164" base="627.36" width="66.756" height="10.8">podatkowym</TOKEN>
-      <TOKEN sid="p146_s50810" id="p146_w207" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="154.08" y="619.164" base="627.36" width="34.68" height="10.8">mienia</TOKEN>
-      <TOKEN sid="p146_s50811" id="p146_w208" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="193.92" y="619.164" base="627.36" width="16.632" height="10.8">lub</TOKEN>
-      <TOKEN sid="p146_s50812" id="p146_w209" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="215.76" y="615.048" base="627.36" width="48.048" height="15.996">wysokość</TOKEN>
-      <TOKEN sid="p146_s50813" id="p146_w210" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="268.92" y="619.164" base="627.36" width="83.352" height="10.8">wydatkowanych</TOKEN>
-      <TOKEN sid="p146_s50814" id="p146_w211" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="357.48" y="619.164" base="627.36" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50815" id="p146_w212" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="371.28" y="619.164" base="627.36" width="24.672" height="10.8">roku</TOKEN>
-      <TOKEN sid="p146_s50816" id="p146_w213" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="401.16" y="619.164" base="627.36" width="66.636" height="10.8">podatkowym</TOKEN>
-    </TEXT>
-    <TEXT width="385.584" height="15.996" id="p146_t36" x="82.2" y="635.808">
-      <TOKEN sid="p146_s50817" id="p146_w214" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="635.808" base="648.12" width="47.04" height="15.996">środków,</TOKEN>
-      <TOKEN sid="p146_s50818" id="p146_w215" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="132.24" y="639.924" base="648.12" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p146_s50819" id="p146_w216" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="143.88" y="639.924" base="648.12" width="56.112" height="10.8">przypadku</TOKEN>
-      <TOKEN sid="p146_s50820" id="p146_w217" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="202.92" y="639.924" base="648.12" width="18.72" height="10.8">gdy</TOKEN>
-      <TOKEN sid="p146_s50821" id="p146_w218" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="224.64" y="639.924" base="648.12" width="15.408" height="10.8">nie</TOKEN>
-      <TOKEN sid="p146_s50822" id="p146_w219" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="243" y="639.924" base="648.12" width="17.916" height="10.8">jest</TOKEN>
-      <TOKEN sid="p146_s50823" id="p146_w220" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="263.88" y="635.808" base="648.12" width="42.048" height="15.996">możliwe</TOKEN>
-      <TOKEN sid="p146_s50824" id="p146_w221" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="308.88" y="639.924" base="648.12" width="45.528" height="10.8">ustalenie</TOKEN>
-      <TOKEN sid="p146_s50825" id="p146_w222" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="357.36" y="639.924" base="648.12" width="24.672" height="10.8">roku</TOKEN>
-      <TOKEN sid="p146_s50826" id="p146_w223" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="385.08" y="639.924" base="648.12" width="71.04" height="10.8">podatkowego,</TOKEN>
-      <TOKEN sid="p146_s50827" id="p146_w224" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="459.12" y="639.924" base="648.12" width="8.664" height="10.8">w</TOKEN>
-    </TEXT>
-    <TEXT width="161.4" height="11.88" id="p146_t37" x="82.2" y="656.568">
-      <TOKEN sid="p146_s50828" id="p146_w225" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="660.684" base="668.88" width="37.956" height="10.8">którym</TOKEN>
-      <TOKEN sid="p146_s50829" id="p146_w226" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="123.12" y="660.684" base="668.88" width="69.36" height="10.8">zgromadzono</TOKEN>
-      <TOKEN sid="p146_s50830" id="p146_w227" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="195.48" y="660.684" base="668.88" width="9.288" height="10.8">te</TOKEN>
-      <TOKEN sid="p146_s50831" id="p146_w228" font-name="timesnewromanps-boldmt" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="207.84" y="656.568" base="668.88" width="35.76" height="15.996">środki.></TOKEN>
-    </TEXT>
-
-  </PAGE>
-
-  <PAGE width="595.32" height="841.92" number="159" id="p159"><MEDIABOX x1="0" y1="0" x2="595.32" y2="841.92"/><CROPBOX x1="0" y1="0" x2="595.32" y2="841.92"/><BLEEDBOX x1="0" y1="0" x2="595.32" y2="841.92"/><ARTBOX x1="0" y1="0" x2="595.32" y2="841.92"/><TRIMBOX x1="0" y1="0" x2="595.32" y2="841.92"/>
-
-    <TEXT width="70.974" height="8.1" id="p19_t1" x="56.64" y="37.413">
-      <TOKEN sid="p19_s6464" id="p19_w1" font-name="Times-Roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="56.64" y="37.413" base="43.56" width="45.756" height="8.1">©Kancelaria</TOKEN>
-      <TOKEN sid="p19_s6465" id="p19_w2" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="104.637" y="37.413" base="43.56" width="22.977" height="8.1">Sejmu</TOKEN>
-    </TEXT>
-    <TEXT width="33.057" height="8.1" id="p19_t2" x="477.237" y="37.413">
-      <TOKEN sid="p19_s6467" id="p19_w3" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="477.237" y="37.413" base="43.56" width="5.733" height="8.1">s.</TOKEN>
-      <TOKEN sid="p19_s6468" id="p19_w4" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="485.274" y="37.413" base="43.56" width="25.02" height="8.1">159/253</TOKEN>
-    </TEXT>
-    <TEXT width="42.057" height="8.1" id="p19_t3" x="425.64" y="793.173">
-      <TOKEN sid="p19_s6470" id="p19_w5" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="9" font-color="#000000" rotation="0" angle="0" x="425.64" y="793.173" base="799.32" width="42.057" height="8.1">2015-11-02</TOKEN>
-    </TEXT>
-
-    <TEXT width="385.44" height="11.88" id="p159_t9" x="82.2" y="171.156">
-      <TOKEN sid="p159_s54542" id="p159_w48" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="175.044" base="183.24" width="20.88" height="10.8">Art.</TOKEN>
-      <TOKEN sid="p159_s54543" id="p159_w49" font-name="times-bold" serif="yes" bold="yes" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="108.12" y="175.044" base="183.24" width="15" height="10.8">27.</TOKEN>
-      <TOKEN sid="p159_s54544" id="p159_w50" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="128.16" y="175.044" base="183.24" width="9" height="10.8">1.</TOKEN>
-      <TOKEN sid="p159_s54545" id="p159_w51" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="142.2" y="175.044" base="183.24" width="38.76" height="10.8">Podatek</TOKEN>
-      <TOKEN sid="p159_s54546" id="p159_w52" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="186" y="175.044" base="183.24" width="59.04" height="10.8">dochodowy,</TOKEN>
-      <TOKEN sid="p159_s54547" id="p159_w53" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="250.08" y="175.044" base="183.24" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p159_s54548" id="p159_w54" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="260.4" y="171.156" base="183.24" width="68.016" height="15.768">zastrzeżeniem</TOKEN>
-      <TOKEN sid="p159_s54549" id="p159_w55" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="333.48" y="175.044" base="183.24" width="15.6" height="10.8">art.</TOKEN>
-      <TOKEN sid="p159_s54550" id="p159_w56" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="354.12" y="175.044" base="183.24" width="36.96" height="10.8">29–30f,</TOKEN>
-      <TOKEN sid="p159_s54551" id="p159_w57" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="396.12" y="175.044" base="183.24" width="36.048" height="10.8">pobiera</TOKEN>
-      <TOKEN sid="p159_s54552" id="p159_w58" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="437.28" y="171.156" base="183.24" width="13.368" height="15.768">się</TOKEN>
-      <TOKEN sid="p159_s54553" id="p159_w59" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="455.64" y="175.044" base="183.24" width="12" height="10.8">od</TOKEN>
-    </TEXT>
-    <TEXT width="251.616" height="11.88" id="p159_t10" x="56.64" y="192.036">
-      <TOKEN sid="p159_s54554" id="p159_w60" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="56.64" y="195.924" base="204.12" width="45.96" height="10.8">podstawy</TOKEN>
-      <TOKEN sid="p159_s54555" id="p159_w61" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="105.6" y="195.924" base="204.12" width="20.64" height="10.8">jego</TOKEN>
-      <TOKEN sid="p159_s54556" id="p159_w62" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="129.24" y="195.924" base="204.12" width="49.248" height="10.8">obliczenia</TOKEN>
-      <TOKEN sid="p159_s54557" id="p159_w63" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="181.56" y="192.036" base="204.12" width="35.28" height="15.768">według</TOKEN>
-      <TOKEN sid="p159_s54558" id="p159_w64" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="219.84" y="192.036" base="204.12" width="59.256" height="15.768">następującej</TOKEN>
-      <TOKEN sid="p159_s54559" id="p159_w65" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="282.12" y="195.924" base="204.12" width="26.136" height="10.8">skali:</TOKEN>
-    </TEXT>
-    <TEXT width="98.208" height="10.8" id="p159_t11" x="99.72" y="217.404">
-      <TOKEN sid="p159_s54563" id="p159_w66" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="99.72" y="217.404" base="225.6" width="46.008" height="10.8">Podstawa</TOKEN>
-      <TOKEN sid="p159_s54568" id="p159_w67" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="148.68" y="217.404" base="225.6" width="49.248" height="10.8">obliczenia</TOKEN>
-    </TEXT>
-    <TEXT width="88.56" height="11.88" id="p159_t12" x="104.52" y="234.276">
-      <TOKEN sid="p159_s54571" id="p159_w68" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="104.52" y="238.164" base="246.36" width="38.64" height="10.8">podatku</TOKEN>
-      <TOKEN sid="p159_s54572" id="p159_w69" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="146.16" y="238.164" base="246.36" width="8.664" height="10.8">w</TOKEN>
-      <TOKEN sid="p159_s54573" id="p159_w70" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="157.8" y="234.276" base="246.36" width="35.28" height="15.768">złotych</TOKEN>
-    </TEXT>
-    <TEXT width="76.296" height="10.8" id="p159_t13" x="323.28" y="217.404">
-      <TOKEN sid="p159_s54576" id="p159_w71" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="323.28" y="217.404" base="225.6" width="38.64" height="10.8">Podatek</TOKEN>
-      <TOKEN sid="p159_s54581" id="p159_w72" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="364.92" y="217.404" base="225.6" width="34.656" height="10.8">wynosi</TOKEN>
-    </TEXT>
-    <TEXT width="29.28" height="10.8" id="p159_t14" x="98.76" y="259.524">
-      <TOKEN sid="p159_s54599" id="p159_w73" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="98.76" y="259.524" base="267.72" width="29.28" height="10.8">ponad</TOKEN>
-    </TEXT>
-    <TEXT width="12" height="10.8" id="p159_t15" x="178.32" y="259.524">
-      <TOKEN sid="p159_s54604" id="p159_w74" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="178.32" y="259.524" base="267.72" width="12" height="10.8">do</TOKEN>
-    </TEXT>
-    <TEXT width="33" height="10.8" id="p159_t16" x="167.76" y="281.004">
-      <TOKEN sid="p159_s54628" id="p159_w75" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="167.76" y="281.004" base="289.2" width="12" height="10.8">85</TOKEN>
-      <TOKEN sid="p159_s54633" id="p159_w76" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="182.76" y="281.004" base="289.2" width="18" height="10.8">528</TOKEN>
-    </TEXT>
-    <TEXT width="258.516" height="11.88" id="p159_t17" x="223.2" y="277.116">
-      <TOKEN sid="p159_s54638" id="p159_w77" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="223.2" y="281.004" base="289.2" width="21.996" height="10.8">18%</TOKEN>
-      <TOKEN sid="p159_s54643" id="p159_w78" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="248.16" y="281.004" base="289.2" width="29.388" height="10.8">minus</TOKEN>
-      <TOKEN sid="p159_s54648" id="p159_w79" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="280.56" y="281.004" base="289.2" width="29.328" height="10.8">kwota</TOKEN>
-      <TOKEN sid="p159_s54653" id="p159_w80" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="312.84" y="277.116" base="289.2" width="67.248" height="15.768">zmniejszająca</TOKEN>
-      <TOKEN sid="p159_s54658" id="p159_w81" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="383.04" y="281.004" base="289.2" width="37.92" height="10.8">podatek</TOKEN>
-      <TOKEN sid="p159_s54663" id="p159_w82" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="423.96" y="281.004" base="289.2" width="18" height="10.8">556</TOKEN>
-      <TOKEN sid="p159_s54668" id="p159_w83" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="445.08" y="277.116" base="289.2" width="8.616" height="15.768">zł</TOKEN>
-      <TOKEN sid="p159_s54673" id="p159_w84" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="456.72" y="281.004" base="289.2" width="12" height="10.8">02</TOKEN>
-      <TOKEN sid="p159_s54678" id="p159_w85" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="471.72" y="281.004" base="289.2" width="9.996" height="10.8">gr</TOKEN>
-    </TEXT>
-    <TEXT width="33" height="10.8" id="p159_t18" x="96.84" y="302.484">
-      <TOKEN sid="p159_s54697" id="p159_w86" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="96.84" y="302.484" base="310.68" width="12" height="10.8">85</TOKEN>
-      <TOKEN sid="p159_s54702" id="p159_w87" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="111.84" y="302.484" base="310.68" width="18" height="10.8">528</TOKEN>
-    </TEXT>
-    <TEXT width="236.976" height="11.88" id="p159_t19" x="223.2" y="298.596">
-      <TOKEN sid="p159_s54710" id="p159_w88" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="223.2" y="302.484" base="310.68" width="12" height="10.8">14</TOKEN>
-      <TOKEN sid="p159_s54715" id="p159_w89" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="238.2" y="302.484" base="310.68" width="18" height="10.8">839</TOKEN>
-      <TOKEN sid="p159_s54720" id="p159_w90" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="259.2" y="298.596" base="310.68" width="8.616" height="15.768">zł</TOKEN>
-      <TOKEN sid="p159_s54725" id="p159_w91" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="270.84" y="302.484" base="310.68" width="12" height="10.8">02</TOKEN>
-      <TOKEN sid="p159_s54730" id="p159_w92" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="285.84" y="302.484" base="310.68" width="9.996" height="10.8">gr</TOKEN>
-      <TOKEN sid="p159_s54735" id="p159_w93" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="298.8" y="302.484" base="310.68" width="6.768" height="10.8">+</TOKEN>
-      <TOKEN sid="p159_s54740" id="p159_w94" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="308.52" y="302.484" base="310.68" width="21.996" height="10.8">32%</TOKEN>
-      <TOKEN sid="p159_s54745" id="p159_w95" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="333.48" y="298.596" base="310.68" width="46.776" height="15.768">nadwyżki</TOKEN>
-      <TOKEN sid="p159_s54750" id="p159_w96" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="383.28" y="302.484" base="310.68" width="29.28" height="10.8">ponad</TOKEN>
-      <TOKEN sid="p159_s54755" id="p159_w97" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="415.56" y="302.484" base="310.68" width="12" height="10.8">85</TOKEN>
-      <TOKEN sid="p159_s54760" id="p159_w98" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="430.56" y="302.484" base="310.68" width="18" height="10.8">528</TOKEN>
-      <TOKEN sid="p159_s54765" id="p159_w99" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="451.56" y="298.596" base="310.68" width="8.616" height="15.768">zł</TOKEN>
-    </TEXT>
-    <TEXT width="385.536" height="11.88" id="p159_t20" x="82.2" y="319.956">
-      <TOKEN sid="p159_s54791" id="p159_w100" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="82.2" y="323.844" base="332.04" width="9" height="10.8">2.</TOKEN>
-      <TOKEN sid="p159_s54792" id="p159_w101" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="94.32" y="319.956" base="332.04" width="27.216" height="15.768">Jeżeli</TOKEN>
-      <TOKEN sid="p159_s54793" id="p159_w102" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="124.68" y="323.844" base="332.04" width="6" height="10.8">u</TOKEN>
-      <TOKEN sid="p159_s54794" id="p159_w103" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="133.8" y="323.844" base="332.04" width="59.64" height="10.8">podatników,</TOKEN>
-      <TOKEN sid="p159_s54795" id="p159_w104" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="196.56" y="323.844" base="332.04" width="30.72" height="10.8">którzy</TOKEN>
-      <TOKEN sid="p159_s54796" id="p159_w105" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="230.4" y="319.956" base="332.04" width="39.288" height="15.768">osiągają</TOKEN>
-      <TOKEN sid="p159_s54797" id="p159_w106" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="272.76" y="319.956" base="332.04" width="48.648" height="15.768">wyłącznie</TOKEN>
-      <TOKEN sid="p159_s54798" id="p159_w107" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="324.6" y="323.844" base="332.04" width="50.52" height="10.8">przychody</TOKEN>
-      <TOKEN sid="p159_s54799" id="p159_w108" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="378.24" y="323.844" base="332.04" width="5.328" height="10.8">z</TOKEN>
-      <TOKEN sid="p159_s54800" id="p159_w109" font-name="timesnewromanpsmt" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="386.64" y="319.956" base="332.04" width="28.08" height="15.768">tytułu</TOKEN>
-      <TOKEN sid="p159_s54801" id="p159_w110" font-name="times-roman" serif="yes" bold="no" italic="no" font-size="12" font-color="#000000" rotation="0" angle="0" x="417.84" y="323.844" base="332.04" width="43.476" height="10.8">emerytur.</TOKEN>
-    </TEXT>
-
-  </PAGE>
+  <PAGE width="595.32" height="841.92" number="159"><TEXT width="70.974" height="8.1" x="56.64" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="56.64" y="37.413" width="45.756" height="8.1">©Kancelaria</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="104.637" y="37.413" width="22.977" height="8.1">Sejmu</TOKEN>
+    </TEXT><TEXT width="33.057" height="8.1" x="477.237" y="37.413">
+      <TOKEN bold="no" italic="no" font-size="9" x="477.237" y="37.413" width="5.733" height="8.1">s.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="9" x="485.274" y="37.413" width="25.02" height="8.1">159/253</TOKEN>
+    </TEXT><TEXT width="42.057" height="8.1" x="425.64" y="793.173">
+      <TOKEN bold="no" italic="no" font-size="9" x="425.64" y="793.173" width="42.057" height="8.1">2015-11-02</TOKEN>
+    </TEXT><TEXT width="385.44" height="11.88" x="82.2" y="171.156">
+      <TOKEN bold="yes" italic="no" font-size="12" x="82.2" y="175.044" width="20.88" height="10.8">Art.</TOKEN>
+      <TOKEN bold="yes" italic="no" font-size="12" x="108.12" y="175.044" width="15" height="10.8">27.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="128.16" y="175.044" width="9" height="10.8">1.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="142.2" y="175.044" width="38.76" height="10.8">Podatek</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="186" y="175.044" width="59.04" height="10.8">dochodowy,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="250.08" y="175.044" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="260.4" y="171.156" width="68.016" height="15.768">zastrzeżeniem</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="333.48" y="175.044" width="15.6" height="10.8">art.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="354.12" y="175.044" width="36.96" height="10.8">29–30f,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="396.12" y="175.044" width="36.048" height="10.8">pobiera</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="437.28" y="171.156" width="13.368" height="15.768">się</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="455.64" y="175.044" width="12" height="10.8">od</TOKEN>
+    </TEXT><TEXT width="251.616" height="11.88" x="56.64" y="192.036">
+      <TOKEN bold="no" italic="no" font-size="12" x="56.64" y="195.924" width="45.96" height="10.8">podstawy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="105.6" y="195.924" width="20.64" height="10.8">jego</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="129.24" y="195.924" width="49.248" height="10.8">obliczenia</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="181.56" y="192.036" width="35.28" height="15.768">według</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="219.84" y="192.036" width="59.256" height="15.768">następującej</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="282.12" y="195.924" width="26.136" height="10.8">skali:</TOKEN>
+    </TEXT><TEXT width="98.208" height="10.8" x="99.72" y="217.404">
+      <TOKEN bold="no" italic="no" font-size="12" x="99.72" y="217.404" width="46.008" height="10.8">Podstawa</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="148.68" y="217.404" width="49.248" height="10.8">obliczenia</TOKEN>
+    </TEXT><TEXT width="88.56" height="11.88" x="104.52" y="234.276">
+      <TOKEN bold="no" italic="no" font-size="12" x="104.52" y="238.164" width="38.64" height="10.8">podatku</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="146.16" y="238.164" width="8.664" height="10.8">w</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="157.8" y="234.276" width="35.28" height="15.768">złotych</TOKEN>
+    </TEXT><TEXT width="76.296" height="10.8" x="323.28" y="217.404">
+      <TOKEN bold="no" italic="no" font-size="12" x="323.28" y="217.404" width="38.64" height="10.8">Podatek</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="364.92" y="217.404" width="34.656" height="10.8">wynosi</TOKEN>
+    </TEXT><TEXT width="29.28" height="10.8" x="98.76" y="259.524">
+      <TOKEN bold="no" italic="no" font-size="12" x="98.76" y="259.524" width="29.28" height="10.8">ponad</TOKEN>
+    </TEXT><TEXT width="12" height="10.8" x="178.32" y="259.524">
+      <TOKEN bold="no" italic="no" font-size="12" x="178.32" y="259.524" width="12" height="10.8">do</TOKEN>
+    </TEXT><TEXT width="33" height="10.8" x="167.76" y="281.004">
+      <TOKEN bold="no" italic="no" font-size="12" x="167.76" y="281.004" width="12" height="10.8">85</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="182.76" y="281.004" width="18" height="10.8">528</TOKEN>
+    </TEXT><TEXT width="258.516" height="11.88" x="223.2" y="277.116">
+      <TOKEN bold="no" italic="no" font-size="12" x="223.2" y="281.004" width="21.996" height="10.8">18%</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="248.16" y="281.004" width="29.388" height="10.8">minus</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="280.56" y="281.004" width="29.328" height="10.8">kwota</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="312.84" y="277.116" width="67.248" height="15.768">zmniejszająca</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="383.04" y="281.004" width="37.92" height="10.8">podatek</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="423.96" y="281.004" width="18" height="10.8">556</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="445.08" y="277.116" width="8.616" height="15.768">zł</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="456.72" y="281.004" width="12" height="10.8">02</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="471.72" y="281.004" width="9.996" height="10.8">gr</TOKEN>
+    </TEXT><TEXT width="33" height="10.8" x="96.84" y="302.484">
+      <TOKEN bold="no" italic="no" font-size="12" x="96.84" y="302.484" width="12" height="10.8">85</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="111.84" y="302.484" width="18" height="10.8">528</TOKEN>
+    </TEXT><TEXT width="236.976" height="11.88" x="223.2" y="298.596">
+      <TOKEN bold="no" italic="no" font-size="12" x="223.2" y="302.484" width="12" height="10.8">14</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="238.2" y="302.484" width="18" height="10.8">839</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="259.2" y="298.596" width="8.616" height="15.768">zł</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="270.84" y="302.484" width="12" height="10.8">02</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="285.84" y="302.484" width="9.996" height="10.8">gr</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="298.8" y="302.484" width="6.768" height="10.8">+</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="308.52" y="302.484" width="21.996" height="10.8">32%</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="333.48" y="298.596" width="46.776" height="15.768">nadwyżki</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="383.28" y="302.484" width="29.28" height="10.8">ponad</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="415.56" y="302.484" width="12" height="10.8">85</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="430.56" y="302.484" width="18" height="10.8">528</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="451.56" y="298.596" width="8.616" height="15.768">zł</TOKEN>
+    </TEXT><TEXT width="385.536" height="11.88" x="82.2" y="319.956">
+      <TOKEN bold="no" italic="no" font-size="12" x="82.2" y="323.844" width="9" height="10.8">2.</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="94.32" y="319.956" width="27.216" height="15.768">Jeżeli</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="124.68" y="323.844" width="6" height="10.8">u</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="133.8" y="323.844" width="59.64" height="10.8">podatników,</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="196.56" y="323.844" width="30.72" height="10.8">którzy</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="230.4" y="319.956" width="39.288" height="15.768">osiągają</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="272.76" y="319.956" width="48.648" height="15.768">wyłącznie</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="324.6" y="323.844" width="50.52" height="10.8">przychody</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="378.24" y="323.844" width="5.328" height="10.8">z</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="386.64" y="319.956" width="28.08" height="15.768">tytułu</TOKEN>
+      <TOKEN bold="no" italic="no" font-size="12" x="417.84" y="323.844" width="43.476" height="10.8">emerytur.</TOKEN>
+    </TEXT></PAGE>
 
 </DOCUMENT>

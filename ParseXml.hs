@@ -20,7 +20,6 @@ makeLenses ''Page
 makeLenses ''TEXT
 makeLenses ''WORD
 
-
 parsePages :: FilePath -> IO [Page]
 parsePages path =
   runX (parseDoc path)
@@ -36,42 +35,53 @@ parseDoc file =
 -- PU stands for pickler unpicker. We only use the unpickler (read) part since
 -- we don't need to write the xml.
 
+prunePage :: ArrowXml a => a XmlTree XmlTree
+prunePage = removeAttr "id" >>> processChildren (hasName "TEXT")
+
 xpPage :: PU Page
 xpPage =
-  xpFilterCont (removeAttr "id" >>> processChildren (hasName "TEXT")) $
+  xpFilterCont (prunePage >>> processChildren (neg isWhiteSpace)) $
   xpElem "PAGE" $
-    xpWrap (uncurry4 Page, undefined) $ -- xpWrap is like fmap in two directions
-    xp4Tuple (xpAttr "number" xpPrim)
-             (xpAttr "width" xpPrim)
-             (xpAttr "height" xpPrim)
-             (xpList xpTEXT)
+  xpWrap (uncurry4 Page, undefined) $ -- xpWrap is like fmap in two directions
+  xp4Tuple (xpAttr "number" xpPrim)
+  (xpAttr "width" xpPrim)
+  (xpAttr "height" xpPrim)
+  (xpList xpTEXT)
+
+pruneText :: ArrowXml a => a XmlTree XmlTree
+pruneText = removeAttr "id"
 
 xpTEXT :: PU TEXT
 xpTEXT =
-  xpFilterCont (removeAttr "id" >>> processChildren (hasName "TOKEN")) $ -- remove text elements from formatting
+  xpFilterCont (pruneText >>> processChildren (neg isWhiteSpace)) $
   xpElem "TEXT" $
-    xpWrap (uncurry5 TEXT, undefined) $
-    xp5Tuple (xpAttr "x" xpPrim)
-             (xpAttr "y" xpPrim)
-             (xpAttr "width" xpPrim)
-             (xpAttr "height" xpPrim)
-             (xpList xpToken)
+  xpWrap (uncurry5 TEXT, undefined) $
+  xp5Tuple (xpAttr "x" xpPrim)
+  (xpAttr "y" xpPrim)
+  (xpAttr "width" xpPrim)
+  (xpAttr "height" xpPrim)
+  (xpList xpToken)
+
+pruneToken :: ArrowXml a => a XmlTree XmlTree
+pruneToken =
+  removeAttr "sid" >>> removeAttr "id" >>> removeAttr "font-name" >>> removeAttr "symbolic"
+  >>> removeAttr "font-color" >>> removeAttr "rotation" >>> removeAttr "angle"
+  >>> removeAttr "base" >>> removeAttr "serif" >>> removeAttr "fixed-width"
 
 xpToken :: PU WORD
 xpToken =
-  xpFilterCont (removeAttr "sid" >>> removeAttr "id" >>> removeAttr "font-name" >>> removeAttr "symbolic"
-                >>> removeAttr "font-color" >>> removeAttr "rotation" >>> removeAttr "angle"
-                >>> removeAttr "base" >>> removeAttr "serif" >>> removeAttr "fixed-width") $
+  xpFilterCont pruneToken $
   xpElem "TOKEN" $
-    xpWrap (\(x, y, w, h, bold, italic, fs, text) -> WORD x (x+w/2) (y+h/2) bold italic fs text, undefined) $
-      xp8Tuple (xpAttr "x" xpPrim)
-               (xpAttr "y" xpPrim)
-               (xpAttr "width" xpPrim)
-               (xpAttr "height" xpPrim)
+  xpWrap (\(x, y, w, h, bold, italic, fs, text) -> WORD x (x+w/2) (y+h/2) bold italic fs text, undefined) $
+  xp8Tuple (xpAttr "x" xpPrim)
+  (xpAttr "y" xpPrim)
+  (xpAttr "width" xpPrim)
+  (xpAttr "height" xpPrim)
                (xpAttr "bold" xpYesNo)
                (xpAttr "italic" xpYesNo)
                (xpAttr "font-size" xpPrim)
                (xpWrap (T.pack, T.unpack) xpText)
+
 
 xpYesNo :: PU Bool
 xpYesNo = xpWrap (\case
@@ -84,6 +94,15 @@ xpYesNo = xpWrap (\case
 
 uncurry5 f (a1, a2, a3, a4, a5) = f a1 a2 a3 a4 a5
 uncurry6 f (a1, a2, a3, a4, a5, a6) = f a1 a2 a3 a4 a5 a6
+
+prune :: ArrowXml a => a XmlTree XmlTree
+prune =
+  processTopDown (choiceA [
+      hasName "TOKEN" :-> pruneToken
+    , hasName "TEXT"  :-> pruneText
+    , hasName "PAGE"  :-> prunePage
+    , this :-> arr id])
+
 
 -- this, when outside of clip, seems to represent lines
 data VGroup = VGroup { _vgstyle :: Maybe String

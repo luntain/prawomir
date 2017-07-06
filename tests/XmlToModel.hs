@@ -36,45 +36,45 @@ expectedUstawa =
          ([("1", Articles ["1", "2"]), ("1a", Articles ["25b", "27"])])
     , _uarticles =
       -- this is a Frankenstein of fragments from "Ustawa o podatku doch. od osob fizycznych"
-                 [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
-                 ,("2", mkPoint "" [
-                    ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
-                      ("1", mkLeaf "przychodów z działalności rolniczej, z wyjątkiem przychodów z \
-                                   \działów specjalnych produkcji rolnej;")
-                     ,("2", mkLeaf "przychodów z gospodarki leśnej w rozumieniu ustawy o lasach.")
-                     ,("3", mkPoint "odpłatne zbycie, z zastrzeżeniem ust. 2:" [
-                          ("a", mkLeaf "nieruchomości lub ich części oraz udziału w nieruchomości,")
-                          , ("b", mkLeaf "spółdzielczego własnościowego prawa do lokalu mieszkalnego lub,")
-                          ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej"])
-                     ] [Text "– w ramach stosunku pracy lub spółdzielczego stosunku pracy, podatnik ten traci w"])
-                   ,("2", mkPoint "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca \
-                                 \na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym." [
-                      -- tirety
-                       ("19a", mkPoint "samochodzie osobowym – oznacza to pojazd samochodowy w rozumieniu\
-                                    \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
-                                    \ nieprzekraczającej 3,5 tony, konstrukcyjnie przeznaczony do przewozu nie\
-                                    \ więcej niż 9 osób łącznie z kierowcą, z wyjątkiem:" [
-                          ("a", mkPoint "pojazdu samochodowego mającego jeden rząd siedzeń, który oddzielony jest\
-                                      \ od części przeznaczonej do przewozu ładunków ścianą lub trwałą przegrodą:" [
-                                  ("-", mkLeaf "klasyfikowanego na podstawie przepisów o ruchu drogowym do podrodzaju:\
-                                        \ wielozadaniowy, van lub")
-                                , ("-", mkLeaf "z otwartą częścią przeznaczoną do przewozu ładunków.")] [])] [])] [])] [])
-                 ,("25b", mkPoint "" [
-                    ("1", mkPoint "Za przychody, o których mowa w art. 20 ust. 1b, uważa się przychody:" [
-                       ("1", mkLeaf "nieznajdujące pokrycia w ujawnionych źródłach obejmujące przychody ze\
-                                    \ źródeł wskazanych przez podatnika, ujawnione w nieprawidłowej wysokości,")
-                      ,("2", mkLeaf "ze źródeł nieujawnionych obejmujące przychody ze źródeł niewskazanych przez\
-                                    \ podatnika i nieustalonych przez organ podatkowy lub organ kontroli skarbowej")]
-                       [Text "– w kwocie odpowiadającej nadwyżce wydatku nad przychodami (dochodami) opodatkowanymi lub\
-                             \ przychodami (dochodami) nieopodatkowanymi, uzyskanymi przed poniesieniem tego wydatku."])
-                    ,("2", mkLeaf "Za wydatek uznaje się wartość zgromadzonego w roku podatkowym mienia lub wysokość \
-                                  \wydatkowanych w roku podatkowym środków, w przypadku gdy nie jest możliwe ustalenie \
-                                  \roku podatkowego, w którym zgromadzono te środki.")] [])
-                 ,("27", mkPoint "" [
-                      ("1", ZWyliczeniem [Text "Podatek dochodowy, z zastrzeżeniem art. 29–30f, pobiera się od\
-                                               \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
-                              [] [] [] )
-                      , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")] [])]
+      [("1", mkLeaf "Ustawa reguluje opodatkowanie podatkiem dochodowym dochodów osób fizycznych.")
+      ,("2", mkPoint "" [
+        ("1", mkPoint "Przepisów ustawy nie stosuje się do:" [
+          ("1", mkLeaf "przychodów z działalności rolniczej, z wyjątkiem przychodów z \
+                        \działów specjalnych produkcji rolnej;")
+          ,("2", mkLeaf "przychodów z gospodarki leśnej w rozumieniu ustawy o lasach.")
+          ,("3", mkPoint "odpłatne zbycie, z zastrzeżeniem ust. 2:" [
+              ("a", mkLeaf "nieruchomości lub ich części oraz udziału w nieruchomości,")
+              , ("b", mkLeaf "spółdzielczego własnościowego prawa do lokalu mieszkalnego lub,")
+              ] [Text "– jeżeli odpłatne zbycie nie następuje w wykonaniu działalności gospodarczej"])
+          ] [Text "– w ramach stosunku pracy lub spółdzielczego stosunku pracy, podatnik ten traci w"])
+        ,("2", mkPoint "Działalnością rolniczą, w rozumieniu ust. 1 pkt 1, jest działalność polegająca \
+                      \na wytwarzaniu produktów roślinnych lub zwierzęcych w stanie nieprzetworzonym." [
+          -- tirety
+            ("19a", mkPoint "samochodzie osobowym – oznacza to pojazd samochodowy w rozumieniu\
+                        \ przepisów o ruchu drogowym o dopuszczalnej masie całkowitej\
+                        \ nieprzekraczającej 3,5 tony, konstrukcyjnie przeznaczony do przewozu nie\
+                        \ więcej niż 9 osób łącznie z kierowcą, z wyjątkiem:" [
+              ("a", mkPoint "pojazdu samochodowego mającego jeden rząd siedzeń, który oddzielony jest\
+                          \ od części przeznaczonej do przewozu ładunków ścianą lub trwałą przegrodą:" [
+                      ("-", mkLeaf "klasyfikowanego na podstawie przepisów o ruchu drogowym do podrodzaju:\
+                            \ wielozadaniowy, van lub")
+                    , ("-", mkLeaf "z otwartą częścią przeznaczoną do przewozu ładunków.")] [])] [])] [])] [])
+      ,("25b", mkPoint "" [
+        ("1", mkPoint "Za przychody, o których mowa w art. 20 ust. 1b, uważa się przychody:" [
+            ("1", mkLeaf "nieznajdujące pokrycia w ujawnionych źródłach obejmujące przychody ze\
+                        \ źródeł wskazanych przez podatnika, ujawnione w nieprawidłowej wysokości,")
+          ,("2", mkLeaf "ze źródeł nieujawnionych obejmujące przychody ze źródeł niewskazanych przez\
+                        \ podatnika i nieustalonych przez organ podatkowy lub organ kontroli skarbowej")]
+            [Text "– w kwocie odpowiadającej nadwyżce wydatku nad przychodami (dochodami) opodatkowanymi lub\
+                  \ przychodami (dochodami) nieopodatkowanymi, uzyskanymi przed poniesieniem tego wydatku."])
+        ,("2", mkLeaf "Za wydatek uznaje się wartość zgromadzonego w roku podatkowym mienia lub wysokość \
+                      \wydatkowanych w roku podatkowym środków, w przypadku gdy nie jest możliwe ustalenie \
+                      \roku podatkowego, w którym zgromadzono te środki.")] [])
+      ,("27", mkPoint "" [
+          ("1", ZWyliczeniem [Text "Podatek dochodowy, z zastrzeżeniem art. 29–30f, pobiera się od\
+                                    \ podstawy jego obliczenia według następującej skali:", Table podstawaTable]
+                  [] [] [] )
+          , ("2", mkLeaf "Jeżeli u podatników, którzy osiągają wyłącznie przychody z tytułu emerytur.")] [])]
     , _uannexes = []
     }
 

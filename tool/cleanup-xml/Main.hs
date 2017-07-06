@@ -5,11 +5,13 @@ import Text.XML.HXT.Core
 import System.Environment
 import System.Directory
 import Data.String.Utils
+import qualified ParseXml
 
 main = do
   filename <- head <$> getArgs
   (tmpFile, _handle) <- openTempFile "/tmp" "clean-xml-tool"
   runX (readDocument [withInputEncoding "UTF-8", withValidate no] filename
+       >>> ParseXml.prune
        >>> processBottomUp (processChildren (changeText strip `when` isText) `when` hasName "TOKEN")
        >>> writeDocument [withOutputEncoding "UTF-8", withValidate yes] tmpFile)
   renameFile tmpFile filename
