@@ -19,7 +19,7 @@ library
                      , myprelude, directory, containers, old-locale, old-time, time, mtl,
                      lens, text, HStringTemplate, bytestring,
                      hxt, hxt-http, hxt-tagsoup, hxt-unicode, hxt-cache, zlib, megaparsec, nicify-lib,
-                     HStringTemplate, aeson, IntervalMap, tasty, tasty-hunit, unicode-show
+                     HStringTemplate, aeson, IntervalMap, tasty, tasty-hunit, tasty-quickcheck, unicode-show
 
   default-language:    Haskell2010
 

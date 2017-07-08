@@ -13,6 +13,7 @@ import qualified Data.Text as T
 import qualified Data.IntervalMap as IM
 import qualified Data.IntervalSet as IS
 import qualified Data.Set as S
+import qualified Data.Map as M
 import Model
 import ParseXml
 import Text.Megaparsec
@@ -67,8 +68,10 @@ data TableBuilder =
 
 data TableInfo =
   TableInfo { _tix, _tiy, _tiwidth, _tiheight :: Float
-            , _tirowEnds, _ticolEnds :: [Float], _titable :: [[TableCell]] }
+            , _tirowEnds, _ticolEnds :: [Float], _titable :: [[TableCell]]
+            , _tiindex :: M.Map (Int, Int) (Int, Int) }
   deriving (Show, Eq, Read, Ord)
+
 
 makeLenses ''Tok
 makePrisms ''Tok
@@ -95,7 +98,6 @@ instance Stream Lines where
 
 instance HasTokPosition TEXT where
   tokPos TEXT {_ly=ly} = SourcePos "Line" (forcePos . round $ ly) (forcePos 0)
-
 
 class HasTokPosition t where
   tokPos :: t -> SourcePos
@@ -534,12 +536,13 @@ insertTables' allTis@((page, ti) : tis) allToks@(tok:toks)
 
 -- when collecting the text into cells, I put them in reverse order, reorder them when putting the
 -- complete table into the token stream
-reverseCellTexts :: [[TableCell]] -> [[TableCell]] -- TODO Table
+reverseCellTexts :: [[TableCell]] -> [[TableCell]]
 reverseCellTexts = map (map $ over tctext reverseAndProcess)
 reverseAndProcess :: TextWithReferences -> TextWithReferences
 reverseAndProcess = return . Text . T.unwords . reverse . mapMaybe (preview _Text)
 
 -- let it be 0 based
+-- this is wrong in case there are any row spans greater than 1
 tcell :: (Int, Int) -> Traversal' [[TableCell]] (Maybe TableCell)
 tcell (row, col) = ix row . tcell col
   where tcell :: Int -> Lens' [TableCell] (Maybe TableCell)
@@ -596,6 +599,7 @@ buildTables groups clips' =
               topLeftCell = head . head $ rs
               x = _vcx topLeftCell
               y = _vcy topLeftCell
+              cells = map (map $ cellFrom tb) rs
           in
           Just TableInfo {
               _tix = x
@@ -604,10 +608,17 @@ buildTables groups clips' =
             , _tiheight = (last . _tbrowEnds) tb - y
             , _tirowEnds = _tbrowEnds tb
             , _ticolEnds = _tbcolEnds tb
-            , _titable = map (map $ cellFrom tb) rs
-
+            , _titable = cells
+            , _tiindex = buildTableIndex cells
           }
   in mapMaybe toTableInfo builders
+
+-- provide a translation of cell index from the table as if there were not row col spans
+-- to table that has those spans:
+-- For example a table with three cells, where first cells hes row span of 2 will yield
+-- a translation that will be (1,1) -> (1,1), (2,1) -> (1,1), (2, 2) -> (2, 1)
+buildTableIndex :: [[TableCell]] -> M.Map (Int, Int) (Int, Int)
+buildTableIndex = undefined
 
 isAround :: Float -> Float -> Float -> Bool
 isAround tolerance val ref = val <= ref + tolerance && val >= ref - tolerance
@@ -656,11 +667,12 @@ tableTests =
           VClip {_vcx=0,_vcy=0,_vcwidth=595.32,_vcheight=841.92,_vcpage=12,_vcgroup=undefined},
           VClip {_vcx=485.28,_vcy=577.68,_vcwidth=89.4,_vcheight=92.282,_vcpage=13,_vcgroup=undefined}])
     , testCase "some tables" $ do
-        assertEqual "table with one double row cell + side note "
+        assertEqual "table with one double row cell + side note box to ignore "
           [TableInfo 37 577.68 102 80 [627.68, 657.68] [87, 139]
           [[nakedBox {_tcwidth=50,_tcheight=80,_tccolSpan=1,_tcrowSpan=2,_tctext=[]}
            ,nakedBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
-          ,[nakedBox {_tcwidth=50,_tcheight=28,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]]
+          ,[nakedBox {_tcwidth=50,_tcheight=28,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]
+           (M.fromList [((0,0), (0,0)), ((0, 1), (0,1)), ((1,0), (0,1)), ((1,1), (1,0))])]
           (buildTables [] [
              VClip {_vcx=37,_vcy=577.68,_vcwidth=50,_vcheight=80,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=89,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
@@ -671,7 +683,8 @@ tableTests =
           [TableInfo 0 0 100 100 [50, 100] [50, 100]
           [[nakedBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}
            ,nakedBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
-          ,[nakedBox {_tcwidth=100,_tcheight=50,_tccolSpan=2,_tcrowSpan=1,_tctext=[]}]]]
+          ,[nakedBox {_tcwidth=100,_tcheight=50,_tccolSpan=2,_tcrowSpan=1,_tctext=[]}]]
+           (M.fromList [((0,0), (0,0)), ((0,1), (0,1)), ((1,0), (1,0)), ((1,1), (1,0))])]
           (buildTables [] [
              VClip {_vcx=0,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=50,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}

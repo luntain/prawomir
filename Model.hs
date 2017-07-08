@@ -1,9 +1,10 @@
 module Model where
 
 import MyPrelude
-import Control.Lens
+import Control.Lens hiding (elements)
 import Data.Time
 import qualified Data.Text as T
+import Test.Tasty.QuickCheck
 
 data PozId =
   PozId {_pidYear, _pidNr, _pidSeq :: Int}
@@ -60,6 +61,29 @@ data TableCell =
     _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
    , _tcborderTop, _tcborderLeft, _tcborderRight, _tcborderBottom :: Bool
   } deriving (Show, Read, Eq, Ord)
+
+-- crazy: this generator is more complicated than the code it is intended to test
+-- it generates various rowspan colspan configurations
+arbitraryTable :: Gen [[TableCell]]
+arbitraryTable = do
+  [rows, cols] <- replicateM 2 (choose (1, 15))
+  arbitraryTable' rows cols
+  where
+    arbitraryTable' :: Int -> Int -> Gen [[TableCell]]
+    arbitraryTable' rows cols
+      | rows < 2 || cols < 2 =
+          elements [singleCellSpanningWholeTable, cellsOfSize1]
+          where singleCellSpanningWholeTable = [[tc rows cols]] ++ replicate (rows - 1) []
+                cellsOfSize1 = replicate rows (replicate cols (tc 1 1))
+    arbitraryTable' rows cols =
+      oneof [ do rows1 <- choose (1, (rows-1))
+                 (++) <$> arbitraryTable' rows1 cols <*> arbitraryTable' (rows - rows1) cols
+            , do cols1 <- choose (1, (cols-1))
+                 zipWith (++) <$> arbitraryTable' rows cols1 <*> arbitraryTable' rows (cols - cols1)]
+    tc :: Int -> Int -> TableCell
+    tc rowSpan colSpan =
+      TableCell (fromIntegral colSpan) (fromIntegral rowSpan) colSpan rowSpan [] False False False False
+
 
 fullyBordered tc = tc {_tcborderTop = True, _tcborderBottom = True, _tcborderLeft = True, _tcborderRight = True}
 
