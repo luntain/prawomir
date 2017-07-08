@@ -9,7 +9,6 @@ import Data.Time
 import Text.Nicify
 import Text.Show.Unicode
 import qualified Data.List as L
-import qualified Data.Map as M
 import qualified Data.Text as T
 import qualified Data.IntervalMap as IM
 import qualified Data.IntervalSet as IS
@@ -203,7 +202,7 @@ recognizeNonTerminals = concat . snd . mapAccumL go 82.2 . groupBy ((==) `on` li
         -- otherwise there is at most 1 NonTerminal in a line
 nonTerminalsInALine :: StateT Float (Parsec Dec [Tok]) [Tok]
 nonTerminalsInALine =  artykuł
-                       <|> (offset (==  0) >> ustęp)    -- 1.
+                       <|> (offset (>=  0) >> offset (<= 5) >> ustęp) -- added ones are 85.2 vs 82.2
                        <|> (offset (< -20) >> punkt)    -- 1) -- in test file offset is: 56.64 - 82.2
                        <|> (offset (== 0)  >> podpunkt) -- a)
                        <|> (offset (> 0)   >> tiret)    -- -
@@ -281,7 +280,7 @@ parseUstawa path vecFiles = do
   pages <- parsePages path
   tablesPerPage <- mapM processVecFilesPage vecFiles
   --putStrLn (nicify . show . filter ((==234). fst) $ tablesPerPage)
-  let partitioned = partitionPages (take 233 pages)
+  let partitioned = partitionPages (take 888 pages)
       tokenStream = recognizeNonTerminals . insertTables tablesPerPage . processAdditionsAndRemovals $ _mainContent partitioned
   writeFile "/tmp/foo" (nicify. ushow . filter (not . is _TableToken) . mapMaybe (preview (_NonTerminal . _2)) $ tokenStream)
   forceResult path $ toResult $ runParser tekstJednolity path tokenStream
@@ -304,20 +303,20 @@ tekstJednolity = do
             , _uarticles = concatMap (view _4) $ rozdzialy
             , _uannexes = annexes}
 
-rozdział :: Parser (T.Text, T.Text, TableOfContents, [(T.Text, Article)])
+rozdział :: Parser (T.Text, T.Text, TableOfContents, [(T.Text, ZWyliczeniem)])
 rozdział = do
   number <- token' (preview $ _NonTerminal . _2 . _RozdziałToken)
   podtytul <- T.unwords <$> some (peekBold >> token' anyT)
   articles <- some article
   return (number, podtytul, Articles (map fst articles), articles)
 
-article :: Parser (T.Text, Article)
+article :: Parser (T.Text, ZWyliczeniem)
 article = do
   number <- token' (preview (_NonTerminal . _2 . _ArticleToken))
-  prefix <- option emptyZWyliczeniem ustępBody
-  ustępy <- many ustęp
-  return $ (number, Article {_aprefix = prefix, _aindex = map fst ustępy, _apoints = M.fromList ustępy})
-
+  ustępy <-
+     ((\ub -> [("", ub)]) <$> ustępBody)
+     <|> some ustęp
+  return (number, ZWyliczeniem [] ustępy)
 
 ustęp :: Parser (T.Text, ZWyliczeniem)
 ustęp = do
@@ -325,27 +324,34 @@ ustęp = do
   ustęp <- ustępBody
   return (ustępNum, ustęp)
 
-
 ustępBody :: Parser ZWyliczeniem
 ustępBody = do
-  text <- textWithReferencesAndTables (>=0)
-  punkty <- many punkt
-  suffix <- textWithReferencesAndTables (>=0)
-  return (ZWyliczeniem text (map fst punkty) (punkty) suffix)
+  text <- content (>=0)
+  -- allow common part to appear inside the sequence of children
+  punkty <- many $ do
+    childIndent <- xposition
+    punkty <- some punkt
+    commonPart <- option [] $ content (>=childIndent)
+    return (appendCommonPart punkty commonPart)
+  return (ZWyliczeniem text (concat punkty))
 
 punkt :: Parser (T.Text, ZWyliczeniem)
 punkt = do
   startX <- xposition -- take the x of the PunktToken
   num <- token' (preview $ _NonTerminal . _2 . _PunktToken)
-  wprowadzenie <- textWithReferencesAndTables (>startX)
-  podpunkty <- many podpunkt
-  suffix <- textWithReferencesAndTables (>startX)
-  return (num, ZWyliczeniem wprowadzenie (map fst podpunkty) (podpunkty) suffix)
+  wprowadzenie <- content (>startX)
+  -- allow common part to appear inside the sequence of children
+  podpunkty <- many $ do
+    indent <- xposition
+    ps <- some podpunkt
+    commonPart <- option [] $ content (>=indent)
+    return (appendCommonPart ps commonPart)
+  return (num, ZWyliczeniem wprowadzenie (concat podpunkty))
 
--- TODO: rename this
-textWithReferencesAndTables :: (Float -> Bool) -> Parser TextWithReferences
-textWithReferencesAndTables indentP =
-  fmap (mergeTexts []) $ many $
+content :: (Float -> Bool) -> Parser TextWithReferences
+content indentP =
+  -- TODO: does it have to be many?
+  fmap (mergeTexts []) $ some $
     choice [Text  <$> (indent indentP >> token' anyT)
            ,Table <$> token' (preview $ _NonTerminal . _2 . _TableToken . titable)
            ]
@@ -364,9 +370,7 @@ podpunkt = do
   tirety <- many (tiret startX)
   return (num, ZWyliczeniem
                   [Text . T.unwords $ text]
-                  (map (const "-") tirety)
-                  (map (const "-" &&& (\t -> ZWyliczeniem t [] mempty [])) $ tirety)
-                  []) -- TODO, test podsumowujący "-"
+                  (map (const "-" &&& (\t -> ZWyliczeniem t [])) $ tirety)) -- TODO, test podsumowujący "-"
 
 tiret :: Float -> Parser TextWithReferences
 tiret indent' = do
@@ -374,6 +378,10 @@ tiret indent' = do
   -- TODO, probably should detect tables even here
   texts <- many $ indent (>indent') >> token' anyT
   return [Text . T.unwords $ texts]
+
+appendCommonPart :: [(T.Text, ZWyliczeniem)] -> TextWithReferences -> [(T.Text, ZWyliczeniem)]
+appendCommonPart points [] = points
+appendCommonPart points tr = points ++ [("-", ZWyliczeniem tr [])]
 
 -- Don't atttempt to parse annexes boyond recognizing their location in the
 -- pdf document.

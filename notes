@@ -1,6 +1,8 @@
+
 pdf z isap sa mniejsz niz te z du, poz 171 z 2015 roku jest 676k
 
 zasady techniki prawodawczej
+http://isap.sejm.gov.pl/DetailsServlet?id=WDU20160000283
 http://www.arslege.pl/zasady-techniki-prawodawczej/k459/s4931/
 
 szablon http://rcl.gov.pl/szablon
@@ -38,4 +40,10 @@ Furthest point parsed to in pit act
 page 57 (take 80) punkt '<82a' spans to subsequent page, 46sec
 
 2017-07-04: page 85 (take 233) 3m38s
-2017-07-06: page 85 (take 233) 3m12s (marginally better when working on a pruned file)
+2017-07-06: page 85 (take 233) 3m12s (marginally better when working on a pruned xml)
+2017-07-08: all except (take 233) annexes 3mm9s on pruned xml
+            parsing all pages results in an error: no such cell (6,2)
+
+
+grant for dannis legislative project from Google DNI
+https://digitalnewsinitiative.com/dni-projects/poliwatchbot/

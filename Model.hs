@@ -4,7 +4,6 @@ import MyPrelude
 import Control.Lens
 import Data.Time
 import qualified Data.Text as T
-import qualified Data.Map as M
 
 data PozId =
   PozId {_pidYear, _pidNr, _pidSeq :: Int}
@@ -23,7 +22,7 @@ data Akt =
          , _uzDnia :: Day
          , _uTytul :: T.Text
          , _uspisTresci :: TableOfContents
-         , _uarticles :: [(T.Text, Article)]
+         , _uarticles :: [(T.Text, ZWyliczeniem)]
          , _uannexes :: [Annex]
          } deriving (Show, Read, Eq)
 
@@ -40,28 +39,19 @@ data TextOrReference =
   Text T.Text | Table [[TableCell]]
   deriving (Show, Read, Eq, Ord)
 
-data Article =
-  Article { _aprefix :: ZWyliczeniem -- TODO: Why not just text? Can it have points?
-          , _aindex :: [T.Text]
-          , _apoints :: M.Map T.Text ZWyliczeniem -- ustepy
-          }
-  deriving (Show, Read, Eq)
-
 data Annex =
   Annex { _anum :: T.Text, _astartPage, _apages :: Int
         }
   deriving (Show, Read, Eq)
 
--- reprezentuje ustęp, punkt, literę z opcjonalnymi tiretami
+-- reprezentuje artykuł, ustęp, punkt, literę z opcjonalnymi tiretami
 data ZWyliczeniem =
   ZWyliczeniem { _zwprefix :: TextWithReferences
-               , _zwindex :: [T.Text]
                , _zwpoints :: [(T.Text, ZWyliczeniem)]
-               , _zsuffix :: TextWithReferences
                }
   deriving (Show, Read, Eq)
 
-emptyZWyliczeniem = ZWyliczeniem [] [] [] []
+emptyZWyliczeniem = ZWyliczeniem [] []
 
 --type Table = [[TableCell]]
 
