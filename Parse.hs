@@ -354,7 +354,6 @@ punkt = do
 
 content :: (Float -> Bool) -> Parser TextWithReferences
 content indentP =
-  -- TODO: does it have to be many?
   fmap (mergeTexts []) $ some $
     choice [Text  <$> (indent indentP >> token' anyT)
            ,Table <$> token' (preview $ _NonTerminal . _2 . _TableToken . titable)
