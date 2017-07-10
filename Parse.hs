@@ -14,13 +14,15 @@ import qualified Data.IntervalMap as IM
 import qualified Data.IntervalSet as IS
 import qualified Data.Set as S
 import qualified Data.Map as M
+import qualified Data.Map.Strict as StrictM
 import Model
 import ParseXml
-import Text.Megaparsec
+import Text.Megaparsec hiding (label)
 import Text.Megaparsec.Prim (MonadParsec)
 import Data.Char (isDigit, isLower)
 import Test.Tasty
 import Test.Tasty.HUnit
+import Test.Tasty.QuickCheck
 import Control.Monad.State.Lazy
 
 data NonTerminal =
@@ -525,13 +527,17 @@ insertTables' allTis@((page, ti) : tis) allToks@(tok:toks)
  where
     insertIntoCell _ (NonTerminal _ _) = error "unexpected non terminal, expected a raw token for table cell"
     insertIntoCell ti RawToken {_ttok=ttok} =
-        fromMaybe (error $ "no such cell " ++ show (row, col))
-                  (failover (titable.tcell (row, col)._Just.tctext) ((Text $ ttok^.ttext):) ti)
+        fromMaybe (error $ "no such cell " ++ show (row, col) ++ show (row', col'))
+                  (failover (titable. ix row' . ix col' . tctext) ((Text $ ttok^.ttext):) ti)
       where x = _tmidX ttok
             y = _tmidY ttok
             -- 0 based coords in the table
             row = cellNo y (ti^.tirowEnds)
             col = cellNo x (ti^.ticolEnds)
+            (row', col') =
+              case M.lookup (row, col) (_tiindex ti) of
+                Nothing -> error $ "No such cell " ++ show (row, col) ++ show (x, y) ++ show ttok ++ "\n" ++ (nicify . show $ ti)
+                Just res -> res
             cellNo pos ends = length (takeWhile (<pos) ends)
 
 -- when collecting the text into cells, I put them in reverse order, reorder them when putting the
@@ -540,23 +546,6 @@ reverseCellTexts :: [[TableCell]] -> [[TableCell]]
 reverseCellTexts = map (map $ over tctext reverseAndProcess)
 reverseAndProcess :: TextWithReferences -> TextWithReferences
 reverseAndProcess = return . Text . T.unwords . reverse . mapMaybe (preview _Text)
-
--- let it be 0 based
--- this is wrong in case there are any row spans greater than 1
-tcell :: (Int, Int) -> Traversal' [[TableCell]] (Maybe TableCell)
-tcell (row, col) = ix row . tcell col
-  where tcell :: Int -> Lens' [TableCell] (Maybe TableCell)
-        tcell col = lens (getCell (col+1)) (changeCell (col+1))
-          where getCell _ [] = Nothing
-                getCell col (c:cs)
-                  | col <= _tccolSpan c = Just c
-                  | otherwise = getCell (col - _tccolSpan c) cs
-                changeCell :: Int -> [TableCell] -> Maybe TableCell -> [TableCell]
-                changeCell _ [] _ = []
-                changeCell col (c:cs) mNewCell
-                  | col <= _tccolSpan c = maybeToList mNewCell ++ cs
-                  | otherwise = c : changeCell (col - _tccolSpan c) cs mNewCell
-
 
 buildTables :: [VGroup] -> [VClip] -> [TableInfo]
 buildTables groups clips' =
@@ -587,8 +576,8 @@ buildTables groups clips' =
          | Just ylastrow <- tb^?tbrows._head._head.vcy = isAround 2 (_vcy c) ylastrow
          | otherwise = False
       addClip tb c = TableBuilder {_tbxEdges = (min (_vcx c) *** max (_vcx c + _vcwidth c)) (tb^.tbxEdges)
-                                  ,_tbrowEnds = insertWithTolerance 2.0 (_vcy c + _vcheight c) (tb^.tbrowEnds)
-                                  ,_tbcolEnds = insertWithTolerance 2.0 (_vcx c + _vcwidth c) (tb^.tbcolEnds)
+                                  ,_tbrowEnds = insertWithTolerance 3.0 (_vcy c + _vcheight c) (tb^.tbrowEnds)
+                                  ,_tbcolEnds = insertWithTolerance 3.0 (_vcx c + _vcwidth c) (tb^.tbcolEnds)
                                   ,_tbrows = if clipExtendsLastRow c tb then over _head (c:) (tb^.tbrows)
                                                                         else [c] : tb^.tbrows }
       builders = foldl' visitClip [] (sortWith (_vcy &&& _vcx) clips)
@@ -596,9 +585,12 @@ buildTables groups clips' =
         | tb^.tbrows.to length < 2 = Nothing
         | otherwise =
           let rs = reverse $ map reverse (tb^.tbrows)
+              -- is top lef cell really top left? TODO
               topLeftCell = head . head $ rs
               x = _vcx topLeftCell
               y = _vcy topLeftCell
+              -- We don't have a clip for every cell of the table, at this point we know the x  position of clip
+              -- so we can add empty table cells to fill in the gaps: TODO
               cells = map (map $ cellFrom tb) rs
           in
           Just TableInfo {
@@ -613,12 +605,47 @@ buildTables groups clips' =
           }
   in mapMaybe toTableInfo builders
 
--- provide a translation of cell index from the table as if there were not row col spans
--- to table that has those spans:
--- For example a table with three cells, where first cells hes row span of 2 will yield
--- a translation that will be (1,1) -> (1,1), (2,1) -> (1,1), (2, 2) -> (2, 1)
+
+data ColAdjustment = ColAdjustment { cacol, camaxRow, cacolSpan :: Int}
+                     deriving (Eq, Ord, Show)
+
+-- Provide a translation of virtual cell location to an index into the nexted list.
+-- If all the cells had row and col spans equal to one, it would be an identity.
+-- For example a table with three cells, where first cell hes row span of 2 will yield
+-- a translation of (0,0) -> (0,0), (0,1) -> (0,1), (1,0) -> (0,0), (1, 1) -> (1, 0)
 buildTableIndex :: [[TableCell]] -> M.Map (Int, Int) (Int, Int)
-buildTableIndex = undefined
+buildTableIndex table = build' mempty 0 0 0 [] [] table
+  where
+    build' :: M.Map (Int, Int) (Int, Int) -> Int -> Int -> Int
+           -> [ColAdjustment] -> [ColAdjustment]
+           -> [[TableCell]] -> M.Map (Int, Int) (Int, Int)
+    -- acc - the result accumulator
+    -- row - the current row in the table
+    -- col - the current virtual column (of the virtual full table, there are (colspan * rowspan)
+    --       number of virtual cells per each table cell)
+    -- cpos - the 0-based position of the cell in its row
+    -- adjs - the adjustments for the current row (from cells with rowspans>1 in previous rows)
+    -- nextRowAdjs - adjustments for the next row
+    -- table - the cells
+    build' acc row col cpos (adj:adjs) nextRowAdjs table
+      | cacol adj == col =
+          build' acc row (col + cacolSpan adj) cpos adjs nextRowAdjs' table
+            where nextRowAdjs' = if camaxRow adj > row
+                                   then L.insert adj nextRowAdjs
+                                   else nextRowAdjs
+    build' acc _row _col _cpos [] [] [] = acc
+    build' _acc _row _col _cpos adjs nextRowAdjs [] = error $ "leftover adjustments, invalid table? " ++ show adjs ++ show nextRowAdjs
+    build' acc row col cpos adjs nextRowAdjs ((c:cs):rs) =
+      build' acc' row (col + _tccolSpan c) (succ cpos) adjs nextRowAdjs' (cs:rs)
+        where
+          acc' = foldl' (\acc k -> StrictM.insert k (row, cpos) acc) acc [(r,c) | r <- take (_tcrowSpan c) [row..], c <- take (_tccolSpan c) [col..]]
+          nextRowAdjs' = if _tcrowSpan c == 1
+                           then nextRowAdjs
+                           else L.insert (ColAdjustment col (row + _tcrowSpan c - 1) (_tccolSpan c)) nextRowAdjs
+    build' acc row _col _cpos _adjs nextRowAdjs ([]:rs) =
+      build' acc (succ row) 0 0 nextRowAdjs [] rs
+
+
 
 isAround :: Float -> Float -> Float -> Bool
 isAround tolerance val ref = val <= ref + tolerance && val >= ref - tolerance
@@ -672,7 +699,7 @@ tableTests =
           [[nakedBox {_tcwidth=50,_tcheight=80,_tccolSpan=1,_tcrowSpan=2,_tctext=[]}
            ,nakedBox {_tcwidth=50,_tcheight=50,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]
           ,[nakedBox {_tcwidth=50,_tcheight=28,_tccolSpan=1,_tcrowSpan=1,_tctext=[]}]]
-           (M.fromList [((0,0), (0,0)), ((0, 1), (0,1)), ((1,0), (0,1)), ((1,1), (1,0))])]
+           (M.fromList [((0,0), (0,0)), ((0, 1), (0,1)), ((1,0), (0,0)), ((1,1), (1,0))])]
           (buildTables [] [
              VClip {_vcx=37,_vcy=577.68,_vcwidth=50,_vcheight=80,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=89,_vcy=577.68,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
@@ -689,7 +716,23 @@ tableTests =
              VClip {_vcx=0,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=50,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=0,_vcy=50,_vcwidth=100,_vcheight=50,_vcpage=13,_vcgroup=undefined}])
+    -- if we think if the mapping from the virtual cells without col or row spans (virtual cells) to
+    -- the actual cells as a function, we want it to be, among others, surjective
+    , testProperty "buildTableIndex properties" $ do
+        [rows, cols] <- replicateM 2 (choose (1, 15))
+        table <- arbitraryTable rows cols
+        let codomain = S.fromList . concat . zipWith (map . (,)) [0..] . map (zipWith (curry fst) [0..]) $ table
+        let domain = S.fromList [(r,c) | r <- [0..rows-1], c <- [0..cols-1]]
+        let index = buildTableIndex table
+        let virtualIsGreater ((r1, c1), (r2, c2)) =
+              counterexample "virtual cell has greater or equal coordinates than the real cell" $ r1 >= r2 .&&. c1 >= c2
+        return $ counterexample ("Table: " ++ show table ++ "\nIndex: " ++ show index) $
+                counterexample "mapping is a surjection" (codomain === (S.fromList . M.elems $ index))
+                .&&. counterexample "domain" (domain === (S.fromList . M.keys $ index))
+                .&&. counterexample "virtual has greater or eq coords" (conjoin . map virtualIsGreater . M.toList $ index)
+                .&&. counterexample "(0,0) -> (0,0) is there" (index M.! (0, 0) === (0, 0))
     ]
+
 
 nakedBox = TableCell {_tcwidth= -1,_tcheight= -1,_tccolSpan=0,_tcrowSpan=0,_tctext=[],
                       _tcborderTop = False, _tcborderBottom = False, _tcborderLeft = False, _tcborderRight = False}
