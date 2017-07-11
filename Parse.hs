@@ -22,7 +22,6 @@ import Text.Megaparsec.Prim (MonadParsec)
 import Data.Char (isDigit, isLower)
 import Test.Tasty
 import Test.Tasty.HUnit
-import Test.Tasty.QuickCheck
 import Control.Monad.State.Lazy
 
 data NonTerminal =
@@ -458,8 +457,6 @@ indent predicate = do
 naturalNumber :: Parser Int
 naturalNumber = read <$> parsecTok (some digitChar)
 
--- TODO can this be a performance problem?
--- this generalized the manyTill operator from Parsec lib
 manyTill' :: MonadParsec e s m => m a -> m end -> m ([a], end)
 manyTill' m end =
   ([],) <$> end
@@ -553,6 +550,11 @@ buildTables groups clips' =
       clips = filter (\c -> _vcheight c < 840 || _vcwidth c < 590) clips'
       hasBorderAt intervalMap a b =
         any (not . null . IS.elems . flip IS.containing b) (IM.elems $ IM.containing intervalMap a)
+      -- We are only putting in cells that have underlying clips, however, there
+      -- are textless cells for which there is no underlying clip, we might want them
+      -- for their border information. It is enough to assume they are cells with row and cols
+      -- span of 1 and add them based on the values missing from index keys, but that would require
+      -- modifying the index TODO
       cellFrom tb clip =
         TableCell { _tcwidth = _vcwidth clip, _tcheight = _vcheight clip, _tctext=[]
                   , _tccolSpan = span (tb^.tbcolEnds) (_vcx clip) (_vcx clip + _vcwidth clip)
@@ -562,6 +564,17 @@ buildTables groups clips' =
                   , _tcborderLeft   = hasBorderAt vertical   (_vcx clip)                   (_vcy clip + _vcheight clip / 2)
                   , _tcborderRight  = hasBorderAt vertical   (_vcx clip + _vcwidth clip)   (_vcy clip + _vcheight clip / 2)
                   }
+      rowFrom :: TableBuilder -> M.Map (Int, Int) (Int, Int) -> (Int, [VClip])
+                  -> (M.Map (Int, Int) (Int, Int), [TableCell])
+      rowFrom tb index (row, clips) = mapAccumL g index (zip [0..] clips)
+        where g indexAcc (i, clip) = (indexAcc', tc)
+                where
+                  tc = cellFrom tb clip
+                  col = 1 - _tccolSpan tc + (length . filter (< _vcx clip + _vcwidth clip - 3) $ tb^.tbcolEnds)
+                  indexAcc' = foldl' (\index k -> StrictM.insert k (row, i) index) indexAcc $
+                                cartesianProduct [row .. _tcrowSpan tc - 1 + row] [col .. _tccolSpan tc - 1 + col]
+                  cartesianProduct :: [a] -> [a] -> [(a,a)]
+                  cartesianProduct l1 l2 = [(x,y) | x <- l1, y <- l2]
       span ends from to =
         length . takeWhile (<= (to + 3)) . dropWhile (<= (from + 3)) $ ends
       visitClip [] clip = [TableBuilder {_tbxEdges = (_vcx clip, _vcx clip + _vcwidth clip)
@@ -584,13 +597,11 @@ buildTables groups clips' =
         | tb^.tbrows.to length < 2 = Nothing
         | otherwise =
           let rs = reverse $ map reverse (tb^.tbrows)
-              -- is top lef cell really top left? TODO
+              -- is top left cell really top left? TODO
               topLeftCell = head . head $ rs
               x = _vcx topLeftCell
               y = _vcy topLeftCell
-              -- We don't have a clip for every cell of the table, at this point we know the x  position of clip
-              -- so we can add empty table cells to fill in the gaps: TODO
-              cells = map (map $ cellFrom tb) rs
+              (index, cells) = mapAccumL (rowFrom tb) mempty (zip [0..] rs)
           in
           Just TableInfo {
               _tix = x
@@ -600,7 +611,7 @@ buildTables groups clips' =
             , _tirowEnds = _tbrowEnds tb
             , _ticolEnds = _tbcolEnds tb
             , _titable = cells
-            , _tiindex = buildTableIndex cells
+            , _tiindex = index
           }
   in mapMaybe toTableInfo builders
 
@@ -715,21 +726,6 @@ tableTests =
              VClip {_vcx=0,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=50,_vcy=0,_vcwidth=50,_vcheight=50,_vcpage=13,_vcgroup=undefined}
             ,VClip {_vcx=0,_vcy=50,_vcwidth=100,_vcheight=50,_vcpage=13,_vcgroup=undefined}])
-    -- if we think if the mapping from the virtual cells without col or row spans (virtual cells) to
-    -- the actual cells as a function, we want it to be, among others, surjective
-    , testProperty "buildTableIndex properties" $ do
-        [rows, cols] <- replicateM 2 (choose (1, 15))
-        table <- arbitraryTable rows cols
-        let codomain = S.fromList . concat . zipWith (map . (,)) [0..] . map (zipWith (curry fst) [0..]) $ table
-        let domain = S.fromList [(r,c) | r <- [0..rows-1], c <- [0..cols-1]]
-        let index = buildTableIndex table
-        let virtualIsGreater ((r1, c1), (r2, c2)) =
-              counterexample "virtual cell has greater or equal coordinates than the real cell" $ r1 >= r2 .&&. c1 >= c2
-        return $ counterexample ("Table: " ++ show table ++ "\nIndex: " ++ show index) $
-                counterexample "mapping is a surjection" (codomain === (S.fromList . M.elems $ index))
-                .&&. counterexample "domain" (domain === (S.fromList . M.keys $ index))
-                .&&. counterexample "virtual has greater or eq coords" (conjoin . map virtualIsGreater . M.toList $ index)
-                .&&. counterexample "(0,0) -> (0,0) is there" (index M.! (0, 0) === (0, 0))
     ]
 
 
