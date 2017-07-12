@@ -392,7 +392,7 @@ annex = do
   (pageNum, annexNum) <- annexToken
   -- skip to the last token in the annex, I am assuming here that there is
   -- at least one token in the annex
-  skipMany (anyToken >> notFollowedBy (void annexToken <|> eof))
+  skipMany (try $ anyToken >> notFollowedBy (void annexToken <|> eof))
   lastPageOfAnnex <- _tpPageNum <$> position
   void anyToken
   return (Annex {_anum = annexNum, _astartPage = pageNum, _apages = lastPageOfAnnex - pageNum + 1})

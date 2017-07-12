@@ -43,6 +43,7 @@ page 57 (take 80) punkt '<82a' spans to subsequent page, 46sec
 2017-07-06: page 85 (take 233) 3m12s (marginally better when working on a pruned xml)
 2017-07-08: all except (take 233) annexes 3mm9s on pruned xml
             parsing all pages results in an error: no such cell (6,2)
+2017-07-12: all parsed in 3m9s on pruned xml, without content inside anexes
 
 
 grant for dannis legislative project from Google DNI
