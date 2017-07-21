@@ -1,5 +1,5 @@
-
-pdf z isap sa mniejsz niz te z du, poz 171 z 2015 roku jest 676k
+format xml using xmllint (from libxml2-utils package):
+xmllint --format filename.xml
 
 zasady techniki prawodawczej
 http://isap.sejm.gov.pl/DetailsServlet?id=WDU20160000283

@@ -112,14 +112,14 @@ partitionPage page =
     Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
   where
     (sidenotsLines, otherLines) = partition isSidenote (_ptexts page)
-    (mainCont, footnots) = forceEitherMsg (show $ _pnumber page) . runParser parseOtherLines  ("other lines: " ++ show (_pnumber page)) $ Lines otherLines
+    (mainCont, footnots) = forceEitherMsg (show $ _pnumber page) . runParser parseOtherLines ("other lines: " ++ show (_pnumber page)) $ Lines otherLines
     parseOtherLines :: Parsec Dec Lines ([TEXT],[TEXT])
     parseOtherLines = do
       -- TODO
       void $ parseOneLine "kancelaria" (parsec $ string "©Kancelaria Sejmu")
       void $ parseOneLine "page header" (parsec $ string "s." *> space *> some digitChar *> string "/" *> some digitChar)
       void $ parseOneLine "strona" (parsec $ count 4 digitChar *> string "-" *> count 2 digitChar *> string "-" *> count 2 digitChar)
-      manyTill' (parseOneLine "footnotes" Just) (parseFootnotes)
+      manyTill' (parseOneLine "footnotes" Just) parseFootnotes
     parseFootnotes = do
       maybeContinuationFromPreviousPage <- option [] footnoteBody
       footnotes <- many footnote
@@ -286,10 +286,10 @@ parseUstawa path vecFiles = do
   let partitioned = partitionPages (take 888 pages)
       tokenStream = recognizeNonTerminals . insertTables tablesPerPage . processAdditionsAndRemovals $ _mainContent partitioned
   writeFile "/tmp/foo" (nicify. ushow . filter (not . is _TableToken) . mapMaybe (preview (_NonTerminal . _2)) $ tokenStream)
-  forceResult path $ toResult $ runParser tekstJednolity path tokenStream
+  forceResult path $ toResult $ runParser tekstUjednolicony path tokenStream
 
-tekstJednolity :: Parser Akt
-tekstJednolity = do
+tekstUjednolicony :: Parser Akt
+tekstUjednolicony = do
   pid <- duPozId
   consumeWords "U S T A W A"
   zDnia <- consumeWords "z dnia" *> dlugaData
@@ -361,7 +361,7 @@ content indentP =
     mergeTexts acc (Text t1:rest) = mergeTexts (t1:acc) rest
     mergeTexts [] [] = []
     mergeTexts acc [] = [Text (T.unwords (reverse acc))]
-    mergeTexts acc (Table t:rest) = Text (T.unwords (reverse acc)) : Table t : mergeTexts [] rest
+    mergeTexts acc (other:rest) = Text (T.unwords (reverse acc)) : other : mergeTexts [] rest
 
 
 podpunkt :: Parser (T.Text, ZWyliczeniem)
@@ -427,7 +427,7 @@ dlugaData = do
     Just r -> return r
     Nothing -> fail ("Nie mozna sparsowac daty: " ++ date_text)
 
--- prefiexed `peek` to emphisize it does not consume input
+-- prefixed `peek` to emphasize it does not consume input
 peekBold :: MonadParsec e [Tok] m => m ()
 peekBold = do
   inp <- getInput
@@ -441,9 +441,6 @@ anyT :: Tok -> Maybe T.Text
 anyT = preview (ttok . ttext)
 
 constT expected tok = if tok^.ttok.ttext == expected then Just () else Nothing
-
-indent' :: (Float -> Bool) -> Tok -> All
-indent' ind = view $ ttok.tx.to (All . ind)
 
 indent :: (Float -> Bool) -> Parser ()
 indent predicate = do

@@ -114,34 +114,28 @@ expectedUstawa2 =
 
 podstawaTable = unsafePerformIO (read <$> readFile "tests/podstawaObliczeniaPodatku.table")
 
-class Point a where
-  mkLeaf :: T.Text -> a
-  mkPoint :: T.Text -> [(T.Text, ZWyliczeniem)] -> a
-
-instance Point ZWyliczeniem where
-  mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) []
-  mkPoint text children =
-     ZWyliczeniem (if T.null text then [] else [Text text]) children
+mkLeaf :: T.Text -> ZWyliczeniem
+mkLeaf text = ZWyliczeniem (if T.null text then [] else [Text text]) []
+mkPoint :: T.Text -> [(T.Text, ZWyliczeniem)] -> ZWyliczeniem
+mkPoint text children =
+    ZWyliczeniem (if T.null text then [] else [Text text]) children
 
 
 diffAssertEqual :: (Show a, Eq a) => a -> a -> Assertion
 diffAssertEqual expected actual =
-  if expected == actual
-    then return ()
-    else do
-      let expected' = nice expected
-          actual'   = nice actual
-          diff = ppDiff (getGroupedDiff (lines expected') (lines actual'))
-      -- take first 60 chars from the first char that differes
-      let firstDiff = unzip . take 60 . dropWhile (uncurry (==)) . zip actual' $ expected'
-      assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\nFirst diff:\nact: %s\nexp: %s\n"
-                             expected' actual' diff (fst firstDiff) (snd firstDiff))
+  unless (expected == actual) $ do
+    let expected' = pretty expected
+        actual'   = pretty actual
+        diff = ppDiff (getGroupedDiff (lines expected') (lines actual'))
+    -- take first 60 chars from the first char that differs
+    let firstDiff = unzip . take 60 . dropWhile (uncurry (==)) . zip actual' $ expected'
+    assertFailure (printf "expected:\n%s\nactual:\n%s\ndiff:%s\nFirst diff:\nact: %s\nexp: %s\n"
+                            expected' actual' diff (fst firstDiff) (snd firstDiff))
   where
-    nice = nicify . ushow
+    pretty = nicify . ushow
 
 -- TODO:
 -- annex test
 -- bez podzialu na rozdzialy
 -- rozdzialy i inne dzialy
--- przypisy s 159 art 26d
 -- recognize links (relative and absoulte)

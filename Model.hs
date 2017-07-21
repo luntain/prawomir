@@ -36,7 +36,7 @@ data TableOfContents =
 
 type TextWithReferences = [TextOrReference]
 data TextOrReference =
-  Text T.Text | Table [[TableCell]]
+  Text T.Text | Table [[TableCell]] | FootnoteRef T.Text
   deriving (Show, Read, Eq, Ord)
 
 data Annex =
