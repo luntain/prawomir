@@ -1,4 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, BangPatterns #-}
 module Parse where
 
 import Data.Monoid
@@ -48,12 +48,12 @@ data TokPosition =
 type Parser a = Parsec Dec [Tok] a
 
 data Partitioned =
-  Partitioned {_mainContent :: [Tok], _sidenotes :: [Tok], _footnotes::[Tok]}
+  Partitioned {_mainContent, _sidenotes :: [Tok]}
   deriving (Show)
 
 instance Monoid Partitioned where
-  mempty = Partitioned [] [] []
-  mappend (Partitioned m s f) (Partitioned m2 s2 f2) = Partitioned (m <>m2) (s<>s2) (f<>f2)
+  mempty = Partitioned [] []
+  mappend (Partitioned m s) (Partitioned m2 s2) = Partitioned (m <>m2) (s<>s2)
 
 
 -- has to be here because of the makeLenses TH
@@ -109,33 +109,27 @@ partitionPages = mconcat . map partitionPage
 
 partitionPage :: Page -> Partitioned
 partitionPage page =
-    Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines, _footnotes=toToks footnots}
+    Partitioned {_mainContent=toToks mainCont, _sidenotes=toToks sidenotsLines}
   where
     (sidenotsLines, otherLines) = partition isSidenote (_ptexts page)
-    (mainCont, footnots) = forceEitherMsg (show $ _pnumber page) . runParser parseOtherLines ("other lines: " ++ show (_pnumber page)) $ Lines otherLines
-    parseOtherLines :: Parsec Dec Lines ([TEXT],[TEXT])
+    mainCont = forceEitherMsg (show $ _pnumber page) . runParser parseOtherLines ("other lines: " ++ show (_pnumber page)) $ Lines otherLines
+    parseOtherLines :: Parsec Dec Lines [TEXT]
     parseOtherLines = do
-      -- TODO
       void $ parseOneLine "kancelaria" (parsec $ string "©Kancelaria Sejmu")
       void $ parseOneLine "page header" (parsec $ string "s." *> space *> some digitChar *> string "/" *> some digitChar)
       void $ parseOneLine "strona" (parsec $ count 4 digitChar *> string "-" *> count 2 digitChar *> string "-" *> count 2 digitChar)
-      manyTill' (parseOneLine "footnotes" Just) parseFootnotes
+      manyTill (parseOneLine "footnotes" Just) parseFootnotes
+    -- Completely ignore footnotes. They don't seem interesting.
     parseFootnotes = do
-      maybeContinuationFromPreviousPage <- option [] footnoteBody
-      footnotes <- many footnote
+      _maybeContinuationFromPreviousPage <- option [] footnoteBody
+      skipMany footnote
       eof
-      return $ maybeContinuationFromPreviousPage ++ concat footnotes
     footnote :: Parsec Dec Lines [TEXT]
     footnote =
-        -- TODO there are some problems with this:
-        -- First - it assumes the footnote number is in separate TEXT node from the
-        --    body of the footnote, pit page 159 has a counter example
-        -- Second - we are droping the footnote number, which is ok for now
        ((peekFontSize (==6.48)) >> parseOneLine "footnote"  (parsec $ some digitChar <* string ")"))
         *> footnoteBody
     -- footnoteBody has many instead of some to enable parsing of single line footnotes
-    -- where the body and number are in the same TEXT node, see comment to footnote above
-    -- For now it is enough to filter our footnotes
+    -- where the body and number are in the same TEXT node
     footnoteBody = many ((peekFontSize (==9.96)) >> parseOneLine "footnote body" Just)
     peekFontSize :: MonadParsec Dec Lines m => (Float -> Bool) -> m ()
     peekFontSize predicate = do
@@ -159,7 +153,7 @@ processAdditionsAndRemovals (x@(NonTerminal _ _) : rest) =
   x : processAdditionsAndRemovals rest
 processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
   | T.head (_ttext ttok') == '<'
-      -- I check that the next token is bold, this is hack for the irregularity where
+      -- I check that the next token is bold, this is a hack for the irregularity where
       -- in pit page 58 the '<82a)' is not bold, although it appears so in the pdf
       && Just True == preview (ix 0 . ttok . tbold) rest =
         over (ttok.ttext) T.tail x : consumeAddition rest
@@ -177,6 +171,25 @@ processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
     consumeDeletion (_ : rest) = consumeDeletion rest
     consumeDeletion [] = []
 
+-- The document I saw so far all have main content with 12pt font
+mainContentFontSize = 12
+
+dropFootnoteRefs :: [Tok] -> [Tok]
+dropFootnoteRefs = f (12, 0)
+  where
+    f _ [] = []
+    f (!prevTokFontSize, !prevLineY) (tok:toks) =
+      case tok of
+        NonTerminal _ _ -> error "drop footnotes before recognizing `NonTerminal`s"
+        token@RawToken {_ttok=tok, _tline=word} ->
+          -- This will break should the ref be in a new TEXT node, but we will cross that bridge
+          -- when we get to it. I don't consider the ones at the start of a line because
+          -- they are part of the footnote, which are parsed later on.
+          if _tfontsize tok < 10 && prevTokFontSize == mainContentFontSize
+                         && prevLineY == _ly word && likeFontRef (_ttext tok)
+                then f (_tfontsize tok, _ly word) toks
+                else token : f (_tfontsize tok, _ly word) toks
+    likeFontRef text = isDigit (T.head text) && T.last text == ')'
 
 -- recognize small structures that make the subsequnt main parse easier
 -- for example `Art. 1.` is replaced by `NonTerminal SourcePosition (ArticleToken "1")`
@@ -284,7 +297,7 @@ parseUstawa path vecFiles = do
   tablesPerPage <- mapM processVecFilesPage vecFiles
   --putStrLn (nicify . show . filter ((==234). fst) $ tablesPerPage)
   let partitioned = partitionPages (take 888 pages)
-      tokenStream = recognizeNonTerminals . insertTables tablesPerPage . processAdditionsAndRemovals $ _mainContent partitioned
+      tokenStream = recognizeNonTerminals . insertTables tablesPerPage . dropFootnoteRefs . processAdditionsAndRemovals $ _mainContent partitioned
   writeFile "/tmp/foo" (nicify. ushow . filter (not . is _TableToken) . mapMaybe (preview (_NonTerminal . _2)) $ tokenStream)
   forceResult path $ toResult $ runParser tekstUjednolicony path tokenStream
 

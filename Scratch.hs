@@ -37,6 +37,12 @@ fromXml path = do
 explore :: FilePath -> IO ()
 explore path = do
   pages <- parsePages path
-  let tokens = pages >>= _ptexts >>= _ltokens
+  --let tokens = pages >>= _ptexts >>= _ltokens
   --let fontSizes = foldl' (\acc fontSize -> M.insertWith (+) fontSize 1 acc) M.empty (map _tfontsize tokens) :: M.Map Float Int
-  print (map _ttext . filter ((== 9) . _tfontsize) $ tokens)
+  --print (map _ttext . filter ((== 9) . _tfontsize) $ tokens)
+  let lines = pages >>= _ptexts
+  let numLines = length lines
+  let nonRegularLines = filter (not . uncurry (==)) . map (_lx &&& _tx . head . _ltokens) $ lines
+  print nonRegularLines
+  print (length nonRegularLines)
+  print numLines
