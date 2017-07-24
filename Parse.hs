@@ -171,7 +171,7 @@ processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
     consumeDeletion (_ : rest) = consumeDeletion rest
     consumeDeletion [] = []
 
--- The document I saw so far all have main content with 12pt font
+-- The documents I saw so far all have main content with 12pt font
 mainContentFontSize = 12
 
 dropFootnoteRefs :: [Tok] -> [Tok]
