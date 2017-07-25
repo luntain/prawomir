@@ -34,7 +34,7 @@ data TableOfContents =
   | Articles [PartNumber]
   deriving (Show, Read, Eq)
 
-type TextWithReferences = [TextOrReference]
+type Content = [TextOrReference]
 data TextOrReference =
   Text T.Text | Table [[TableCell]]
   deriving (Show, Read, Eq, Ord)
@@ -46,7 +46,7 @@ data Annex =
 
 -- reprezentuje artykuł, ustęp, punkt, literę z opcjonalnymi tiretami
 data ZWyliczeniem =
-  ZWyliczeniem { _zwprefix :: TextWithReferences
+  ZWyliczeniem { _zwprefix :: Content
                , _zwpoints :: [(T.Text, ZWyliczeniem)]
                }
   deriving (Show, Read, Eq)
@@ -57,7 +57,7 @@ emptyZWyliczeniem = ZWyliczeniem [] []
 
 data TableCell =
   TableCell {
-    _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: TextWithReferences
+    _tcwidth, _tcheight :: Float, _tccolSpan, _tcrowSpan :: Int, _tctext :: Content
    , _tcborderTop, _tcborderLeft, _tcborderRight, _tcborderBottom :: Bool
   } deriving (Show, Read, Eq, Ord)
 

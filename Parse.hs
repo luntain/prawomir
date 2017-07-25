@@ -26,6 +26,7 @@ import Control.Monad.State.Lazy
 
 data NonTerminal =
     RozdziałToken T.Text
+  | OddziałToken T.Text -- jednostka podzialu nizzdza niz Rozdział
   | ArticleToken T.Text
   | UstępToken T.Text
   | PunktToken T.Text
@@ -364,7 +365,7 @@ punkt = do
     return (appendCommonPart ps commonPart)
   return (num, ZWyliczeniem wprowadzenie (concat podpunkty))
 
-content :: (Float -> Bool) -> Parser TextWithReferences
+content :: (Float -> Bool) -> Parser Content
 content indentP =
   fmap (mergeTexts []) $ some $
     choice [Text  <$> (indent indentP >> token' anyT)
@@ -387,14 +388,14 @@ podpunkt = do
                   [Text . T.unwords $ text]
                   (map (const "-" &&& (\t -> ZWyliczeniem t [])) $ tirety)) -- TODO, test podsumowujący "-"
 
-tiret :: Float -> Parser TextWithReferences
+tiret :: Float -> Parser Content
 tiret indent' = do
   token' (preview $ _NonTerminal . _2 .  _TiretToken)
   -- TODO, probably should detect tables even here
   texts <- many $ indent (>indent') >> token' anyT
   return [Text . T.unwords $ texts]
 
-appendCommonPart :: [(T.Text, ZWyliczeniem)] -> TextWithReferences -> [(T.Text, ZWyliczeniem)]
+appendCommonPart :: [(T.Text, ZWyliczeniem)] -> Content -> [(T.Text, ZWyliczeniem)]
 appendCommonPart points [] = points
 appendCommonPart points tr = points ++ [("-", ZWyliczeniem tr [])]
 
@@ -550,7 +551,7 @@ insertTables' allTis@((page, ti) : tis) allToks@(tok:toks)
 -- complete table into the token stream
 reverseCellTexts :: [[TableCell]] -> [[TableCell]]
 reverseCellTexts = map (map $ over tctext reverseAndProcess)
-reverseAndProcess :: TextWithReferences -> TextWithReferences
+reverseAndProcess :: Content -> Content
 reverseAndProcess = return . Text . T.unwords . reverse . mapMaybe (preview _Text)
 
 buildTables :: [VGroup] -> [VClip] -> [TableInfo]
