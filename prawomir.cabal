@@ -11,7 +11,7 @@ library
   default-extensions:
       NoImplicitPrelude, TemplateHaskell,
       NamedFieldPuns, TupleSections, LambdaCase, MultiWayIf, GADTs, TypeFamilies,
-      TypeSynonymInstances, FlexibleInstances, OverlappingInstances, UndecidableInstances,
+      TypeSynonymInstances, FlexibleInstances, UndecidableInstances,
       MultiParamTypeClasses,
       RankNTypes, DeriveDataTypeable, GeneralizedNewtypeDeriving, DeriveGeneric,
       FunctionalDependencies, FlexibleContexts, ScopedTypeVariables
@@ -28,7 +28,7 @@ test-suite test
   default-extensions:
     NoImplicitPrelude, TemplateHaskell,
     NamedFieldPuns, RecordWildCards, TupleSections, LambdaCase, MultiWayIf, GADTs,
-    TypeSynonymInstances, FlexibleInstances, OverlappingInstances, UndecidableInstances,
+    TypeSynonymInstances, FlexibleInstances, UndecidableInstances,
     MultiParamTypeClasses,
     RankNTypes, DeriveDataTypeable, GeneralizedNewtypeDeriving, DeriveGeneric,
     FunctionalDependencies, FlexibleContexts, ScopedTypeVariables

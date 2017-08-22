@@ -26,7 +26,7 @@ import Control.Monad.State.Lazy
 
 data NonTerminal =
     RozdziałToken T.Text
-  | OddziałToken T.Text -- jednostka podzialu nizzdza niz Rozdział
+  | OddziałToken T.Text -- jednostka podzialu niższa niż Rozdział
   | ArticleToken T.Text
   | UstępToken T.Text
   | PunktToken T.Text
@@ -308,40 +308,39 @@ tekstUjednolicony = do
   consumeWords "U S T A W A"
   zDnia <- consumeWords "z dnia" *> dlugaData
   tytul <- T.unwords <$> some (peekBold >> token' (preview (ttok.ttext)))
-  rozdzialy <- many rozdział -- TODO what about the case of no rozdzialy?
+  rozdzialy <- many rozdział
   annexes <- many annex
-  let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
-  let spisTresci = map (view _1 &&& view _3) $ rozdzialy
+  -- let rozdzialIndex = map (view _1 &&& view _2) rozdzialy
+  -- let spisTresci = map (view _1 &&& view _3) $ rozdzialy
   return Ustawa {
             _upId=pid
             , _uzDnia=zDnia
             , _uTytul=tytul
-            , _uspisTresci = Partitions "Rozdział" rozdzialIndex spisTresci
-            , _uarticles = concatMap (view _4) $ rozdzialy
+            , _uroot=Node Root rozdzialy
             , _uannexes = annexes}
 
-rozdział :: Parser (T.Text, T.Text, TableOfContents, [(T.Text, ZWyliczeniem)])
+rozdział :: Parser Node
 rozdział = do
   number <- token' (preview $ _NonTerminal . _2 . _RozdziałToken)
   podtytul <- T.unwords <$> some (peekBold >> token' anyT)
   articles <- some article
-  return (number, podtytul, Articles (map fst articles), articles)
+  return (Node (Header Rozdział number podtytul) articles)
 
-article :: Parser (T.Text, ZWyliczeniem)
+article :: Parser Node -- (T.Text, ZWyliczeniem)
 article = do
   number <- token' (preview (_NonTerminal . _2 . _ArticleToken))
   ustępy <-
-     ((\ub -> [("", ub)]) <$> ustępBody)
+     ((\(content, children) -> [Node (Addressable "" content) children]) <$> ustępBody)
      <|> some ustęp
-  return (number, ZWyliczeniem [] ustępy)
+  return (Node (Addressable number []) ustępy)
 
-ustęp :: Parser (T.Text, ZWyliczeniem)
+ustęp :: Parser Node
 ustęp = do
   ustępNum <- token' (preview $ _NonTerminal . _2 . _UstępToken)
-  ustęp <- ustępBody
-  return (ustępNum, ustęp)
+  (content, children) <- ustępBody
+  return (Node (Addressable ustępNum content) children)
 
-ustępBody :: Parser ZWyliczeniem
+ustępBody :: Parser (Content, [Node])
 ustępBody = do
   text <- content (>=0)
   -- allow common part to appear inside the sequence of children
@@ -350,9 +349,9 @@ ustępBody = do
     punkty <- some punkt
     commonPart <- option [] $ content (>=childIndent)
     return (appendCommonPart punkty commonPart)
-  return (ZWyliczeniem text (concat punkty))
+  return (text, (concat punkty))
 
-punkt :: Parser (T.Text, ZWyliczeniem)
+punkt :: Parser Node
 punkt = do
   startX <- xposition -- take the x of the PunktToken
   num <- token' (preview $ _NonTerminal . _2 . _PunktToken)
@@ -363,7 +362,7 @@ punkt = do
     ps <- some podpunkt
     commonPart <- option [] $ content (>=indent)
     return (appendCommonPart ps commonPart)
-  return (num, ZWyliczeniem wprowadzenie (concat podpunkty))
+  return (Node (Addressable num wprowadzenie) (concat podpunkty))
 
 content :: (Float -> Bool) -> Parser Content
 content indentP =
@@ -378,26 +377,24 @@ content indentP =
     mergeTexts acc (other:rest) = Text (T.unwords (reverse acc)) : other : mergeTexts [] rest
 
 
-podpunkt :: Parser (T.Text, ZWyliczeniem)
+podpunkt :: Parser Node
 podpunkt = do
   num <- token' (preview $ _NonTerminal . _2 . _PodpunktToken)
   startX <- xposition
   text <- many $ indent (>=startX) >> token' anyT
   tirety <- many (tiret startX)
-  return (num, ZWyliczeniem
-                  [Text . T.unwords $ text]
-                  (map (const "-" &&& (\t -> ZWyliczeniem t [])) $ tirety)) -- TODO, test podsumowujący "-"
+  return (Node (Addressable num [Text . T.unwords $ text]) tirety)
 
-tiret :: Float -> Parser Content
+tiret :: Float -> Parser Node
 tiret indent' = do
   token' (preview $ _NonTerminal . _2 .  _TiretToken)
   -- TODO, probably should detect tables even here
   texts <- many $ indent (>indent') >> token' anyT
-  return [Text . T.unwords $ texts]
+  return (Node (Addressable "-" [Text . T.unwords $ texts]) [])
 
-appendCommonPart :: [(T.Text, ZWyliczeniem)] -> Content -> [(T.Text, ZWyliczeniem)]
+appendCommonPart :: [Node] -> Content -> [Node]
 appendCommonPart points [] = points
-appendCommonPart points tr = points ++ [("-", ZWyliczeniem tr [])]
+appendCommonPart points c  = points ++ [Node (Addressable "-" c) []]
 
 -- Don't atttempt to parse annexes boyond recognizing their location in the
 -- pdf document.

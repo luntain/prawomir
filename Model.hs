@@ -21,18 +21,9 @@ data Akt =
   Ustawa { _upId :: PozId
          , _uzDnia :: Day
          , _uTytul :: T.Text
-         , _uspisTresci :: TableOfContents
-         , _uarticles :: [(T.Text, ZWyliczeniem)]
+         , _uroot :: Node
          , _uannexes :: [Annex]
          } deriving (Show, Read, Eq)
-
-type PartNumber = T.Text
-type PartTitle = T.Text
-
-data TableOfContents =
-  Partitions T.Text [(PartNumber, PartTitle)] [(PartNumber, TableOfContents)] -- partition has a number and a title (perhaps no title, but not sure)
-  | Articles [PartNumber]
-  deriving (Show, Read, Eq)
 
 type Content = [TextOrReference]
 data TextOrReference =
@@ -44,14 +35,22 @@ data Annex =
         }
   deriving (Show, Read, Eq)
 
--- reprezentuje artykuł, ustęp, punkt, literę z opcjonalnymi tiretami
-data ZWyliczeniem =
-  ZWyliczeniem { _zwprefix :: Content
-               , _zwpoints :: [(T.Text, ZWyliczeniem)]
-               }
+data Node =
+  Node { _nvalue :: Value, _nchildren :: [Node] }
   deriving (Show, Read, Eq)
 
-emptyZWyliczeniem = ZWyliczeniem [] []
+data Value =
+  Addressable { _vordinal :: T.Text, _vcontent :: Content }
+  -- ^ artykul, ustep, punkt, litera ...
+  | CommonPart { _vcontent :: Content }
+  | Header { _vheaderLevel :: HeaderLevel, _vheaderOrdinal :: T.Text, _vheaderText :: T.Text }
+  | Root
+  deriving (Show, Read, Eq)
+
+data HeaderLevel =
+  Rozdział
+  | Oddział -- may appear under `Rozdział`, can have articles on the same level
+  deriving (Show, Read, Eq)
 
 --type Table = [[TableCell]]
 
