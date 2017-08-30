@@ -35,7 +35,8 @@ test-suite test
   type: exitcode-stdio-1.0
   hs-source-dirs: tests
   main-is: XmlToModel.hs
-  build-depends: prawomir, base, myprelude, tasty, tasty-hunit, text, time, containers, nicify-lib, unicode-show, Diff
+  build-depends: prawomir, base, myprelude, tasty, tasty-hunit, text, time, containers, nicify-lib, unicode-show, Diff,
+      neat-interpolation
 
 executable play
   hs-source-dirs: play

@@ -119,7 +119,7 @@ partitionPage page =
       void $ parseOneLine "kancelaria" (parsec $ string "©Kancelaria Sejmu")
       void $ parseOneLine "page header" (parsec $ string "s." *> space *> some digitChar *> string "/" *> some digitChar)
       void $ parseOneLine "strona" (parsec $ count 4 digitChar *> string "-" *> count 2 digitChar *> string "-" *> count 2 digitChar)
-      manyTill (parseOneLine "footnotes" Just) parseFootnotes
+      manyTill (parseOneLine "main text" Just) parseFootnotes
     -- Completely ignore footnotes. They don't seem interesting.
     parseFootnotes = do
       _maybeContinuationFromPreviousPage <- option [] footnoteBody
@@ -131,7 +131,7 @@ partitionPage page =
         *> footnoteBody
     -- footnoteBody has many instead of some to enable parsing of single line footnotes
     -- where the body and number are in the same TEXT node
-    footnoteBody = many ((peekFontSize (==9.96)) >> parseOneLine "footnote body" Just)
+    footnoteBody = many ((peekFontSize (<mainContentFontSize)) >> parseOneLine "footnote body" Just)
     peekFontSize :: MonadParsec Dec Lines m => (Float -> Bool) -> m ()
     peekFontSize predicate = do
       inp <- fromLines <$> getInput
@@ -176,7 +176,7 @@ processAdditionsAndRemovals (x@(RawToken {_ttok=ttok'}) : rest)
 mainContentFontSize = 12
 
 dropFootnoteRefs :: [Tok] -> [Tok]
-dropFootnoteRefs = f (12, 0)
+dropFootnoteRefs = f (mainContentFontSize, 0)
   where
     f _ [] = []
     f (!prevTokFontSize, !prevLineY) (tok:toks) =
