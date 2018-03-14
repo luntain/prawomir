@@ -166,6 +166,47 @@ tests =
           <TOKEN bold="no" italic="no" font-size="12" x="329.88" y="654.804" width="44.664" height="10.8">papierów</TOKEN>
           <TOKEN bold="no" italic="no" font-size="12" x="380.16" y="650.916" width="75.72" height="15.768">wartościowych.</TOKEN>
           </TEXT>|]
+    , testCase "Oddział can appear on the same level as articles" $ do
+      testParsingArticles
+        [Node (Addressable "19" []) [
+          Node (Addressable "" [Text "Statut bankowi państwowemu nadaje, w drodze rozporządzenia, Prezes"]) []]
+        ,Node (Header Oddział "B" "Banki spółdzielcze") [
+          Node (Addressable "20" []) [
+            Node (Addressable "1" [Text "Bankiem spółdzielczym jest bank w rozumieniu art. 2 pkt 1 ustawy"]) []]]]
+        [text|
+        <TEXT width="385.544" height="13.284" x="82.22" y="374.108">
+          <TOKEN bold="yes" italic="no" font-size="12" x="82.22" y="374.108" width="20.988" height="13.284">Art.</TOKEN>
+          <TOKEN bold="yes" italic="no" font-size="12" x="106.22" y="374.108" width="15" height="13.284">19.</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="124.22" y="374.108" width="28.008" height="13.284">Statut</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="155.348" y="374.108" width="41.328" height="13.284">bankowi</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="199.736" y="374.108" width="69.312" height="13.284">państwowemu</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="272.132" y="374.108" width="34.356" height="13.284">nadaje,</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="309.548" y="374.108" width="8.664" height="13.284">w</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="321.28" y="374.108" width="32.676" height="13.284">drodze</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="357.076" y="374.108" width="76.248" height="13.284">rozporządzenia,</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="436.444" y="374.108" width="31.32" height="13.284">Prezes</TOKEN>
+        </TEXT>
+        <TEXT width="108.24" height="13.284" x="208.04" y="442.348">
+          <TOKEN bold="yes" italic="no" font-size="12" x="208.04" y="442.348" width="11.004" height="13.284">B.</TOKEN>
+          <TOKEN bold="yes" italic="no" font-size="12" x="222.044" y="442.348" width="30.66" height="13.284">Banki</TOKEN>
+          <TOKEN bold="yes" italic="no" font-size="12" x="255.704" y="442.348" width="60.576" height="13.284">spółdzielcze</TOKEN>
+        </TEXT>
+        <TEXT width="385.48" height="13.284" x="82.22" y="468.928">
+          <TOKEN bold="yes" italic="no" font-size="12" x="82.22" y="468.928" width="20.988" height="13.284">Art.</TOKEN>
+          <TOKEN bold="yes" italic="no" font-size="12" x="106.22" y="468.928" width="15" height="13.284">20.</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="124.22" y="468.928" width="9" height="13.284">1.</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="136.22" y="468.928" width="43.332" height="13.284">Bankiem</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="183.668" y="468.928" width="69.42" height="13.284">spółdzielczym</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="257.18" y="468.928" width="16.704" height="13.284">jest</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="278.096" y="468.928" width="23.328" height="13.284">bank</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="305.624" y="468.928" width="8.664" height="13.284">w</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="317.38" y="468.928" width="54.636" height="13.284">rozumieniu</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="376.204" y="468.928" width="15.708" height="13.284">art.</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="394.96" y="468.928" width="6" height="13.284">2</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="405.148" y="468.928" width="15.336" height="13.284">pkt</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="423.54" y="468.928" width="6" height="13.284">1</TOKEN>
+          <TOKEN bold="no" italic="no" font-size="12" x="433.668" y="468.928" width="34.032" height="13.284">ustawy</TOKEN>
+        </TEXT>|]
 
     ]
 
